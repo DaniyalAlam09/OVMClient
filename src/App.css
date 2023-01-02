@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: rgb(255, 255, 255);
+}
+.buttons {
+  background-color: #0c8aa0;
+  margin-left: 0.5em;
+  outline: none;
+  border: none;
+}
+.buttons:hover,
+.buttons:focus {
+  cursor: pointer;
+  background-color: #0ea2bd;
+}
+a,
+.small-link {
+  color: #0c8aa0;
+}
+a:hover,
+Link:hover {
+  /* text-decoration: none;
+  color: #0ea2bd; */
+}
+
+.heading {
+  margin-top: 5rem;
+}
+.heading2 {
+  margin-top: 3rem;
+}
+
+.error {
+  color: red;
+  font-size: 11px;
+  margin-top: -2px;
+}
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+.sidebyside {
+  display: flex;
+}
+main {
+  width: 100%;
+  padding: 20px;
+}
+.sidebar {
+  background: #0c8aa0;
+  color: #fff;
+  height: 100vh;
+  width: 200px;
+  transition: all 0.5s;
+}
+.logoututtoosidebar {
+  /* background: #0c8aa0; */
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.5s;
+}
+.logoututtoosidebar:hover {
+  background: #fff;
+  color: #0c8aa0;
+  transition: all 0.5s;
+}
+.top_section {
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+}
+.logo {
+  font-size: 30px;
+}
+.bars {
+  display: flex;
+  font-size: 25px;
+  margin-left: 50px;
+}
+.link {
+  display: flex;
+  color: #fff;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+.link:hover {
+  background: #fff;
+  color: #0c8aa0;
+  transition: all 0.5s;
+}
+.active {
+  background: #fff;
+  color: #0c8aa0;
+}
+.icon {
+  font-size: 20px;
+}
+
+.nav-user .dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border: none;
+}
+
+.nav-user {
+}
+
+.nav-user-dropdown {
+  padding: 0px;
+  min-width: 150px;
+  margin-left: -100px;
+}
+
+.nav-user-name {
+}
+
+.nav-user-info {
+  background-color: #0ea2bd;
+  line-height: 1.4;
+  padding: 12px;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 2px 2px 0 0;
+}
+
+.nav-user-info .status {
+  float: left;
+  top: 7px;
+  left: 0px;
+}
+
+.nav-user-dropdown {
+}
+
+.nav-user-dropdown .dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 12px 22px 15px;
+  clear: both;
+  font-weight: 400;
+  color: #686972;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  font-size: 13px;
+  line-height: 0.4;
+}
+
+.nav-user-dropdown .dropdown-item:hover {
+  background-color: #f7f7fb;
+}
+
+/*---- User icon sizes ---*/
+
+.user-avatar-xxl {
+  height: 128px;
+  width: 128px;
+}
+
+.user-avatar-xl {
+  height: 90px;
+  width: 90px;
+}
+
+.user-avatar-lg {
+  height: 48px;
+  width: 48px;
+}
+
+.user-avatar-md {
+  height: 32px;
+  width: 32px;
+}
+
+.user-avatar-sm {
+  height: 24px;
+  width: 24px;
+}
+
+.user-avatar-xs {
+  height: 18px;
+  width: 18px;
+}
+
+.avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 2px solid #f7f9fa;
+  background: #f7f9fa;
+  color: #fff;
+}
+
+.media-attachment div.avatar {
+  border: none;
+}
+
+.avatar.bg-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar.bg-primary i {
+  font-size: 14px;
+}
