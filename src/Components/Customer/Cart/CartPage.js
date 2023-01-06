@@ -293,18 +293,8 @@ function CartPage() {
                     <aside class="">
                       <div class="card ">
                         <div class="card-body">
-                          <dl class="dlist-align">
-                            <dt>Total price:</dt>
-                            <dd class="text-right">
-                              {bill && <dd>Total: {bill}</dd>}
-                            </dd>
-                          </dl>
                           <Divider />
-                          <dl class="dlist-align">
-                            <dt>Discount:</dt>
-                            <dd class="text-right">--</dd>
-                          </dl>
-                          <Divider />
+
                           <dl class="dlist-align">
                             <dt>Total:</dt>
                             <dd class="text-right  h5">
@@ -318,7 +308,7 @@ function CartPage() {
                   {/* </div> */}
                 </div>
               </section>
-              <div class="alert alert-success mt-3">
+              <div class="alert alert-success">
                 <p class="icontext">
                   <i class="icon text-success fa fa-truck"></i> Free Delivery
                   within 1-2 weeks
@@ -337,19 +327,8 @@ function CartPage() {
                     occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.
                   </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                  </p>
                 </div>
               </section>
-              ;
             </div>
           </section>
         </div>

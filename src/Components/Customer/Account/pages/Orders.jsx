@@ -45,7 +45,7 @@ const Orders = () => {
               <td>{order.bill}</td>
               <td>{order.date_added}</td>
 
-              <td>{order.items[0].productId}</td>
+              {/* <td>{order.items[0].productId}</td> */}
             </tr>
             {/* ))} */}
           </tbody>

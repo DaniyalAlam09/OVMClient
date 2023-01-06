@@ -75,7 +75,7 @@ const Navbar = () => {
   const [shopowner, setShopowner] = React.useState([]);
   const [search, setSearch] = useState("");
   const [catagories, setCatagories] = React.useState([]);
-  const [products, setProducts] = React.useState({});
+  const [products, setProducts] = React.useState([]);
 
   const handleLogout = () => {
     const config = {
@@ -362,7 +362,7 @@ const Navbar = () => {
               }}
               class="badge badge-pill badge-danger"
             >
-              {/* {Object.values(products).length} */}
+              {products?.length}
             </span>
             {!isEmpty && (
               <span

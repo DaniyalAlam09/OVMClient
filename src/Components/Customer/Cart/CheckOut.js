@@ -1,6 +1,42 @@
 import React from "react";
+import axios from "axios";
 
 function CheckOut() {
+  const [products, setProducts] = React.useState([]);
+  const [bill, setBill] = React.useState();
+  const [loadig, setLoadig] = React.useState(false);
+  const [error, setError] = React.useState(false);
+  const [delet, setDelete] = React.useState(false);
+  const [counter, setCounter] = React.useState(1);
+
+  React.useEffect(
+    function () {
+      setLoadig(true);
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      };
+      axios
+        .get("http://localhost:4000/product/cart", config)
+        .then((res) => {
+          setProducts(res.data.items);
+          console.log(res.data.items);
+          setBill(res.data.bill);
+          setLoadig(false);
+
+          // console.log("product");
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadig(false);
+          setError(true);
+        });
+    },
+    [delet]
+  );
   return (
     <div className="container">
       <section className="py-5">
@@ -336,7 +372,7 @@ function CheckOut() {
                       Red digital smartwatch
                     </strong>
                     <span className="text-muted small">$250</span>
-                  </li>
+                  </li> 
                   <li className="border-bottom my-2"></li>
                   <li className="d-flex align-items-center justify-content-between">
                     <strong className="small fw-bold">

@@ -257,7 +257,7 @@ function Products() {
                               {catagory.name}
                             </button>
                           </div>
-                          {/* <div key={index} className="">
+                          <div key={index} className="">
                             <div class="form-check">
                               <input
                                 class="form-check-input"
@@ -276,7 +276,7 @@ function Products() {
                                 {catagory.name}
                               </label>
                             </div>
-                          </div> */}
+                          </div>
                         </div>
                       );
                     })}
@@ -312,7 +312,7 @@ function Products() {
                             <div class="form-check">
                               <input
                                 class="form-check-input"
-                                type="checkbox"
+                                type="radio"
                                 value=""
                                 id="flexCheckChecked"
                                 name="brand"

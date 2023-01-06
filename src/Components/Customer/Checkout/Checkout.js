@@ -1,63 +1,66 @@
 import * as React from "react";
+import axios from "axios";
 
 export default function Checkout() {
+  const [products, setProducts] = React.useState([]);
+  const [bill, setBill] = React.useState();
+  const [loadig, setLoadig] = React.useState(false);
+  const [error, setError] = React.useState(false);
+  const [delet, setDelete] = React.useState(false);
+  const [counter, setCounter] = React.useState(1);
+
+  React.useEffect(
+    function () {
+      setLoadig(true);
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      };
+      axios
+        .get("http://localhost:4000/product/cart", config)
+        .then((res) => {
+          setProducts(res.data.items);
+          console.log(res.data.items);
+          setBill(res.data.bill);
+          setLoadig(false);
+
+          // console.log("product");
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadig(false);
+          setError(true);
+        });
+    },
+    [delet]
+  );
   return (
     <div className="container mb-5">
       <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
+            <span class="badge badge-secondary badge-pill">
+              {products?.length}
+            </span>
           </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
-            </li>
-          </ul>
+          {products?.map((product, index) => {
+            return (
+              <ul class="list-group mb-3" key={index}>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+                    <h6 class="my-0">{`${product?.name}`}</h6>
+                    {/* <small class="text-muted">{`${product?.product_brand}`}</small> */}
+                  </div>
 
-          <form class="card p-2">
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Promo code"
-              />
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">
-                  Redeem
-                </button>
-              </div>
-            </div>
-          </form>
+                  <span class="text-muted">{`${product?.price}`}</span>
+                </li>
+              </ul>
+            );
+          })}
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
@@ -90,24 +93,14 @@ export default function Checkout() {
                 <div class="invalid-feedback">Valid last name is required.</div>
               </div>
             </div>
-
             <div class="mb-3">
-              <label for="username">Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="username"
-                  placeholder="Username"
-                  required
-                />
-                <div class="invalid-feedback" style={{ width: "100%" }}>
-                  Your username is required.
-                </div>
-              </div>
+              <label for="email">Phone Number</label>
+              <input
+                type="Num"
+                class="form-control"
+                placeholder="0300-000 0000"
+              />
+              <div class="invalid-feedback">Please enter a Phone.</div>
             </div>
 
             <div class="mb-3">
@@ -139,33 +132,7 @@ export default function Checkout() {
               </div>
             </div>
 
-            <div class="mb-3">
-              <label for="address2">
-                Address 2 <span class="text-muted">(Optional)</span>
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="address2"
-                placeholder="Apartment or suite"
-              />
-            </div>
-
             <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select
-                  class="custom-select d-block w-100"
-                  id="country"
-                  required
-                >
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
               <div class="col-md-4 mb-3">
                 <label for="state">State</label>
                 <select class="custom-select d-block w-100" id="state" required>
@@ -177,37 +144,15 @@ export default function Checkout() {
                 </div>
               </div>
               <div class="col-md-3 mb-3">
-                <label for="zip">Zip</label>
+                <label for="zip">Postal Code</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="zip"
                   placeholder=""
                   required
                 />
-                <div class="invalid-feedback">Zip code required.</div>
+                <div class="invalid-feedback">Postal code required.</div>
               </div>
-            </div>
-            <hr class="mb-4" />
-            <div class="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="same-address"
-              />
-              <label class="custom-control-label" for="same-address">
-                Shipping address is the same as my billing address
-              </label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="save-info"
-              />
-              <label class="custom-control-label" for="save-info">
-                Save this information for next time
-              </label>
             </div>
             <hr class="mb-4" />
 
