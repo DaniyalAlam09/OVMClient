@@ -83,8 +83,9 @@ function Shops() {
     }
   };
   const sortAlpha = () => {
-    console.log(initialPosts.sort((a, b) => a.shopName - b.shopName));
-    setUser(initialPosts.sort((a, b) => a.shopName - b.shopName));
+    // console.log("dfj");
+    console.log(user.sort((a, b) => a.shopName - b.shopName));
+    setUser(user.sort((a, b) => a.shopName - b.shopName));
   };
   return (
     <Stack className="container heading " spacing={2}>
@@ -109,11 +110,9 @@ function Shops() {
         </div>
       </div>
       <div className=" container d-flex flex-row-reverse">
-        <select className="col-md-2 flex-row-reverse">
+        <select onClick={() => sortAlpha} className="col-md-2 flex-row-reverse">
           <option value="">Choose...</option>
-          <option onClick={sortAlpha} value="Alphabets">
-            Alphabet
-          </option>
+          <option>Alphabet</option>
         </select>
       </div>
       <div className="container products ">

@@ -19,6 +19,7 @@ export default class ShopOwnerSignUp extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleSubmit(e) {
     e.preventDefault();
     const {
@@ -67,11 +68,13 @@ export default class ShopOwnerSignUp extends Component {
       .then((res) => res.json())
       .then((shopOwner) => {
         console.log(shopOwner, "shopOwnerRegister");
-        if (shopOwner.message == "success") {
-          toast("Successfull Registered");
+        if (
+          shopOwner.message == "An Email sent to your account please verify"
+        ) {
+          toast("An Email sent to your account please verify");
           window.localStorage.setItem("token", shopOwner.data);
           // console.log(shopOwner.password);
-          // window.location.href = "/shopowner-login";
+          window.location.href = "/shopowner-login";
         } else if (shopOwner.message == "shopOwner Already exist") {
           toast.error("ShopOwner Already exist", {
             position: "top-right",

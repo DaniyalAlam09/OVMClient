@@ -18,7 +18,7 @@ const Orders = () => {
         console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
       });
   }, []);
   return (
@@ -30,10 +30,10 @@ const Orders = () => {
             <tr>
               {/* <th>Sr #</th> */}
               <th>Order ID</th>
+              <th>Product</th>
               <th>Order Status</th>
               <th>Bill</th>
               <th>Date</th>
-              <th>Product</th>
             </tr>
           </thead>
           <tbody>
@@ -41,11 +41,10 @@ const Orders = () => {
             <tr>
               {/* <td>{index + 1}</td> */}
               <td>{order._id}</td>
+              <td>{order.productName}</td>
               <td>{order.status}</td>
               <td>{order.bill}</td>
               <td>{order.date_added}</td>
-
-              {/* <td>{order.items[0].productId}</td> */}
             </tr>
             {/* ))} */}
           </tbody>

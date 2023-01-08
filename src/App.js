@@ -46,6 +46,12 @@ import EmailVerify from "./Components/ShopOwner/Verify";
 import Navbar2 from "./Components/Navbar/Navbar2";
 import ShopResetPassword from "./Components/ShopOwner/ShopResetPassword";
 import AllBrandPage from "./Components/Brands/AllBrandPage";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const promise = loadStripe(
+  "pk_test_51MNbzESG2rFLRrIM8cP6C9Op0rv9dZDa1tPehKDuCvVBDgP7xK67KReSvJq3ipBsejS8lrAMZ3TgEi2hEn360gEx00ignv6O1a"
+);
 
 function App() {
   const { productItem } = data;
@@ -104,8 +110,16 @@ function App() {
               path="/singleProduct/:productId/:shopId"
               element={<Detail />}
             />
-            <Route path="/cart" element={<CartPage />} />
+            <Route
+              path="/cart"
+              element={
+                <Elements stripe={promise}>
+                  <CartPage />
+                </Elements>
+              }
+            />
             <Route path="/products" element={<Products />} />
+
             <Route path="/checkout" element={<Checkout />} />
             <Route
               path="/singleshop/:shopId/:shopName"

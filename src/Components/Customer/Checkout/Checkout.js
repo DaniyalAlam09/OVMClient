@@ -1,5 +1,6 @@
 import * as React from "react";
 import axios from "axios";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 export default function Checkout() {
   const [products, setProducts] = React.useState([]);
@@ -8,6 +9,29 @@ export default function Checkout() {
   const [error, setError] = React.useState(false);
   const [delet, setDelete] = React.useState(false);
   const [counter, setCounter] = React.useState(1);
+  const [clientSecret, setClientSecret] = React.useState("");
+  // const elements = useElements();
+  // const stripe = useStripe();
+
+  // const confirmPayment = async (e) => {
+  //   e.preventDefault();
+
+  //   await stripe
+  //     .confirmCardPayment(clientSecret, {
+  //       payment_method: {
+  //         card: elements.getElement(CardElement),
+  //       },
+  //     })
+  //     .then((result) => {
+  //       axios.post("/orders/add", {
+  //         basket: basket,
+  //         price: getBasketTotal(basket),
+  //         email: user?.email,
+  //         address: address,
+  //       });
+  //     })
+  //     .catch((err) => console.warn(err));
+  // };
 
   React.useEffect(
     function () {
@@ -34,6 +58,15 @@ export default function Checkout() {
           setLoadig(false);
           setError(true);
         });
+      // axios
+      //   .post(`http://localhost:4000/order/payment/create`, { bill }, config)
+      //   .then((user) => {
+      //     setClientSecret(user.data.clientSecret);
+      //     console.log(user.data.clientSecret);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error.message);
+      //   });
     },
     [delet]
   );

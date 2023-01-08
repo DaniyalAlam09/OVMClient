@@ -11,7 +11,6 @@ import { useLocation } from "react-router-dom";
 
 function Footer() {
   const { pathname } = useLocation();
-  console.log(pathname);
   if (pathname === "/user/customer-dashboard") return null;
   if (pathname === "/user/customer-orders") return null;
   if (pathname === "/user/edit-profile") return null;

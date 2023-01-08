@@ -101,10 +101,9 @@ const Navbar = () => {
       .get("http://localhost:4000/category")
       .then((res) => {
         setCatagories(res.data.categories);
-        console.log(res.data.categories);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
       });
   };
   React.useEffect(

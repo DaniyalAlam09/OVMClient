@@ -8,6 +8,15 @@ function CheckOut() {
   const [error, setError] = React.useState(false);
   const [delet, setDelete] = React.useState(false);
   const [counter, setCounter] = React.useState(1);
+  const [user, setUser] = React.useState({});
+  const [state, setState] = React.useState({
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+    phoneNo: "",
+    address: "",
+  });
 
   React.useEffect(
     function () {
@@ -34,6 +43,21 @@ function CheckOut() {
           setLoadig(false);
           setError(true);
         });
+      axios
+        .get(`http://localhost:4000/users/user`, config)
+        .then((res) => {
+          setUser(res.data.user);
+          console.log(res.data);
+          setState((pre) => ({ ...pre, fname: res.data.user.firstName }));
+          setState((pre) => ({ ...pre, lname: res.data.user.lastName }));
+          setState((pre) => ({ ...pre, email: res.data.user.email }));
+          setState((pre) => ({ ...pre, phoneNo: res.data.user.phoneNo }));
+          setState((pre) => ({ ...pre, address: res.data.user.address }));
+          console.log(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     [delet]
   );
@@ -55,6 +79,7 @@ function CheckOut() {
                   <input
                     className="form-control form-control-lg"
                     type="text"
+                    value={state.fname}
                     id="firstName"
                     placeholder="Enter your first name"
                   />
@@ -372,7 +397,7 @@ function CheckOut() {
                       Red digital smartwatch
                     </strong>
                     <span className="text-muted small">$250</span>
-                  </li> 
+                  </li>
                   <li className="border-bottom my-2"></li>
                   <li className="d-flex align-items-center justify-content-between">
                     <strong className="small fw-bold">

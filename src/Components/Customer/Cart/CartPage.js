@@ -9,7 +9,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { Divider } from "@material-ui/core";
 import OtherHeroSections from "../HomePage/OtherHeroSections";
 import Checkout from "./../Checkout/Checkout";
-
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import styled from "styled-components";
 function CartPage() {
   const [products, setProducts] = React.useState([]);
   const [bill, setBill] = React.useState();
@@ -17,7 +20,18 @@ function CartPage() {
   const [error, setError] = React.useState(false);
   const [delet, setDelete] = React.useState(false);
   const [counter, setCounter] = React.useState(1);
-
+  const [user, setUser] = React.useState({});
+  const [clientSecret, setClientSecret] = React.useState("");
+  const [state, setState] = React.useState({
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+    phoneNo: "",
+    address: "",
+  });
+  const elements = useElements();
+  const stripe = useStripe();
   React.useEffect(
     function () {
       setLoadig(true);
@@ -28,11 +42,12 @@ function CartPage() {
         },
         withCredentials: true,
       };
+
       axios
         .get("http://localhost:4000/product/cart", config)
         .then((res) => {
           setProducts(res.data.items);
-          console.log(res.data.items);
+          console.log(res.data);
           setBill(res.data.bill);
           setLoadig(false);
 
@@ -43,9 +58,64 @@ function CartPage() {
           setLoadig(false);
           setError(true);
         });
+      axios
+        .get(`http://localhost:4000/users/user`, config)
+        .then((res) => {
+          setUser(res.data.user);
+          console.log(res.data);
+          setState((pre) => ({ ...pre, fname: res.data.user.firstName }));
+          setState((pre) => ({ ...pre, lname: res.data.user.lastName }));
+          setState((pre) => ({ ...pre, email: res.data.user.email }));
+          setState((pre) => ({ ...pre, phoneNo: res.data.user.phoneNo }));
+          setState((pre) => ({ ...pre, address: res.data.user.address }));
+          console.log(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      axios
+        .post(`http://localhost:4000/order/payment/create`, { bill }, config)
+        .then((user) => {
+          setClientSecret(user.data.clientSecret);
+          console.log(user.data.clientSecret);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
     },
     [delet]
   );
+  console.log(clientSecret);
+
+  const confirmPayment = async (e) => {
+    e.preventDefault();
+    if (!stripe || !elements) {
+      console.log("!stripe || !elements");
+      return;
+    }
+    const cardElements = elements.getElement(CardElement);
+    await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          type: "card",
+          card: cardElements,
+          billing_details: {
+            name: state.fname + state.lname,
+          },
+        },
+      })
+      .then((result) => {
+        alert("dku");
+        console.log(result);
+        // axios.post("/orders/add", {
+        //   basket: basket,
+        //   price: getBasketTotal(basket),
+        //   email: user?.email,
+        //   address: address,
+        // });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const handleDelete = (id) => {
     const config = {
@@ -122,9 +192,13 @@ function CartPage() {
         });
       });
   };
+  const promise = loadStripe(
+    "pk_test_51MNbzESG2rFLRrIM8cP6C9Op0rv9dZDa1tPehKDuCvVBDgP7xK67KReSvJq3ipBsejS8lrAMZ3TgEi2hEn360gEx00ignv6O1a"
+  );
 
   return (
     <>
+      {/* <Elements stripe={promise}> */}
       {/* <OtherHeroSections
         Name1={"Your Cart Is Here"}
         ImageSource={CartHero}
@@ -287,6 +361,13 @@ function CartPage() {
                           <Link to="/" class="btn btn-light">
                             Continue shopping
                           </Link>
+                          <button
+                            class="buttons btn text-white btn-primary"
+                            onClick={() => window.scrollTo(0, 1350)}
+                          >
+                            {" "}
+                            Make Purchase
+                          </button>
                         </div>
                       </div>
                     </main>
@@ -333,7 +414,12 @@ function CartPage() {
           </section>
         </div>
       )}
-      <Checkout />
+
+      <CardElement />
+
+      <button onClick={confirmPayment}>Place Order</button>
+      {/* <Checkout /> */}
+      {/* </Elements> */}
     </>
   );
 }
