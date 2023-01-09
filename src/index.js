@@ -10,11 +10,9 @@ import { CartProvider } from "react-use-cart";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <CookiesProvider>
-    <React.StrictMode>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </React.StrictMode>
+    <CartProvider>
+      <App />
+    </CartProvider>
   </CookiesProvider>
 );
 reportWebVitals();
