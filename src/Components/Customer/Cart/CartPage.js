@@ -13,6 +13,13 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
+import MuiAlert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 function CartPage() {
   const [products, setProducts] = React.useState([]);
   const [bill, setBill] = React.useState();
@@ -22,13 +29,16 @@ function CartPage() {
   const [counter, setCounter] = React.useState(1);
   const [user, setUser] = React.useState({});
   const [clientSecret, setClientSecret] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
   const [state, setState] = React.useState({
     fname: "",
     lname: "",
     email: "",
-    password: "",
     phoneNo: "",
     address: "",
+    city: "",
+    postalCode: "",
   });
   const elements = useElements();
   const stripe = useStripe();
@@ -85,6 +95,9 @@ function CartPage() {
     },
     [delet]
   );
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
   console.log(clientSecret);
 
   const confirmPayment = async (e) => {
@@ -94,27 +107,48 @@ function CartPage() {
       return;
     }
     const cardElements = elements.getElement(CardElement);
-    await stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          type: "card",
-          card: cardElements,
-          billing_details: {
-            name: state.fname + state.lname,
+    if (stripe && elements) {
+      await stripe
+        .confirmCardPayment(clientSecret, {
+          payment_method: {
+            type: "card",
+            card: cardElements,
+            billing_details: {
+              name: state.fname + state.lname,
+            },
           },
-        },
-      })
-      .then((result) => {
-        alert("dku");
-        console.log(result);
-        // axios.post("/orders/add", {
-        //   basket: basket,
-        //   price: getBasketTotal(basket),
-        //   email: user?.email,
-        //   address: address,
-        // });
-      })
-      .catch((err) => console.log(err));
+        })
+        .then((result) => {
+          alert("dku");
+          console.log(result.error.message);
+          if (result.error.message === "Your card number is incomplete.") {
+            setOpen(true);
+          }
+          if (
+            result.error.message ===
+            "As per Indian regulations, only registered Indian businesses (i.e. sole proprietorships, limited liability partnerships and companies, but not individuals) can accept international payments. More info here: https://stripe.com/docs/india-exports"
+          ) {
+            setSuccess(true);
+          }
+          // axios.post("/orders/add", {
+          //   basket: basket,
+          //   price: getBasketTotal(basket),
+          //   email: user?.email,
+          //   address: address,
+          // });
+        })
+        .catch((err) => console.log(err));
+    } else {
+      console.log("Invalid card details");
+    }
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+    setSuccess(false);
   };
 
   const handleDelete = (id) => {
@@ -366,7 +400,7 @@ function CartPage() {
                             onClick={() => window.scrollTo(0, 1350)}
                           >
                             {" "}
-                            Make Purchase
+                            Continue to Checkout
                           </button>
                         </div>
                       </div>
@@ -415,10 +449,172 @@ function CartPage() {
         </div>
       )}
 
-      <CardElement />
+      {/* checkout form  */}
 
-      <button onClick={confirmPayment}>Place Order</button>
-      {/* <Checkout /> */}
+      {/* <button >Place Order</button> */}
+      <div className="container mb-5">
+        <div class="row">
+          <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-muted">Your cart</span>
+              <span class="badge badge-secondary badge-pill">
+                {products?.length}
+              </span>
+            </h4>
+            {products?.map((product, index) => {
+              return (
+                <ul class="list-group mb-3" key={index}>
+                  <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                      <h6 class="my-0">{`${product?.name}`}</h6>
+                      {/* <small class="text-muted">{`${product?.product_brand}`}</small> */}
+                    </div>
+
+                    <span class="text-muted">{`${product?.price}`}</span>
+                  </li>
+                </ul>
+              );
+            })}
+          </div>
+          <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Billing address</h4>
+            <form class="needs-validation" novalidate>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder=""
+                    value=""
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder=""
+                    value=""
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="email">Phone Number</label>
+                <input
+                  type="Num"
+                  class="form-control"
+                  placeholder="0300-000 0000"
+                />
+                <div class="invalid-feedback">Please enter a Phone.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email">
+                  Email <span class="text-muted">(Optional)</span>
+                </label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="you@example.com"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="address">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="1234 Main St"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="state">State</label>
+                  <select
+                    class="custom-select d-block w-100"
+                    id="state"
+                    required
+                  >
+                    <option value="">Choose...</option>
+                    <option>California</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please provide a valid state.
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="zip">Postal Code</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    required
+                  />
+                  <div class="invalid-feedback">Postal code required.</div>
+                </div>
+              </div>
+              <hr class="mb-4" />
+
+              <h4 class="mb-3">Payment</h4>
+
+              <div class="d-block my-3">
+                <CardElement />
+              </div>
+              <hr class="mb-4" />
+              <button
+                onClick={confirmPayment}
+                class="btn btn-primary btn-lg btn-block"
+                type="submit"
+              >
+                Confirm Order
+              </button>
+            </form>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+              <Alert
+                onClose={handleClose}
+                severity="error"
+                sx={{ width: "100%" }}
+              >
+                Your card number is incomplete.
+              </Alert>
+            </Snackbar>
+            <Snackbar
+              open={success}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity="success"
+                sx={{ width: "100%" }}
+              >
+                Payment is successful
+              </Alert>
+            </Snackbar>
+          </div>
+        </div>
+      </div>
       {/* </Elements> */}
     </>
   );
