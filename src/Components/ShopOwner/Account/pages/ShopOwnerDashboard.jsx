@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ShopOwnerDashboard = () => {
   const [user, setUser] = React.useState({});
+  const navigate = useNavigate();
   React.useEffect(function () {
     const config = {
       headers: {
@@ -39,7 +41,12 @@ const ShopOwnerDashboard = () => {
                   />
                   <div class="mt-3">
                     <h4> {user.firstName}</h4>
-                    <p class="text-secondary mb-1">Hello Saller</p>
+                    {user?.verified === true && (
+                      <p class="text-secondary mb-1">Verified</p>
+                    )}{" "}
+                    {user?.verified === false && (
+                      <p class="text-secondary mb-1">Unverified</p>
+                    )}
                     <p class="text-muted font-size-sm">{user.email}</p>
                   </div>
                 </div>
@@ -97,7 +104,10 @@ const ShopOwnerDashboard = () => {
                 <hr />
                 <div class="">
                   <div class="d-flex flex-row-reverse">
-                    <button class="btn btn-primary signin ml-2">
+                    <button
+                      onClick={() => navigate("../edit-profile")}
+                      class="btn btn-primary signin ml-2"
+                    >
                       Edit profile
                     </button>
                   </div>

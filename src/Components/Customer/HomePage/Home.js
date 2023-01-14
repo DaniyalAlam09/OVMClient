@@ -10,7 +10,7 @@ import FeaturedCatagories from "./FeaturedCatagories";
 
 import Hero from "../Images/Hero.png";
 import Topbrands from "./Topbrands";
-import Shops from "./Shops";
+import HomePageShops from "./HomePageShops";
 
 function Home() {
   return (
@@ -25,7 +25,7 @@ function Home() {
       <WorkDetails />
       <FeaturedProducts />
       <FeaturedCatagories />
-      {/* <Shops /> */}
+      <HomePageShops />
       <HotCollection />
       <Topbrands />
       <Subscribe />

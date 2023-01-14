@@ -16,6 +16,9 @@ export default class ShopOwnerSignUp extends Component {
       floor: "",
       catagorey: "",
       phone: "",
+      delivery: "",
+      isDisabled: false,
+      sleep: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -32,6 +35,7 @@ export default class ShopOwnerSignUp extends Component {
       floor,
       catagorey,
       phone,
+      delivery,
     } = this.state;
     console.log(
       firstName,
@@ -42,7 +46,8 @@ export default class ShopOwnerSignUp extends Component {
       shopName,
       floor,
       catagorey,
-      phone
+      phone,
+      delivery
     );
 
     fetch("http://localhost:4000/shopowners/registration", {
@@ -63,14 +68,18 @@ export default class ShopOwnerSignUp extends Component {
         floor,
         catagorey,
         phone,
+        delivery,
       }),
     })
       .then((res) => res.json())
       .then((shopOwner) => {
         console.log(shopOwner, "shopOwnerRegister");
+        // this.setState.sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+        // this.state.sleep(5000);
         if (
           shopOwner.message == "An Email sent to your account please verify"
         ) {
+          this.handleSubmitClicked.bind(this);
           toast("An Email sent to your account please verify");
           window.localStorage.setItem("token", shopOwner.data);
           // console.log(shopOwner.password);
@@ -128,6 +137,16 @@ export default class ShopOwnerSignUp extends Component {
         }
         // window.location.href = "/account";
       });
+  }
+  onValueChange(event) {
+    this.setState({
+      delivery: event.target.value,
+    });
+  }
+  handleSubmitClicked() {
+    this.setState({
+      isDisabled: true,
+    });
   }
   render() {
     return (
@@ -237,6 +256,37 @@ export default class ShopOwnerSignUp extends Component {
                   <option value="5">5</option>
                 </select>
               </div>
+              <div class="mb-3 row d-flex">
+                Dilivery Status
+                <div class="ml-5 form-check">
+                  <label>
+                    <input
+                      type="radio"
+                      value="Yes"
+                      name="delivery"
+                      checked={this.state.delivery === "Yes"}
+                      onChange={(e) =>
+                        this.setState({ delivery: e.target.value })
+                      }
+                    />
+                    Yes
+                  </label>
+                </div>
+                <div class="ml-5 form-check">
+                  <label>
+                    <input
+                      type="radio"
+                      value="No"
+                      name="delivery"
+                      checked={this.state.delivery === "No"}
+                      onChange={(e) =>
+                        this.setState({ delivery: e.target.value })
+                      }
+                    />
+                    No
+                  </label>
+                </div>
+              </div>
 
               <div class="form-outline mb-4 form-group required">
                 <label class="form-label control-label" for="form6Example6">
@@ -252,6 +302,7 @@ export default class ShopOwnerSignUp extends Component {
               <button
                 type="submit"
                 class="buttons btn text-white btn-block btn-primary"
+                disabled={this.state.isDisabled}
               >
                 Register
               </button>

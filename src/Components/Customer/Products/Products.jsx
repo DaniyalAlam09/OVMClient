@@ -83,9 +83,15 @@ function Products() {
     name: "",
     id: "",
     price: "",
+    min: "",
+    max: "",
   });
   const { _id } = useParams();
   const item = { _id };
+
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
   const loadMore = () => {
     setIndex(index + 9);
@@ -106,6 +112,7 @@ function Products() {
         console.log(err);
       });
   };
+
   const getBrands = () => {
     axios
       .get("http://localhost:4000/brand")
@@ -118,7 +125,22 @@ function Products() {
   };
   const catagoryFilter = () => {
     axios
-      .get("http://localhost:4000/shops?category=" + searchCatagories)
+      .get(
+        `http://localhost:4000/shops?category=${searchCatagories}&brand=${searchBrand}`
+      )
+      .then((res) => {
+        setProduct(res.data.products);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const apply = () => {
+    axios
+      .get(
+        `http://localhost:4000/shops?category=${searchCatagories}&brand=${searchBrand}&price[gte]=${state.min}&price[lt]=${state.max}`
+      )
       .then((res) => {
         setProduct(res.data.products);
         setLoading(false);
@@ -139,6 +161,7 @@ function Products() {
         console.log(err);
       });
   };
+
   // const bestFilter = reviews?.filter((filterdata) => {
   //   return filterdata.rating === 5;
   // });
@@ -192,7 +215,7 @@ function Products() {
       catagoryFilter();
     },
 
-    [searchCatagories]
+    [searchCatagories, searchBrand]
   );
 
   return (
@@ -213,15 +236,15 @@ function Products() {
                   class="btn btn-danger mb-2"
                   style={{ width: "70%" }}
                 >
-                  CLear All Filters
+                  Clear All Filters
                 </button>
-                <button
+                {/* <button
                   onClick={Rating4}
                   class="btn btn-danger mb-2"
                   style={{ width: "70%" }}
                 >
                   best
-                </button>
+                </button> */}
               </div>
               <article class="filter-group">
                 <header class="card-header">
@@ -257,7 +280,7 @@ function Products() {
                               {catagory.name}
                             </button>
                           </div>
-                          <div key={index} className="">
+                          {/* <div key={index} className="">
                             <div class="form-check">
                               <input
                                 class="form-check-input"
@@ -276,7 +299,7 @@ function Products() {
                                 {catagory.name}
                               </label>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       );
                     })}
@@ -316,6 +339,7 @@ function Products() {
                                 value=""
                                 id="flexCheckChecked"
                                 name="brand"
+                                onChange={() => setSearchBrand(brands.name)}
                               />
                               <label
                                 class="form-check-label"
@@ -350,32 +374,34 @@ function Products() {
                   // style=""
                 >
                   <div class="card-body">
-                    <input
-                      type="range"
-                      class="custom-range"
-                      min="0"
-                      max="10000"
-                      name=""
-                    />
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
+                    <div class="">
+                      <div class="form-group">
                         <label>Min</label>
                         <input
+                          name="min"
                           class="form-control"
                           placeholder="RS.0"
                           type="number"
+                          onChange={handleChange}
+                          value={state.min}
                         />
                       </div>
-                      <div class="form-group text-right col-md-6">
+                      <div class="form-group">
                         <label>Max</label>
                         <input
+                          name="max"
                           class="form-control"
                           placeholder="RS. 1,0000"
                           type="number"
+                          onChange={handleChange}
+                          value={state.max}
                         />
                       </div>
                     </div>
-                    <button class="btn btn-block btn-primary signin">
+                    <button
+                      class="btn btn-block btn-primary signin"
+                      onClick={apply}
+                    >
                       Apply
                     </button>
                   </div>
@@ -645,15 +671,18 @@ function Products() {
                                         Stoke: {`${product.product_stoke}`}
                                       </p>
                                       <div class="rating">
-                                        {product.reviews
-                                          ? product.reviews?.map((rew) => (
-                                              <Rating
-                                                size="small"
-                                                value={rew.rating}
-                                                readOnly
-                                              />
-                                            ))
-                                          : "kj"}
+                                        {/* { */}
+                                        {/* // product.reviews?.rating && (
+                                            // ? product.reviews?.map((rew) => ( */}
+                                        <Rating
+                                          size="small"
+                                          value={product.reviews[0]?.rating}
+                                          readOnly
+                                        />
+                                        {/* // )
+
+                                          // : "kj" */}
+                                        {/* } */}
                                         {/* {product.reviews.rating ?(
                                   <p>oid</p>)
                                   : <p>dsk</p>} */}
@@ -670,31 +699,33 @@ function Products() {
                   </section>
                 )}
               </div>
-              <div className="d-grid mt-3 mb-5">
-                {isCompleted ? (
-                  <div class="text-center">
-                    {" "}
-                    <button
-                      onClick={loadMore}
-                      type="button"
-                      className="btn btn-danger disabled"
-                    >
-                      No More Items
-                    </button>
-                  </div>
-                ) : (
-                  <div class="text-center">
-                    <button
-                      onClick={loadMore}
-                      type="button"
-                      class="btn btn-primary signin ml-2"
-                    >
-                      Load More
-                      {/* <KeyboardDoubleArrowDownSharpIcon /> */}
-                    </button>
-                  </div>
-                )}
-              </div>
+              {product.length >= 8 && (
+                <div className="d-grid mt-3 mb-5">
+                  {isCompleted ? (
+                    <div class="text-center">
+                      {" "}
+                      <button
+                        onClick={loadMore}
+                        type="button"
+                        className="btn btn-danger disabled"
+                      >
+                        No More Items
+                      </button>
+                    </div>
+                  ) : (
+                    <div class="text-center">
+                      <button
+                        onClick={loadMore}
+                        type="button"
+                        class="btn btn-primary signin ml-2"
+                      >
+                        Load More
+                        {/* <KeyboardDoubleArrowDownSharpIcon /> */}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </main>
         </div>

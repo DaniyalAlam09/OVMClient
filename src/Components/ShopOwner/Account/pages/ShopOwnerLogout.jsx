@@ -1,22 +1,53 @@
 import React from "react";
-import { Link } from "react-router-dom";
-const logout = () => {
-  console.log("clicked");
-  localStorage.clear();
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Button from "@mui/material/Button";
+import warning from "../Assests//Warning.png";
 
-  window.location.href = "/account";
-};
+const Logout = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+    axios
+      .get("http://localhost:4000/users/logout", config)
+      .then((response) => {
+        console.log(response.data);
 
-const ShopOwnerLogout = () => {
+        navigate("../../account");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
-    <div>
-      <Link to="/account" type="submit">
-        <button onClick={logout} class="btn btn-primary signin ml-2">
+    <div className="  d-flex " style={{ width: "100%", marginLeft: "10em" }}>
+      <div>
+        <img
+          src={warning}
+          style={{
+            height: "200px",
+            // width: "200px",
+            marginBottom: "50px",
+          }}
+          class="product-image"
+          alt="Warning"
+        />
+        <h6 style={{ marginBottom: "30px" }}>Are You Sure To Logout?</h6>
+        <button
+          className="buttons btn text-white btn-block"
+          onClick={handleLogout}
+        >
           Logout
         </button>
-      </Link>
+      </div>
     </div>
   );
 };
 
-export default ShopOwnerLogout;
+export default Logout;

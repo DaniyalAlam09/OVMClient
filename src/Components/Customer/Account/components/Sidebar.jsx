@@ -80,19 +80,6 @@ const Sidebar = ({ children }) => {
             </div>
           </NavLink>
         ))}
-        <div className="link">
-          <div className="icon">
-            <LogoutIcon />
-          </div>
-          <div
-            style={{ display: isOpen ? "block" : "none" }}
-            className="link_text"
-          >
-            <button className="logoututtoosidebar" onClick={handleLogout}>
-              Logout
-            </button>
-          </div>
-        </div>
       </div>
       <main>{children}</main>
     </div>

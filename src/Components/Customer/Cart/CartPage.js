@@ -69,21 +69,6 @@ function CartPage() {
           setError(true);
         });
       axios
-        .get(`http://localhost:4000/users/user`, config)
-        .then((res) => {
-          setUser(res.data.user);
-          console.log(res.data);
-          setState((pre) => ({ ...pre, fname: res.data.user.firstName }));
-          setState((pre) => ({ ...pre, lname: res.data.user.lastName }));
-          setState((pre) => ({ ...pre, email: res.data.user.email }));
-          setState((pre) => ({ ...pre, phoneNo: res.data.user.phoneNo }));
-          setState((pre) => ({ ...pre, address: res.data.user.address }));
-          console.log(user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      axios
         .post(`http://localhost:4000/order/payment/create`, { bill }, config)
         .then((user) => {
           setClientSecret(user.data.clientSecret);
@@ -98,7 +83,6 @@ function CartPage() {
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
-  console.log(clientSecret);
 
   const confirmPayment = async (e) => {
     e.preventDefault();
@@ -163,7 +147,6 @@ function CartPage() {
     axios
       .delete(`http://localhost:4000/product/cart/${id}`, config)
       .then((user) => {
-        console.log("user delete");
         toast.success("Product Remove Successfully", {
           position: "top-right",
           autoClose: 5000,
@@ -487,12 +470,10 @@ function CartPage() {
                     class="form-control"
                     id="firstName"
                     placeholder=""
-                    value=""
-                    required
+                    value={state.fname}
+                    name="fname"
+                    onChange={handleChange}
                   />
-                  <div class="invalid-feedback">
-                    Valid first name is required.
-                  </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="lastName">Last name</label>
@@ -501,12 +482,10 @@ function CartPage() {
                     class="form-control"
                     id="lastName"
                     placeholder=""
-                    value=""
-                    required
+                    value={state.lname}
+                    name="lname"
+                    onChange={handleChange}
                   />
-                  <div class="invalid-feedback">
-                    Valid last name is required.
-                  </div>
                 </div>
               </div>
               <div class="mb-3">
@@ -515,8 +494,10 @@ function CartPage() {
                   type="Num"
                   class="form-control"
                   placeholder="0300-000 0000"
+                  name="phoneNo"
+                  value={state.phoneNo}
+                  onChange={handleChange}
                 />
-                <div class="invalid-feedback">Please enter a Phone.</div>
               </div>
 
               <div class="mb-3">
@@ -528,10 +509,10 @@ function CartPage() {
                   class="form-control"
                   id="email"
                   placeholder="you@example.com"
+                  name="email"
+                  value={state.email}
+                  onChange={handleChange}
                 />
-                <div class="invalid-feedback">
-                  Please enter a valid email address for shipping updates.
-                </div>
               </div>
 
               <div class="mb-3">
@@ -541,37 +522,23 @@ function CartPage() {
                   class="form-control"
                   id="address"
                   placeholder="1234 Main St"
-                  required
+                  name="address"
+                  value={state.address}
+                  onChange={handleChange}
                 />
-                <div class="invalid-feedback">
-                  Please enter your shipping address.
-                </div>
               </div>
 
               <div class="row">
-                <div class="col-md-4 mb-3">
-                  <label for="state">State</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="state"
-                    required
-                  >
-                    <option value="">Choose...</option>
-                    <option>California</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please provide a valid state.
-                  </div>
-                </div>
                 <div class="col-md-3 mb-3">
                   <label for="zip">Postal Code</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder=""
-                    required
+                    name="postalCode"
+                    value={state.postalCode}
+                    onChange={handleChange}
                   />
-                  <div class="invalid-feedback">Postal code required.</div>
                 </div>
               </div>
               <hr class="mb-4" />
@@ -579,7 +546,7 @@ function CartPage() {
               <h4 class="mb-3">Payment</h4>
 
               <div class="d-block my-3">
-                <CardElement />
+                <CardElement style={{ fontSize: "30px" }} />
               </div>
               <hr class="mb-4" />
               <button

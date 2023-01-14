@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-// import success from "/images/success.png";
+import verify from "./Account/Assests/Verify.png";
 import "./Verify.css";
 // import { Fragment } from "react/cjs/react.production.min";
 
@@ -28,14 +28,16 @@ const EmailVerify = () => {
     <div>
       {validUrl ? (
         <div className="container">
-          {/* <img src={success} alt="success_img" className={styles.success_img} /> */}
-          <h1>Email verified successfully</h1>
-          <Link to="/login">
-            <button className="green_btn">Login</button>
-          </Link>
+          <img src={verify} alt="success_img" />
+          <div className="row">
+            <h1>Email verified successfully</h1>
+            <Link to="/login">
+              <button className="green_btn">Login</button>
+            </Link>
+          </div>
         </div>
       ) : (
-        <h1>404 Not Found</h1>
+        <h1>Session Out</h1>
       )}
     </div>
   );

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 const Dashboard = () => {
   const [user, setUser] = React.useState({});
+  const navigate = useNavigate();
   React.useEffect(function () {
     const config = {
       headers: {
@@ -84,10 +86,11 @@ const Dashboard = () => {
                 <hr />
                 <div class="">
                   <div class="d-flex flex-row-reverse">
-                    <button class="btn btn-primary signin ml-2">
-                      <Link to="user/edit-profile" className="text-white">
-                        Edit Profile
-                      </Link>
+                    <button
+                      onClick={() => navigate("../edit-profile")}
+                      class="btn btn-primary signin ml-2"
+                    >
+                      Edit profile
                     </button>
                   </div>
                 </div>

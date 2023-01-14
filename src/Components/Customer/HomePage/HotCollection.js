@@ -39,7 +39,7 @@ function HotCollection() {
   }, []);
 
   return (
-    <div className="heading container ">
+    <div className=" container ">
       <div className="featured-head">
         <h3>Hot Collection</h3>
         <Link to="/products" class="link-secondary see-all">

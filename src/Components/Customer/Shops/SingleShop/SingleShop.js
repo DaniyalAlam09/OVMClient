@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Style.css";
 import OtherHeroSections from "../../HomePage/OtherHeroSections";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -122,6 +123,11 @@ function SingleShop() {
       <div className="container">
         <div className=" d-flex justify-content-center mb-5 mt-5">
           <h1>{shopName}</h1>
+          <h6>
+            {shop?.verified === true && (
+              <VerifiedIcon style={{ color: "#1C99E6" }} />
+            )}
+          </h6>
 
           {/* <h1>{ShopId}</h1> */}
         </div>
@@ -132,11 +138,11 @@ function SingleShop() {
           <div className=" col-xl-4 col-sm-6 mb-5 ">
             <div className="ship-style text-dark">
               <h6>
-                Shop Name:
-                <span className="text-white">{shop.shopName}</span>{" "}
+                Shop Name: <span className="text-white">{shop.shopName}</span>{" "}
               </h6>
+
               <h6>
-                Owner:
+                Owner:{" "}
                 <span className="text-white">
                   {shop.firstName} {shop.lastName}
                 </span>
@@ -146,19 +152,21 @@ function SingleShop() {
           <div className="  col-xl-4 col-sm-6 mb-5  text-center">
             <div className="ship-style text-dark">
               <h6>
-                Contact :<span className="text-white">{shop.phone}</span>
+                Contact: <span className="text-white">{shop.phone}</span>
+              </h6>
+              <h6>
+                Provide Delivery:{" "}
+                <span className="text-white">{shop.delivery}</span>
               </h6>
             </div>
           </div>
           <div className=" col-xl-4 col-sm-6 mb-5 ">
             <div className="ship-style text-dark">
               <h6>
-                Shop Number:
-                <span className="text-white">{shop.shopNo}</span>{" "}
+                Shop Number: <span className="text-white">{shop.shopNo}</span>{" "}
               </h6>
               <h6>
-                Shop Floor:
-                <span className="text-white">{shop.floor}</span>
+                Shop Floor: <span className="text-white">{shop.floor}</span>
               </h6>
             </div>
           </div>

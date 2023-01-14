@@ -95,6 +95,7 @@ const ShopOwnerProductList = () => {
             <th scope="col">Categorey</th>
             <th scope="col">Color</th>
             <th scope="col">Price</th>
+            <th scope="col">Picture</th>
             <th scope="col">SKU</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -112,6 +113,14 @@ const ShopOwnerProductList = () => {
                   <td>{item?.category}</td>
                   <td>{item?.product_color}</td>
                   <td>{item?.product_price}</td>
+                  <td>
+                    {
+                      <img
+                        src={`http://localhost:4000/${item.product_image}`}
+                        style={{ height: "3em", marginTop: "-5px" }}
+                      />
+                    }
+                  </td>
                   <td>{item?.product_sku}</td>
                   <td>
                     <button className="buttons btn text-white btn-block btn-primary">

@@ -19,6 +19,7 @@ function Detail() {
   const [shop, setShop] = React.useState({});
   const [user, setUser] = useState({});
   const [counter, setCounter] = React.useState(1);
+  const [value, setValue] = React.useState(0);
   const { _id } = useParams();
 
   const item = { _id };
@@ -131,7 +132,7 @@ function Detail() {
     const formData = new FormData();
     formData.append("name", state.name);
     formData.append("comment", state.comment);
-    formData.append("rating", state.rating);
+    formData.append("rating", value);
     // formData.append("product_sku", state.color);
     const config = {
       headers: {
@@ -145,13 +146,30 @@ function Detail() {
       .post(`http://localhost:4000/shops/review/${productId}`, formData, config)
       .then((response) => {
         if (response.status === 200 || response.status === 201) {
-          console.log("SUCCESSS");
-        } else {
-          console.log("SOMETHING WENT WRONG");
+          console.log(response.data.message);
+          toast.success(response.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log(error.response.data.message);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
 
@@ -324,7 +342,7 @@ function Detail() {
                 <h3>Enter Your Review</h3>
                 <form onSubmit={handleSubmit} className="container">
                   <div className="">
-                    <label for="inputZip" className="form-label">
+                    {/* <label for="inputZip" className="form-label">
                       Name
                     </label>
                     <input
@@ -333,7 +351,7 @@ function Detail() {
                       className="form-control"
                       onChange={handleChange}
                       value={state.name}
-                    />
+                    /> */}
                     <label for="inputZip" className="form-label">
                       Enter Your Review
                     </label>
@@ -346,9 +364,11 @@ function Detail() {
                       value={state.comment}
                     ></textarea>
                     <Rating
-                      defaultValue={0}
-                      onChange={handleChange}
-                      value={state.rating}
+                      name="simple-controlled"
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
                     />
                   </div>
 

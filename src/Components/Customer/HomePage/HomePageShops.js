@@ -4,7 +4,6 @@ import HeadPhone from "../Images/HeadPhone.png";
 import SearchIcon from "@material-ui/icons/Search";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ShopStyle.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -79,20 +78,16 @@ function Shops() {
     setUser(floor);
   };
   useEffect(() => {
-    fetchShops();
-  }, []);
-  const fetchShops = () => {
     fetch("http://localhost:4000/admins/viewshopowners")
       .then((response) => response.json())
       .then((actualData) => {
         // window.scrollTo(0, 0);
         setUser(actualData);
-        onChange();
       })
       .catch((err) => {
         console.log(err.message);
       });
-  };
+  }, []);
   const loadMore = () => {
     setIndex(index + 8);
     if (index >= user.length) {
@@ -135,96 +130,24 @@ function Shops() {
 
   return (
     <Stack className="container heading " spacing={2}>
-      <div class=" container d-flex justify-content-center">
-        <div className="">
-          <Box>
-            <Toolbar>
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ "aria-label": "search" }}
-                  onChange={(e) => {
-                    setSearch(e.target.value);
-                  }}
-                />
-              </Search>
-            </Toolbar>
-          </Box>
-        </div>
+      <div className="featured-head">
+        <h3>Shops</h3>
+        <Link to="/shops" class="link-secondary see-all">
+          All Shops
+        </Link>
       </div>
-      <div className=" container d-flex justify-content-around">
-        <button
-          className="btn btn-primary signin mt-3 ml-3"
-          style={{ height: "40px" }}
-          onClick={verified}
-        >
-          Verified Shops
-        </button>
-        {/* <button
-          className="btn btn-primary signin mt-2 ml-3"
-          onClick={firstFloor}
-        >
-          First Floor
-        </button>
-        <button
-          className="btn btn-primary signin mt-2 ml-3"
-          onClick={secondFloor}
-        >
-          Second Floor
-        </button>
-        <button
-          className="btn btn-primary signin mt-2 ml-3"
-          onClick={thirdFloor}
-        >
-          Third Floor
-        </button>
-        <button
-          className="btn btn-primary signin mt-2 ml-3"
-          onClick={fourthFloor}
-        >
-          Fourth Floor
-        </button> */}
-        {/* <select onChange={onChange} className="col-md-2 flex-row-reverse">
-          <option value="">Floors...</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select> */}
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-standard-label">Floor</InputLabel>
-          <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
-            // value={age}
-            onChange={onChange}
-            label="Floor"
-          >
-            <MenuItem value={1}>1</MenuItem>
-            <MenuItem value={2}>2</MenuItem>
-            <MenuItem value={3}>3</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
+      <div class=" container d-flex justify-content-center"></div>
+
       <div className="container products ">
         <div className="row text-center justify-content-start">
           {Object.values(initialPosts)
-            // .slice(0, 8)
+            .slice(0, 4)
 
-            .filter((person) => {
-              if (search == "") {
-                return person;
-              } else if (
-                person.shopName.toLowerCase().includes(search.toLowerCase())
-              ) {
-                return person;
-              }
-            })
             .map((elem) => (
-              <div key={user.indexOf(elem)} className=" col-xl-3 col-sm-6 mb-5">
+              <div
+                key={user.indexOf(elem)}
+                className="block col-xl-3 col-sm-6 mb-5"
+              >
                 <Link to={`/singleshop/${elem._id}/${elem.shopName}`}>
                   <img
                     className=" rounded product-image"
@@ -235,40 +158,15 @@ function Shops() {
                     }}
                     src={`http://localhost:4000${elem.shopImage}`}
                   />
-                  <p className="brand-name">Shop no {`${elem.shopNo}`}</p>
+                  <p className="brand-name" style={{ marginTop: "-4px" }}>
+                    Shop no {`${elem.shopNo}`}
+                  </p>
 
                   <p className="product-name">{`${elem.shopName}`}</p>
                 </Link>
               </div>
             ))}
         </div>
-        {user.length >= 8 && (
-          <div className="d-grid mt-3 mb-5">
-            {isCompleted ? (
-              <div class="text-center">
-                {" "}
-                <button
-                  onClick={loadMore}
-                  type="button"
-                  className="btn btn-danger disabled"
-                >
-                  No More Items
-                </button>
-              </div>
-            ) : (
-              <div class="text-center">
-                <button
-                  onClick={loadMore}
-                  type="button"
-                  class="btn btn-primary signin ml-2"
-                >
-                  Load More
-                  {/* <KeyboardDoubleArrowDownSharpIcon /> */}
-                </button>
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </Stack>
   );

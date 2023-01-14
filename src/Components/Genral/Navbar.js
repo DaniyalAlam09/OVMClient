@@ -268,7 +268,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link to="products" className="nav-link">
-                Special Price <span className="sr-only">(current)</span>
+                Products <span className="sr-only">(current)</span>
               </Link>
             </li>
             <li className="nav-item">
