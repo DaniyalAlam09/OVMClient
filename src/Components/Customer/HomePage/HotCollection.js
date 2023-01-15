@@ -147,15 +147,11 @@ function HotCollection() {
                                   Stoke: {`${product.product_stoke}`}
                                 </p>
                                 <div class="rating">
-                                  {product.reviews
-                                    ? product.reviews?.map((rew) => (
-                                        <Rating
-                                          size="small"
-                                          value={rew.rating}
-                                          readOnly
-                                        />
-                                      ))
-                                    : "kj"}
+                                  <Rating
+                                    size="small"
+                                    value={product.reviews[0]?.rating}
+                                    readOnly
+                                  />
                                   {/* {product.reviews.rating ?(
                                 <p>oid</p>)
                                 : <p>dsk</p>} */}

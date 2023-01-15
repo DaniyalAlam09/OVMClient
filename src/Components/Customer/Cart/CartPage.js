@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { Divider } from "@material-ui/core";
 import OtherHeroSections from "../HomePage/OtherHeroSections";
 import Checkout from "./../Checkout/Checkout";
+import { useNavigate } from "react-router-dom";
+
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -31,6 +33,9 @@ function CartPage() {
   const [clientSecret, setClientSecret] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+  const [disable, setDisable] = React.useState(false);
+  const [load, setLoad] = React.useState(false);
+  const navigate = useNavigate();
   const [state, setState] = React.useState({
     fname: "",
     lname: "",
@@ -38,7 +43,7 @@ function CartPage() {
     phoneNo: "",
     address: "",
     city: "",
-    postalCode: "",
+    city: "",
   });
   const elements = useElements();
   const stripe = useStripe();
@@ -86,8 +91,28 @@ function CartPage() {
 
   const confirmPayment = async (e) => {
     e.preventDefault();
+    setLoad(true);
     if (!stripe || !elements) {
       console.log("!stripe || !elements");
+      return;
+    }
+    if (
+      !state.email ||
+      !state.fname ||
+      !state.lname ||
+      !state.address ||
+      !state.city ||
+      !state.phoneNo
+    ) {
+      toast.error("Please Fill all Required Details", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
     const cardElements = elements.getElement(CardElement);
@@ -98,12 +123,20 @@ function CartPage() {
             type: "card",
             card: cardElements,
             billing_details: {
+              address: {
+                city: state.city,
+                line1: state.address,
+              },
+
               name: state.fname + state.lname,
+              email: state.email,
+              phone: state.phoneNo,
             },
           },
         })
         .then((result) => {
-          alert("dku");
+          alert("Payment Received");
+          setLoad(false);
           console.log(result.error.message);
           if (result.error.message === "Your card number is incomplete.") {
             setOpen(true);
@@ -113,6 +146,7 @@ function CartPage() {
             "As per Indian regulations, only registered Indian businesses (i.e. sole proprietorships, limited liability partnerships and companies, but not individuals) can accept international payments. More info here: https://stripe.com/docs/india-exports"
           ) {
             setSuccess(true);
+            navigate("/");
           }
           // axios.post("/orders/add", {
           //   basket: basket,
@@ -124,6 +158,15 @@ function CartPage() {
         .catch((err) => console.log(err));
     } else {
       console.log("Invalid card details");
+      toast.error("Invalid card details", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   const handleClose = (event, reason) => {
@@ -183,9 +226,10 @@ function CartPage() {
         config
       )
       .then((user) => {
-        console.log("order Done");
+        console.log("Order Placed Please Enter Pyement Details to continue");
         handleDelete(id);
-        toast.success("Order Placed Successfully", {
+        window.scrollTo(0, 1350);
+        toast.success("Order Placed Please Enter Pyement Details", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -459,6 +503,7 @@ function CartPage() {
               );
             })}
           </div>
+
           <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
             <form class="needs-validation" novalidate>
@@ -530,13 +575,13 @@ function CartPage() {
 
               <div class="row">
                 <div class="col-md-3 mb-3">
-                  <label for="zip">Postal Code</label>
+                  <label for="zip">City</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder=""
-                    name="postalCode"
-                    value={state.postalCode}
+                    name="city"
+                    value={state.city}
                     onChange={handleChange}
                   />
                 </div>
@@ -553,6 +598,7 @@ function CartPage() {
                 onClick={confirmPayment}
                 class="btn btn-primary btn-lg btn-block"
                 type="submit"
+                disabled={load}
               >
                 Confirm Order
               </button>

@@ -12,6 +12,7 @@ import Rating from "@mui/material/Rating";
 import OtherHeroSections from "../HomePage/OtherHeroSections";
 import SingleShop from "../Shops/SingleShop/SingleShop";
 import { Divider } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 function Detail() {
   let { productId, shopId } = useParams();
 
@@ -21,6 +22,7 @@ function Detail() {
   const [counter, setCounter] = React.useState(1);
   const [value, setValue] = React.useState(0);
   const { _id } = useParams();
+  const navigate = useNavigate();
 
   const item = { _id };
   // const Cart = (e) => {
@@ -146,6 +148,7 @@ function Detail() {
       .post(`http://localhost:4000/shops/review/${productId}`, formData, config)
       .then((response) => {
         if (response.status === 200 || response.status === 201) {
+          navigate(0);
           console.log(response.data.message);
           toast.success(response.data.message, {
             position: "top-right",
@@ -157,11 +160,23 @@ function Detail() {
             progress: undefined,
             theme: "light",
           });
+        } else if (
+          response.response.data.message === "Comment and Rating is Required"
+        ) {
+          toast.error("Comment and Rating is Required", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
       })
       .catch((error) => {
-        console.log(error.response.data.message);
-        toast.error(error.response.data.message, {
+        console.log(error.response.data);
+        toast.error(error.response.data, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -442,15 +457,11 @@ function Detail() {
                           Stoke: {`${product.product_stoke}`}
                         </p>
                         <div class="rating">
-                          {product.reviews
-                            ? product.reviews?.map((rew) => (
-                                <Rating
-                                  size="small"
-                                  value={rew.rating}
-                                  readOnly
-                                />
-                              ))
-                            : "kj"}
+                          <Rating
+                            size="small"
+                            value={product.reviews[0]?.rating}
+                            readOnly
+                          />
                           {/* {product.reviews.rating ?(
                                   <p>oid</p>)
                                   : <p>dsk</p>} */}

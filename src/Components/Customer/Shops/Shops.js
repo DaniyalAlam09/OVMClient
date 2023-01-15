@@ -157,7 +157,14 @@ function Shops() {
       </div>
       <div className=" container d-flex justify-content-around">
         <button
-          className="btn btn-primary signin mt-3 ml-3"
+          className="btn btn-danger  mt-3 ml-3"
+          style={{ height: "40px" }}
+          onClick={fetchShops}
+        >
+          Clear All Filters
+        </button>
+        <button
+          className="btn btn-primary signin mt-3"
           style={{ height: "40px" }}
           onClick={verified}
         >

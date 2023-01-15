@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { Container } from "@material-ui/core";
-import hero from "./assets/img/clients/client-1.png";
+import hero from "./assets/img/Samsung.png";
 import hero2 from "./assets/img/clients/client-2.png";
 import hero3 from "./assets/img/clients/client-4.png";
 import hero4 from "./assets/img/clients/client-3.png";
@@ -80,12 +80,19 @@ function Topbrands() {
           <div className="row text-center">
             {brands?.slice(0, 4).map((brand) => (
               <div key={brands.indexOf(brand)} className="col-lg-3 col-md-6">
-                <div class="clients card block">
-                  <div class="swiper-slide justify-content-between">
+                <div class="clients card block" style={{ height: "150px" }}>
+                  <div class="swiper-slide justify-content-between  align-items-center ">
                     <img
-                      // src={`http://localhost:4000/${brand.imageUrl}`}
-                      src={hero}
-                      alt=""
+                      src={`http://localhost:4000/${brand.imageUrl}`}
+                      style={{
+                        height: "100px",
+                        width: "100px",
+                        cursor: "pointer",
+                        objectFit: "contain",
+                        marginTop: "-25px",
+                      }}
+                      // src={hero}
+                      alt={brand.name}
                       // class="product-image"
                       // style={{ width: "100%" }}
                     />
