@@ -14,9 +14,15 @@ export default class SignUp extends Component {
       phoneNo: "",
       address: "",
       profession: "",
+      isChecked: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  toggleChange = () => {
+    this.setState({
+      isChecked: true,
+    });
+  };
   handleSubmit(e) {
     e.preventDefault();
     const {
@@ -51,64 +57,76 @@ export default class SignUp extends Component {
       .then((res) => res.json())
       .then((user) => {
         console.log(user);
-        if (user.message == "success") {
-          toast("Successfull Registered");
-          window.localStorage.setItem("token", user.data);
-          console.log(user.password);
+        if (this.state.isChecked === true) {
+          if (user.message == "success") {
+            toast("Successfull Registered");
+            window.localStorage.setItem("token", user.data);
+            console.log(user.password);
 
-          window.location.href = "/account";
-        } else if (user.message == "user Already exist") {
-          toast.error("User Already exist", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (user.message == "All Feild must be filled") {
-          toast.error("Too Short Password", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (user.message == "All Feild must be filled") {
-          toast.error("Too Short Password", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (user.message == "Email is not valid") {
-          toast.error("Email is not valid", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (user.message == "password is not strong enough") {
-          toast.error("Password is not Strong enough", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+            window.location.href = "/account";
+          } else if (user.message == "user Already exist") {
+            toast.error("User Already exist", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else if (user.message == "All Feild must be filled") {
+            toast.error("Too Short Password", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else if (user.message == "All Feild must be filled") {
+            toast.error("Too Short Password", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else if (user.message == "Email is not valid") {
+            toast.error("Email is not valid", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else if (user.message == "password is not strong enough") {
+            toast.error("Password is not Strong enough", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else {
+            toast.error("All Feilds must be filled ", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
         } else {
-          toast.error("All Feilds must be filled ", {
+          toast.error("Please Accespt Terms and Policies", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -140,7 +158,12 @@ export default class SignUp extends Component {
               <Link className="" to="/shopowner-account">
                 Register as Shop Owner?
               </Link>
-              <form autoComplete={false} onSubmit={this.handleSubmit}>
+              <form
+                autoComplete={false}
+                onSubmit={this.handleSubmit}
+                className="mt-3"
+              >
+                <h3>Here's Customer</h3>
                 <div class="form-group mt-2">
                   <div class="row">
                     <div class="col-md-6 form-wrapper mb-2">
@@ -227,8 +250,15 @@ export default class SignUp extends Component {
                 </div>
                 <div class="checkbox mb-3">
                   <label>
-                    <input type="checkbox" /> I accept the Terms of Use and
-                    Privacy Policy.
+                    <input
+                      type="checkbox"
+                      defaultChecked={false}
+                      // defaultChecked={this.state.isChecked}
+                      onChange={this.toggleChange}
+                    />{" "}
+                    I accept the <Link to="/privacy">Terms of Use </Link>
+                    {"and"}
+                    <Link to="/privacy"> Privacy Policy.</Link>
                     <span class="checkmark"></span>
                   </label>
                 </div>

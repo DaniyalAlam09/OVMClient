@@ -25,7 +25,7 @@ const EmailVerify = () => {
   }, [param]);
 
   return (
-    <div>
+    <div style={{ marginBottom: "50px" }}>
       {validUrl ? (
         <div className="container">
           <img src={verify} alt="success_img" />

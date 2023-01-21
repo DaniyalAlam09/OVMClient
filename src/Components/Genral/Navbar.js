@@ -339,7 +339,7 @@ const Navbar = () => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search Shops"
               inputProps={{ "aria-label": "search" }}
               onChange={(e) => {
                 setSearch(e.target.value);

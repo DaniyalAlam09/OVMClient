@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
 import { useNavigate, useParams } from "react-router-dom";
+import Products from "./../../../Customer/Products/Products";
 
 const style = {
   position: "absolute",
@@ -97,6 +98,7 @@ const ShopOwnerProductList = () => {
             <th scope="col">Price</th>
             <th scope="col">Picture</th>
             <th scope="col">SKU</th>
+            <th scope="col">Visit</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
@@ -125,6 +127,16 @@ const ShopOwnerProductList = () => {
                   <td>
                     <button className="buttons btn text-white btn-block btn-primary">
                       <Link
+                        to={`../../singleProduct/${item._id}/${item.owner}`}
+                        className="text-white"
+                      >
+                        Visit Product
+                      </Link>
+                    </button>
+                  </td>
+                  <td>
+                    <button className="buttons btn text-white btn-block btn-primary">
+                      <Link
                         to={`/shopowner/edit-profile/${item?._id}`}
                         className="text-white"
                       >
@@ -134,44 +146,14 @@ const ShopOwnerProductList = () => {
                   </td>
                   <td>
                     <button
-                      onClick={handleOpen}
+                      onClick={() => {
+                        handleDelete(item._id);
+                      }}
                       className="buttons btn text-white btn-block btn-danger"
                     >
                       {" "}
                       Delete
                     </button>
-                    <Modal
-                      keepMounted
-                      open={open}
-                      onClose={handleClose}
-                      aria-labelledby="keep-mounted-modal-title"
-                      aria-describedby="keep-mounted-modal-description"
-                    >
-                      <Box sx={style}>
-                        <Typography
-                          id="keep-mounted-modal-title"
-                          variant="h6"
-                          component="h2"
-                        >
-                          Are You Sure
-                        </Typography>
-                        <br />
-                        <button
-                          className="buttons btn text-white btn-block btn-danger"
-                          onClick={() => {
-                            handleDelete(item._id);
-                          }}
-                        >
-                          Delete
-                        </button>
-                        <button
-                          className="buttons btn text-white btn-block btn-danger"
-                          onClick={handleClose}
-                        >
-                          Cancel
-                        </button>
-                      </Box>
-                    </Modal>
                   </td>
                 </tr>
               ))

@@ -88,7 +88,7 @@ const AddProduct = () => {
     axios
       .post(`http://localhost:4000/shops/add-product`, getFormData(), config)
       .then((response) => {
-        navigate("../product-list");
+        // navigate("../product-list");
         toast.success("Product Sucessfully Added", {
           position: "top-right",
           autoClose: 5000,
@@ -129,7 +129,11 @@ const AddProduct = () => {
         draggable
         pauseOnHover
       />
-      <form onSubmit={handleSubmit} className="container row g-3">
+      <form
+        onSubmit={handleSubmit}
+        className="container row g-3"
+        style={{ marginTop: "30px" }}
+      >
         <div className="col-md-6 mb-3 form-group required">
           <label for="" class="control-label">
             Product Name

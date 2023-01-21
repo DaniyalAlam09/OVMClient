@@ -16,6 +16,7 @@ function Footer() {
   if (pathname === "/user/edit-profile") return null;
   if (pathname === "/user/logout") return null;
   if (pathname === "/account") return null;
+  if (pathname === "/privacy") return null;
   if (pathname === "/shopowner-login") return null;
   if (pathname === "/create-account") return null;
   if (pathname === "/shopowner-account") return null;
@@ -43,7 +44,7 @@ function Footer() {
             <UilYoutube className="icons" />
             <UilGithub className="icons" />
           </div>
-          <div className="col-md-2 ">
+          {/* <div className="col-md-2 ">
             <h6>Product</h6>
             <p className="footer-info">Features</p>
             <p className="footer-info">Enterpise</p>
@@ -51,7 +52,7 @@ function Footer() {
             <p className="footer-info">Customer Stories</p>
             <p className="footer-info">Pricing</p>
             <p className="footer-info">Demo</p>
-          </div>
+          </div> */}
           <div className="col-md-2">
             <h6>Teams</h6>
             <p className="footer-info">Engineering</p>
@@ -63,18 +64,22 @@ function Footer() {
           </div>
           <div className="col-md-2">
             <h6>Company</h6>
-            <p className="footer-info">About Us</p>
-            <p className="footer-info">Leadership</p>
-            <p className="footer-info">News</p>
-            <p className="footer-info">Media Kit</p>
-            <p className="footer-info">Career</p>
-            <p className="footer-info">Documentation</p>
+            <Link to="/about" className="footer-info">
+              About Us
+            </Link>{" "}
+            <br />
+            <Link to="/contact" className="footer-info">
+              Contact
+            </Link>
+            <br />
+            <Link to="/privacy" className="footer-info">
+              Privacy Policy
+            </Link>
           </div>
           <div className="col-md-2 ">
             <h6>Address</h6>
             <p className="footer-info">
-              Gg. Sadewa No.RT 03, Druwo, Bangunharjo, Kec. Sewon, Bantul,
-              Daerah Istimewa Yogyakarta 55188
+              Hafeez CentreBlock E1 Block E 1 Gulberg III, Lahore, Punjab
             </p>
           </div>
         </div>

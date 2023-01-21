@@ -5,6 +5,7 @@ import {
   UilHeadphonesAlt,
   UilUserCircle,
 } from "@iconscout/react-unicons";
+import { Link } from "react-router-dom";
 
 function WorkDetails() {
   return (
@@ -17,9 +18,9 @@ function WorkDetails() {
               <UilTruck className="icons" />
               <h6>Shipping</h6>
               <p>Shop Owners Provide Delivery Options as well.</p>
-              <a href="#" class="link-secondary learn-more">
+              <Link to="/shipping" class="link-secondary learn-more">
                 Learn more
-              </a>
+              </Link>
             </div>
           </div>
           <div className="card  col-xl-4 col-sm-6 mb-5 block text-center">
@@ -27,9 +28,9 @@ function WorkDetails() {
               <UilTransaction className="icons" />
               <h6>Safe Payment</h6>
               <p>Suport product online all payment Options as well.</p>
-              <a href="#" class="link-secondary learn-more">
+              <Link to="/safepayment" class="link-secondary learn-more">
                 Learn more
-              </a>
+              </Link>
             </div>
           </div>
           <div className="card col-xl-4 col-sm-6 mb-5 block text-center">
@@ -37,9 +38,9 @@ function WorkDetails() {
               <UilHeadphonesAlt className="icons" />
               <h6>Take Virtual Tour</h6>
               <p>Shop Owners Provide Delivery Options as well.</p>
-              <a href="#" class="link-secondary learn-more">
+              <Link to="/tour" class="link-secondary learn-more">
                 Learn more
-              </a>
+              </Link>
             </div>
           </div>
         </div>

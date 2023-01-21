@@ -19,10 +19,15 @@ export default class ShopOwnerSignUp extends Component {
       delivery: "",
       isDisabled: false,
       sleep: "",
+      isChecked: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  toggleChange = () => {
+    this.setState({
+      isChecked: true,
+    });
+  };
   handleSubmit(e) {
     e.preventDefault();
     const {
@@ -76,56 +81,68 @@ export default class ShopOwnerSignUp extends Component {
         console.log(shopOwner, "shopOwnerRegister");
         // this.setState.sleep = (ms) => new Promise((r) => setTimeout(r, ms));
         // this.state.sleep(5000);
-        if (
-          shopOwner.message == "An Email sent to your account please verify"
-        ) {
-          this.handleSubmitClicked.bind(this);
-          toast("An Email sent to your account please verify");
-          window.localStorage.setItem("token", shopOwner.data);
-          // console.log(shopOwner.password);
-          window.location.href = "/shopowner-login";
-        } else if (shopOwner.message == "shopOwner Already exist") {
-          toast.error("ShopOwner Already exist", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (shopOwner.message == "All Feild must be filled") {
-          toast.error("All Feild must be filled", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (shopOwner.message == "Email is not valid") {
-          toast.error("Email is not valid", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (shopOwner.message == "password is not strong enough") {
-          toast.error("Password is not strong enough", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+        if (this.state.isChecked === true) {
+          if (
+            shopOwner.message == "An Email sent to your account please verify"
+          ) {
+            this.handleSubmitClicked.bind(this);
+            toast("An Email sent to your account please verify");
+            window.localStorage.setItem("token", shopOwner.data);
+            // console.log(shopOwner.password);
+            window.location.href = "/shopowner-login";
+          } else if (shopOwner.message == "shopOwner Already exist") {
+            toast.error("ShopOwner Already exist", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else if (shopOwner.message == "All Feild must be filled") {
+            toast.error("All Feild must be filled", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else if (shopOwner.message == "Email is not valid") {
+            toast.error("Email is not valid", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else if (shopOwner.message == "password is not strong enough") {
+            toast.error("Password is not strong enough", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else {
+            toast.error("All Feild must be filled", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
         } else {
-          toast.error("All Feild must be filled", {
+          toast.error("Please Accespt Terms and Policies", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -164,7 +181,12 @@ export default class ShopOwnerSignUp extends Component {
               Register as customer?
             </Link>
 
-            <form autoComplete={false} onSubmit={this.handleSubmit}>
+            <form
+              autoComplete={false}
+              onSubmit={this.handleSubmit}
+              className="mt-3"
+            >
+              <h3>Here's ShopOwners</h3>
               <div class="row mt-4 mb-4">
                 <div class="col">
                   <div class="form-outline">
@@ -218,6 +240,11 @@ export default class ShopOwnerSignUp extends Component {
                   class="form-control"
                   onChange={(e) => this.setState({ password: e.target.value })}
                 />
+                <p className="error">
+                  Use atleast a <strong>Capital letter</strong> a{" "}
+                  <strong>number</strong> and a{" "}
+                  <strong>special chracter</strong>
+                </p>
               </div>
 
               <div class="form-outline mb-4 form-group required">
@@ -288,16 +315,35 @@ export default class ShopOwnerSignUp extends Component {
                 </div>
               </div>
 
-              <div class="form-outline mb-4 form-group required">
+              <div class=" form-outline mb-4 form-group required">
                 <label class="form-label control-label" for="form6Example6">
                   Phone
                 </label>
-                <input
-                  type="tel"
-                  id="form6Example6"
-                  class="form-control"
-                  onChange={(e) => this.setState({ phone: e.target.value })}
-                />
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">+92</div>
+                  </div>
+                  <input
+                    type="tel"
+                    id="form6Example6"
+                    class="form-control"
+                    onChange={(e) => this.setState({ phone: e.target.value })}
+                  />
+                </div>
+              </div>
+              <div class="checkbox mb-3">
+                <label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={false}
+                    // defaultChecked={this.state.isChecked}
+                    onChange={this.toggleChange}
+                  />{" "}
+                  I accept the <Link to="/privacy">Terms of Use </Link>
+                  {"and"}
+                  <Link to="/privacy"> Privacy Policy.</Link>
+                  <span class="checkmark"></span>
+                </label>
               </div>
               <button
                 type="submit"

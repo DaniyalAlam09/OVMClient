@@ -150,11 +150,11 @@ function FeaturedProducts() {
                                 Stoke: {`${product.product_stoke}`}
                               </p>
                               <div class="rating">
-                              <Rating
-                                          size="small"
-                                          value={product.reviews[0]?.rating}
-                                          readOnly
-                                        />
+                                <Rating
+                                  size="small"
+                                  value={product.reviews[0]?.rating}
+                                  readOnly
+                                />
                                 {/* {product.reviews.rating ?(
                                   <p>oid</p>)
                                   : <p>dsk</p>} */}

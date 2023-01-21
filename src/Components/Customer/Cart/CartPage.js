@@ -190,16 +190,6 @@ function CartPage() {
     axios
       .delete(`http://localhost:4000/product/cart/${id}`, config)
       .then((user) => {
-        toast.success("Product Remove Successfully", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
         setDelete(true);
         // navigate(0);
       })
@@ -229,7 +219,7 @@ function CartPage() {
         console.log("Order Placed Please Enter Pyement Details to continue");
         handleDelete(id);
         window.scrollTo(0, 1350);
-        toast.success("Order Placed Please Enter Pyement Details", {
+        toast.success("Enter Pyement Details", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

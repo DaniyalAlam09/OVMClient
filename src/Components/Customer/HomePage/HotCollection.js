@@ -24,11 +24,11 @@ function HotCollection() {
 
   React.useEffect(function () {
     axios
-      .get("http://localhost:4000/shopowners/viewProducts")
+      .post("http://localhost:4000/shops/sentiment")
       .then((res) => {
-        setProduct(res.data);
+        setProduct(res.data.pro);
         // setProduct(prevState => [res.data])
-        console.log(res.data);
+        console.log(res.data.pro);
         // console.log(product.reviews.rating);
         console.log(product);
         setLoading(false);
@@ -87,81 +87,78 @@ function HotCollection() {
               <div class="container">
                 <div class="row">
                   {/* <div class=" col-md-6 col-lg-4 mb-4 mb-md-0"> */}
-                  {product
-                    .filter((person) => person.product_price < 40000)
-                    .slice(0, 4)
-                    .map((product, index) => (
-                      <div key={index} class=" col-md-6 col-lg-3">
-                        <Link
-                          key={index}
-                          to={`singleProduct/${product._id}/${product.owner}`}
+                  {Object.values(product).map((product, index) => (
+                    <div key={index} class=" col-md-6 col-lg-3">
+                      <Link
+                        key={index}
+                        to={`singleProduct/${product._id}/${product.owner}`}
+                      >
+                        <div
+                          class="border mb-4 p-3 card-hover"
+                          style={{
+                            height: "380px",
+                            borderRadius: "5px",
+                            // backgroundColor: " rgba(236, 235, 235, 0.137)",
+                          }}
                         >
-                          <div
-                            class="border mb-4 p-3 card-hover"
-                            style={{
-                              height: "380px",
-                              borderRadius: "5px",
-                              // backgroundColor: " rgba(236, 235, 235, 0.137)",
-                            }}
-                          >
-                            <div className="text -center">
-                              <div></div>
-                              <img
-                                src={`http://localhost:4000/${product.product_image}`}
-                                style={{
-                                  height: "200px",
-                                  width: "200px",
-                                }}
-                                class="product-image"
-                                alt="Laptop"
-                              />
+                          <div className="text -center">
+                            <div></div>
+                            <img
+                              src={`http://localhost:4000/${product.product_image}`}
+                              style={{
+                                height: "200px",
+                                width: "200px",
+                              }}
+                              class="product-image"
+                              alt="Laptop"
+                            />
+                          </div>
+
+                          <div class="negativemargine">
+                            <div class="d-flex justify-content-between">
+                              <p class="small">
+                                <a class="text-muted">
+                                  {`${product.product_brand}`}
+                                </a>
+                              </p>
+                              <p class="small text-danger">
+                                <s
+                                  style={{ textDecoration: "line-through" }}
+                                >{`${product.product_price}`}</s>
+                              </p>
+                            </div>
+                            <Divider />
+                            <div class="d-flex justify-content-between mb-3">
+                              <p
+                                className="product-name"
+                                // class="mb-0"
+                              >{`${product.product_name}`}</p>
+                              <p
+                                className="product-price"
+                                // class="text-dark mb-0"
+                              >{`${product.product_price}`}</p>
                             </div>
 
-                            <div class="negativemargine">
-                              <div class="d-flex justify-content-between">
-                                <p class="small">
-                                  <a class="text-muted">
-                                    {`${product.product_brand}`}
-                                  </a>
-                                </p>
-                                <p class="small text-danger">
-                                  <s
-                                    style={{ textDecoration: "line-through" }}
-                                  >{`${product.product_price}`}</s>
-                                </p>
-                              </div>
-                              <Divider />
-                              <div class="d-flex justify-content-between mb-3">
-                                <p
-                                  className="product-name"
-                                  // class="mb-0"
-                                >{`${product.product_name}`}</p>
-                                <p
-                                  className="product-price"
-                                  // class="text-dark mb-0"
-                                >{`${product.product_price}`}</p>
-                              </div>
-
-                              <div class="d-flex justify-content-between">
-                                <p class="rating text-muted">
-                                  Stoke: {`${product.product_stoke}`}
-                                </p>
-                                <div class="rating">
-                                  <Rating
-                                    size="small"
-                                    value={product.reviews[0]?.rating}
-                                    readOnly
-                                  />
-                                  {/* {product.reviews.rating ?(
-                                <p>oid</p>)
-                                : <p>dsk</p>} */}
-                                </div>
+                            <div class="d-flex justify-content-between">
+                              <p class="rating text-muted">
+                                Stoke: {`${product.product_stoke}`}
+                              </p>
+                              <div class="rating">
+                                <Rating
+                                  size="small"
+                                  value={product.reviews[0]?.rating}
+                                  readOnly
+                                />
+                                {/* {product.reviews.rating ?(
+                                  <p>oid</p>)
+                                  : <p>dsk</p>} */}
                               </div>
                             </div>
                           </div>
-                        </Link>
-                      </div>
-                    ))}
+                        </div>
+                      </Link>
+                    </div>
+                  ))}
                   {/* </div> */}
                 </div>
               </div>

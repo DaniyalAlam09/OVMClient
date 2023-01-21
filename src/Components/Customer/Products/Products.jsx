@@ -10,16 +10,8 @@ import Hero from "../Images/Hero.png";
 import SearchIcon from "@material-ui/icons/Search";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
 import { slice } from "lodash";
-import TemporaryDrawer from "./Drawer";
-import KeyboardDoubleArrowDownSharpIcon from "@mui/icons-material/KeyboardDoubleArrowDownSharp";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Divider } from "@mui/material";
 import CountUp from "react-countup";
 import "./styles.css";
@@ -123,6 +115,17 @@ function Products() {
         console.log(err);
       });
   };
+  const bestReviewd = () => {
+    axios
+      .post("http://localhost:4000/shops/sentiment")
+      .then((res) => {
+        console.log("jj");
+        setProduct(res.data.pro);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const catagoryFilter = () => {
     axios
       .get(
@@ -162,40 +165,6 @@ function Products() {
       });
   };
 
-  // const bestFilter = reviews?.filter((filterdata) => {
-  //   return filterdata.rating === 5;
-  // });
-  // const filterGood = () => {
-  //   setProduct(bestFilter);
-  // };
-  const Rating4 = () => {
-    // product.reviews.filter((person) => (person.rating = 4));
-    // product.map((item, index) => {
-    //   let person = item?.reviews.filter((person) => (person.rating = 4));
-    // setProduct(product?.reviews?.filter((person) => (person.rating = 4)));
-    const samsung = product.filter(
-      (auto) =>
-        auto.product_name.includes("Apple") ||
-        auto.product_name.includes("Dell")
-    );
-    console.log(samsung);
-    setProduct(samsung);
-    // });
-    // product.reviews.rating[0] == 4;
-  };
-  console.log(Rating4);
-  // const filterGood = product?.filter((filterdata) => {
-  //   setProduct(filterdata.reviews.rating[0] == 1);
-  // });
-  // console.log(filterGood);
-
-  // let filterGood = () => {
-  //   const good = product.filter((auto) => auto.reviews.comment == "Good One");
-  // const fordAutos = autoData.filter( (auto) => auto.title.includes("Ford"));
-
-  //   setProduct(good);
-  // };
-  // console.log(filterGood);
   React.useEffect(
     function () {
       axios
@@ -238,14 +207,36 @@ function Products() {
                 >
                   Clear All Filters
                 </button>
-                {/* <button
-                  onClick={Rating4}
-                  class="btn btn-danger mb-2"
-                  style={{ width: "70%" }}
-                >
-                  best
-                </button> */}
               </div>
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    data-toggle="collapse"
+                    data-target="#collapse_1"
+                    aria-expanded="true"
+                    class=""
+                  >
+                    {/* <ExpandMoreIcon size="small" /> */}
+                    <h6 class="title">Top Reviewd Products</h6>
+                  </a>
+                </header>
+                <div
+                  class="filter-content collapse show"
+                  id="collapse_1"
+                  // style=""
+                >
+                  <div class="card-body">
+                    <button
+                      onClick={() => bestReviewd()}
+                      className="btn btn-primary signin mt-2"
+                      style={{ width: "80%" }}
+                    >
+                      Best Reviewd
+                    </button>
+                  </div>
+                </div>
+              </article>
               <article class="filter-group">
                 <header class="card-header">
                   <a
@@ -426,7 +417,7 @@ function Products() {
                         <SearchIcon />
                       </SearchIconWrapper>
                       <StyledInputBase
-                        placeholder="Search…"
+                        placeholder="product name..."
                         inputProps={{ "aria-label": "search" }}
                         onChange={(e) => {
                           setSearch(e.target.value);
@@ -622,8 +613,8 @@ function Products() {
                                     height: "380px",
                                     borderRadius: "5px",
 
-                                    backgroundColor:
-                                      " rgba(236, 235, 235, 0.137)",
+                                    // backgroundColor:
+                                    //   " rgba(236, 235, 235, 0.137)",
                                   }}
                                 >
                                   <div className="text -center">

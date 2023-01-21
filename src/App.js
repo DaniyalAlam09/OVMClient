@@ -12,6 +12,10 @@ import Cart from "./Components/Customer/Cart/Cart";
 import ShopsPage from "./Components/Customer/Shops/ShopsPage";
 import Checkout from "./Components/Customer/Checkout/Checkout";
 import About from "./Components/Genral/About";
+import Privacy from "./Components/Customer/SimplePages/Privacy";
+import SafPayment from "./Components/Customer/SimplePages/SafPayment";
+import TourInfo from "./Components/Customer/SimplePages/TourInfo";
+import Shipping from "./Components/Customer/SimplePages/Shipping";
 import Contact from "./Components/Genral/Contact";
 import Search from "./Components/Customer/HomePage/Search/Search";
 import Detail from "./Components/Customer/SingleProduct/Detail";
@@ -92,6 +96,10 @@ function App() {
               element={<EmailVerify />}
             />
             <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/safepayment" element={<SafPayment />} />
+            <Route path="/tour" element={<TourInfo />} />
+            <Route path="/shipping" element={<Shipping />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/userDetails" element={<CustomerAccount />} />
             <Route path="/allproducts/:categoryName" element={<Catgories />} />
