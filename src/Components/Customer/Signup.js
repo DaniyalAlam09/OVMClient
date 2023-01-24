@@ -202,11 +202,19 @@ export default class SignUp extends Component {
                   <label class="control-label" for="">
                     Phone
                   </label>
-                  <input
-                    type="tel"
-                    class="form-control"
-                    onChange={(e) => this.setState({ phoneNo: e.target.value })}
-                  />
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">+92</div>
+                    </div>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      placeholder="3XX XXXXXXX"
+                      onChange={(e) =>
+                        this.setState({ phoneNo: e.target.value })
+                      }
+                    />
+                  </div>
                 </div>
                 <div class="form-wrapper mb-2 form-group required">
                   <label class="control-label" for="">

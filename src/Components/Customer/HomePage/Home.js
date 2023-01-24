@@ -23,11 +23,12 @@ function Home() {
       />
       <BestDeals />
       <WorkDetails />
-      <FeaturedProducts />
-      <FeaturedCatagories />
-      <HomePageShops />
       <HotCollection />
+      <HomePageShops />
+      <FeaturedCatagories />
+      <FeaturedProducts />
       <Topbrands />
+
       <Subscribe />
     </div>
   );

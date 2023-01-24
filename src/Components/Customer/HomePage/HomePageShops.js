@@ -18,6 +18,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import VerifiedIcon from "@mui/icons-material/Verified";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -158,11 +159,23 @@ function Shops() {
                     }}
                     src={`http://localhost:4000${elem.shopImage}`}
                   />
+                  {elem?.verified === true && (
+                    <VerifiedIcon
+                      style={{
+                        color: "#1C99E6",
+                        fontSize: "40px",
+                        position: "absolute",
+                        top: "20px",
+                        left: "180px",
+                      }}
+                    />
+                  )}
                   <p className="brand-name" style={{ marginTop: "-4px" }}>
                     Shop no {`${elem.shopNo}`}
                   </p>
 
-                  <p className="product-name">{`${elem.shopName}`}</p>
+                  <p className="product-name">{`${elem.shopName}`} </p>
+                  <></>
                 </Link>
               </div>
             ))}

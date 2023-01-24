@@ -21,7 +21,7 @@ import Search from "./Components/Customer/HomePage/Search/Search";
 import Detail from "./Components/Customer/SingleProduct/Detail";
 // import Checkout from "./Components/Customer/Checkout/Checkout";
 import Products from "./Components/Customer/Products/Products";
-import data from "./Components/Customer/HomePage/Data";
+import SentimentalProducts from "./Components/Customer/SentimentalProducts/SentimentalProducts";
 import Signup from "./Components/Customer/Signup";
 import ForgotPassword from "./Components/Customer/ForgotPassword";
 import CustomerAccount from "./Components/Customer/userDetails";
@@ -50,6 +50,7 @@ import EmailVerify from "./Components/ShopOwner/Verify";
 import Navbar2 from "./Components/Navbar/Navbar2";
 import ShopResetPassword from "./Components/ShopOwner/ShopResetPassword";
 import AllBrandPage from "./Components/Brands/AllBrandPage";
+import Brands from "./Components/Brands/Brands";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
@@ -58,22 +59,6 @@ const promise = loadStripe(
 );
 
 function App() {
-  const { productItem } = data;
-  const [cartItems, setCartItems] = useState([]);
-  const handleAddProduct = (product) => {
-    const ProductExist = cartItems.find((item) => item.id === product.id);
-    if (ProductExist) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...ProductExist, quantity: ProductExist.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
-  };
   return (
     <>
       <Router>
@@ -82,12 +67,7 @@ function App() {
           <Navbar />
 
           <Routes>
-            <Route
-              productItem={productItem}
-              exact
-              path="/"
-              element={<Home />}
-            />
+            <Route exact path="/" element={<Home />} />
             <Route path="*" element={<Error />} />
             <Route path="home" element={<Home />} />
             <Route path="/shops" element={<ShopsPage />} />
@@ -102,7 +82,8 @@ function App() {
             <Route path="/shipping" element={<Shipping />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/userDetails" element={<CustomerAccount />} />
-            <Route path="/allproducts/:categoryName" element={<Catgories />} />
+            <Route path="/category/:categoryName" element={<Catgories />} />
+            <Route path="/brand/:brandName" element={<Brands />} />
             <Route path="/allcatagories" element={<AllCatagoreyPage />} />
             <Route path="/allbrands" element={<AllBrandPage />} />
             {/* <Route path="/logout" element={<Logout />} /> */}
@@ -127,6 +108,10 @@ function App() {
               }
             />
             <Route path="/products" element={<Products />} />
+            <Route
+              path="/sentimental-products"
+              element={<SentimentalProducts />}
+            />
 
             <Route path="/checkout" element={<Checkout />} />
             <Route

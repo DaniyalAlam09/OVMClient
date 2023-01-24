@@ -242,7 +242,7 @@ function Products() {
                   <a
                     href="#"
                     data-toggle="collapse"
-                    data-target="#collapse_1"
+                    data-target="#collapse_5"
                     aria-expanded="true"
                     class=""
                   >
@@ -252,7 +252,7 @@ function Products() {
                 </header>
                 <div
                   class="filter-content collapse show"
-                  id="collapse_1"
+                  id="collapse_5"
                   // style=""
                 >
                   <div class="card-body">
@@ -638,11 +638,20 @@ function Products() {
                                         </a>
                                       </p>
                                       <p class="small text-danger">
-                                        <s
-                                          style={{
-                                            textDecoration: "line-through",
-                                          }}
-                                        >{`${product.product_price}`}</s>
+                                        {product.discounted_price && (
+                                          <s
+                                            style={{
+                                              textDecoration: "line-through",
+                                            }}
+                                          >{`${product.discounted_price}`}</s>
+                                        )}
+                                        {!product.discounted_price && (
+                                          <s
+                                            style={{
+                                              textDecoration: "line-through",
+                                            }}
+                                          >{`${product.product_price}`}</s>
+                                        )}
                                       </p>
                                     </div>
                                     <Divider />

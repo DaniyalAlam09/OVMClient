@@ -3,6 +3,7 @@
 import HeadPhone from "../Images/HeadPhone.png";
 import SearchIcon from "@material-ui/icons/Search";
 import React, { useEffect, useState } from "react";
+import CountUp from "react-countup";
 import axios from "axios";
 import "./ShopStyle.css";
 import Pagination from "@mui/material/Pagination";
@@ -19,6 +20,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import VerifiedIcon from "@mui/icons-material/Verified";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -139,6 +141,13 @@ function Shops() {
         <div className="">
           <Box>
             <Toolbar>
+              <span class="mr-md-auto" style={{ width: "90px" }}>
+                <strong>
+                  {" "}
+                  <CountUp end={user.length} duration={1} />
+                </strong>{" "}
+                Shops
+              </span>
               <Search>
                 <SearchIconWrapper>
                   <SearchIcon />
@@ -242,6 +251,17 @@ function Shops() {
                     }}
                     src={`http://localhost:4000${elem.shopImage}`}
                   />
+                  {elem?.verified === true && (
+                    <VerifiedIcon
+                      style={{
+                        color: "#1C99E6",
+                        fontSize: "40px",
+                        position: "absolute",
+                        top: "20px",
+                        left: "180px",
+                      }}
+                    />
+                  )}
                   <p className="brand-name">Shop no {`${elem.shopNo}`}</p>
 
                   <p className="product-name">{`${elem.shopName}`}</p>

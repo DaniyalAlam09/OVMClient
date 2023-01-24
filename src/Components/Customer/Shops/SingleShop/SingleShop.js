@@ -5,6 +5,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Card from "@mui/material/Card";
+import CountUp from "react-countup";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -175,6 +176,13 @@ function SingleShop() {
           <div className="">
             <Box>
               <Toolbar>
+                <span class="mr-md-auto" style={{ width: "90px" }}>
+                  <strong>
+                    {" "}
+                    <CountUp end={user.length} duration={1} />
+                  </strong>{" "}
+                  Shops
+                </span>
                 <Search>
                   <SearchIconWrapper>
                     <SearchIcon />

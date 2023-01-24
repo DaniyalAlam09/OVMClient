@@ -325,7 +325,7 @@ export default class ShopOwnerSignUp extends Component {
                   </div>
                   <input
                     type="tel"
-                    id="form6Example6"
+                    placeholder="3XX XXXXXXX"
                     class="form-control"
                     onChange={(e) => this.setState({ phone: e.target.value })}
                   />

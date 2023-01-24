@@ -35,7 +35,7 @@ function Topbrands() {
   return (
     <div className=" container">
       <div className="featured-head">
-        <h3>Top Brands</h3>
+        <h3>Brands</h3>
         <Link to="/allbrands" class="link-secondary see-all">
           All Brands
         </Link>
@@ -80,29 +80,31 @@ function Topbrands() {
           <div className="row text-center">
             {brands?.slice(0, 4).map((brand) => (
               <div key={brands.indexOf(brand)} className="col-lg-3 col-md-6">
-                <div class="clients card block" style={{ height: "150px" }}>
-                  <div class="swiper-slide justify-content-between  align-items-center ">
-                    <img
-                      src={`http://localhost:4000/${brand.imageUrl}`}
-                      style={{
-                        height: "100px",
-                        width: "100px",
-                        cursor: "pointer",
-                        objectFit: "contain",
-                        marginTop: "-25px",
-                      }}
-                      // src={hero}
-                      alt={brand.name}
-                      // class="product-image"
-                      // style={{ width: "100%" }}
-                    />
+                <Link to={`/brand/${brand.name}`}>
+                  <div class="clients card block" style={{ height: "150px" }}>
+                    <div class="swiper-slide justify-content-between  align-items-center ">
+                      <img
+                        src={`http://localhost:4000/${brand.imageUrl}`}
+                        style={{
+                          height: "100px",
+                          width: "100px",
+                          cursor: "pointer",
+                          objectFit: "contain",
+                          marginTop: "-25px",
+                        }}
+                        // src={hero}
+                        alt={brand.name}
+                        // class="product-image"
+                        // style={{ width: "100%" }}
+                      />
 
-                    {/* <div class="p-4">
+                      {/* <div class="p-4">
                     <p class="mb-0">{`${brand.name}`}</p>
                     <p class="small text-muted">CEO - Consultant</p>
                   </div> */}
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

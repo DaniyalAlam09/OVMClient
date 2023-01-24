@@ -9,7 +9,7 @@ function HeroSection({ Name1, Name2, ImageSource }) {
   return (
     <section
       id="hero-animated"
-      class="hero-fullscreen hero-animated d-flex align-items-center"
+      class="hero-fullscreen hero-animated justify-content-center d-flex align-items-center"
     >
       <div
         class="container row d-flex justify-content-center align-items-center text-center"

@@ -162,7 +162,10 @@ const ShopOwnerEditProfile = () => {
   );
 
   return (
-    <div>
+    <div
+      className=" align-items-center justify-content-center ml-3 mt-4"
+      style={{ width: "100%" }}
+    >
       <ToastContainer />
       <form onSubmit={handleSubmit} className="container row g-3">
         <div className="col-md-6 mb-3">

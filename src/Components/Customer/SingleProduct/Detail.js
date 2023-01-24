@@ -309,6 +309,10 @@ function Detail() {
                       <h6>
                         Contact: <span className=" ">{shop.phone}</span>
                       </h6>
+                      <h6>
+                        Provide Delivery:{" "}
+                        <span className="">{shop.delivery}</span>
+                      </h6>
                     </div>
                   </Link>
                 </div>

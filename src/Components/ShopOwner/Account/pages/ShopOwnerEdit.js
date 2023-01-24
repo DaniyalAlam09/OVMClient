@@ -65,7 +65,7 @@ function ShopOwnerEdit() {
         setState((pre) => ({ ...pre, email: res.data.email }));
         setState((pre) => ({ ...pre, shopNo: res.data.shopNo }));
         setState((pre) => ({ ...pre, shopName: res.data.shopName }));
-        setState((pre) => ({ ...pre, catagorey: res.data.catagorey }));
+        setState((pre) => ({ ...pre, floor: res.data.floor }));
         setState((pre) => ({ ...pre, phone: res.data.phone }));
         console.log(res.data.user);
         console.log(user);
@@ -137,6 +137,7 @@ function ShopOwnerEdit() {
         setState((pre) => ({ ...pre, shopName: res.data.user.shopName }));
         setState((pre) => ({ ...pre, catagorey: res.data.user.catagorey }));
         setState((pre) => ({ ...pre, phone: res.data.user.phone }));
+        setState((pre) => ({ ...pre, floor: res.data.user.floor }));
       })
       .catch((err) => {
         console.log(err);
@@ -239,23 +240,6 @@ function ShopOwnerEdit() {
             />
           </div>
 
-          <div class="col-12">
-            <label class="visually-hidden" for="inlineFormSelectPref">
-              Catagory Of Shop
-            </label>
-            <select
-              name="category"
-              onChange={handleChange}
-              value={state.category}
-              class="select ml-4 mb-4"
-            >
-              <option value="none">None</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Moiles">Moiles</option>
-              <option value="Laptops">Laptops</option>
-              <option value="Tabetes">Tabetes</option>
-            </select>
-          </div>
           <button
             type="submit"
             class="buttons btn text-white btn-block btn-primary"

@@ -17,6 +17,9 @@ function Footer() {
   if (pathname === "/user/logout") return null;
   if (pathname === "/account") return null;
   if (pathname === "/privacy") return null;
+  if (pathname === "/safepayment") return null;
+  if (pathname === "/shipping") return null;
+  if (pathname === "/tour") return null;
   if (pathname === "/shopowner-login") return null;
   if (pathname === "/create-account") return null;
   if (pathname === "/shopowner-account") return null;
@@ -38,11 +41,21 @@ function Footer() {
               This is the usefull template from Sebo. You can buy this on our
               website, UI8 and also our Creativemarket.
             </p>
-            <UilFacebook className="icons" />
-            <UilInstagram className="icons" />
-            <UilTwitter className="icons" />
-            <UilYoutube className="icons" />
-            <UilGithub className="icons" />
+            <a target="blank" href="https://www.facebook.com/">
+              <UilFacebook className="icons" />
+            </a>
+            <a target="blank" href="https://www.instagram.com/">
+              <UilInstagram className="icons" />
+            </a>
+            <a target="blank" href="https://www.twitter.com/">
+              <UilTwitter className="icons" />
+            </a>
+            <a target="blank" href="https://www.youtube.com/">
+              <UilYoutube className="icons" />
+            </a>
+            <a target="blank" href="https://github.com/DaniyalAlam09/">
+              <UilGithub className="icons" />
+            </a>
           </div>
           {/* <div className="col-md-2 ">
             <h6>Product</h6>

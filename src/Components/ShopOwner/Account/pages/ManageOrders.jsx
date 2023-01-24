@@ -30,14 +30,14 @@ const ManageOrders = () => {
       .get(`http://localhost:4000/users/${userId}`)
       .then((res) => {
         setUser(res.data);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err.response.data.message);
       });
   };
   return (
-    <div className="text-center ml-3 mt-4">
+    <div className="text-center ml-3 mt-4" style={{ width: "100%" }}>
       <div class=" container d-flex justify-content-center"></div>
       {order ? (
         <table className="table">
@@ -52,6 +52,9 @@ const ManageOrders = () => {
               {/* <th>Order Status</th> */}
 
               <th>User</th>
+              <th>Status</th>
+              <th>Tracking ID</th>
+              <th>Submit</th>
             </tr>
           </thead>
           <tbody className="mt-3">
@@ -71,6 +74,13 @@ const ManageOrders = () => {
               <td>{order.bill}</td>
               <td>
                 {user.firstName} {user.lastName}
+              </td>
+              <td>dd</td>
+              <td>
+                <input />
+              </td>
+              <td>
+                <button>Update</button>
               </td>
             </tr>
             {/* ))} */}

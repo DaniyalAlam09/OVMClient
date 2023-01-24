@@ -125,35 +125,37 @@ function AllBrandPage() {
               ?.map((brand) => (
                 <div className="col-md-3 col-sm-6 ">
                   <div key={brands.indexOf(brand)}>
-                    <div
-                      className="card card1 mb-10 block align-items-center justify-content-center"
-                      style={{
-                        height: "150px",
-                        backgroundColor: " rgba(236, 235, 235, 0.137)",
-                      }}
-                    >
-                      <a class="card-img-tiles" href="#" data-abc="true">
-                        <div class="inner" style={{ height: "1px" }}>
-                          <div class="main-img ">
-                            <img
-                              src={`http://localhost:4000/${brand.imageUrl}`}
-                              style={{
-                                height: "70px",
-                                width: "70px",
-                                cursor: "pointer",
-                                objectFit: "contain",
-                                marginTop: "-25px",
-                              }}
-                              // src={hero}
-                              alt="Category"
-                            />
+                    <Link to={`/brand/${brand.name}`}>
+                      <div
+                        className="card card1 mb-10 block align-items-center justify-content-center"
+                        style={{
+                          height: "150px",
+                          backgroundColor: " rgba(236, 235, 235, 0.137)",
+                        }}
+                      >
+                        <a class="card-img-tiles" href="#" data-abc="true">
+                          <div class="inner" style={{ height: "1px" }}>
+                            <div class="main-img ">
+                              <img
+                                src={`http://localhost:4000/${brand.imageUrl}`}
+                                style={{
+                                  height: "70px",
+                                  width: "70px",
+                                  cursor: "pointer",
+                                  objectFit: "contain",
+                                  marginTop: "-25px",
+                                }}
+                                // src={hero}
+                                alt="Category"
+                              />
+                            </div>
                           </div>
+                        </a>
+                        <div class="mt-3 text-center">
+                          <h6 class="card-title">{brand.name}</h6>
                         </div>
-                      </a>
-                      <div class="mt-3 text-center">
-                        <h6 class="card-title">{brand.name}</h6>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               ))}

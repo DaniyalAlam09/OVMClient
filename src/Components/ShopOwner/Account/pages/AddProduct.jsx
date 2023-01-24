@@ -25,6 +25,7 @@ const AddProduct = () => {
     name: "",
     description: "",
     price: "",
+    discounted_price: "",
     brand: "",
     category: "",
     color: "",
@@ -117,7 +118,10 @@ const AddProduct = () => {
   };
 
   return (
-    <div>
+    <div
+      className=" align-items-center justify-content-center ml-3 mt-4"
+      style={{ width: "100%" }}
+    >
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -229,6 +233,19 @@ const AddProduct = () => {
             placeholder="in RS."
             onChange={handleChange}
             value={state.price}
+          />
+        </div>
+        <div className="col-12 mt-3 col-md-4 form-group">
+          <label for="inputAddress2" class="control-label">
+            Dicounted Price
+          </label>
+          <input
+            name="discounted_price"
+            type="text"
+            className="form-control"
+            placeholder="in RS."
+            onChange={handleChange}
+            value={state.discounted_price}
           />
         </div>
         <div className="col-12 mt-3 col-md-4">

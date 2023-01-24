@@ -12,7 +12,6 @@ import { CardActionArea } from "@mui/material";
 import ReactStars from "react-rating-stars-component";
 import { CartProvider, useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
-import data from "./Data";
 import { useParams } from "react-router-dom";
 import { useRef } from "react";
 import { Divider } from "@material-ui/core";
