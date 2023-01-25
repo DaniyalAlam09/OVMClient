@@ -414,9 +414,10 @@ function CartPage() {
                           </Link>
                           <button
                             class="buttons btn text-white btn-primary"
-                            onClick={() => window.scrollTo(0, 1350)}
+                            onClick={() => {
+                              makeOrder();
+                            }}
                           >
-                            {" "}
                             Continue to Checkout
                           </button>
                         </div>
