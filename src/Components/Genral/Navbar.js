@@ -257,7 +257,7 @@ const Navbar = () => {
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 {catagories?.map((catagory, index) => (
                   <Link
-                    to={`/allproducts/${catagory.name}`}
+                    to={`/category/${catagory.name}`}
                     key={index}
                     className="dropdown-item"
                   >

@@ -15,6 +15,7 @@ import ReorderIcon from "@mui/icons-material/Reorder";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import CategoryIcon from "@mui/icons-material/Category";
 import AddIcon from "@mui/icons-material/Add";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -27,7 +28,7 @@ const Sidebar = ({ children }) => {
     {
       path: "manage-orders",
       name: "Manage Orders",
-      icon: <FaUserAlt />,
+      icon: <ShoppingBasketIcon />,
     },
     {
       path: "shoponwer-analytics",

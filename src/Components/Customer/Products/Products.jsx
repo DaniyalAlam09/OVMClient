@@ -638,20 +638,11 @@ function Products() {
                                         </a>
                                       </p>
                                       <p class="small text-danger">
-                                        {product.discounted_price && (
-                                          <s
-                                            style={{
-                                              textDecoration: "line-through",
-                                            }}
-                                          >{`${product.discounted_price}`}</s>
-                                        )}
-                                        {!product.discounted_price && (
-                                          <s
-                                            style={{
-                                              textDecoration: "line-through",
-                                            }}
-                                          >{`${product.product_price}`}</s>
-                                        )}
+                                        <s
+                                          style={{
+                                            textDecoration: "line-through",
+                                          }}
+                                        >{`${product.product_price}`}</s>
                                       </p>
                                     </div>
                                     <Divider />
@@ -663,7 +654,14 @@ function Products() {
                                       <p
                                         className="product-price"
                                         // class="text-dark mb-0"
-                                      >{`${product.product_price}`}</p>
+                                      >
+                                        {product.discounted_price && (
+                                          <s>{`${product.discounted_price}`}</s>
+                                        )}
+                                        {!product.discounted_price && (
+                                          <s>{`${product.product_price}`}</s>
+                                        )}
+                                      </p>
                                     </div>
 
                                     <div class="d-flex justify-content-between">

@@ -346,33 +346,14 @@ function CartPage() {
                                       </figure>
                                     </td>
                                     <td>
-                                      <ButtonGroup
-                                        size="small"
-                                        aria-label="small outlined button group"
-                                      >
-                                        {
-                                          <Button
-                                            disabled={counter <= 0}
-                                            onClick={() => {
-                                              setCounter((pre) => pre - 1);
-                                            }}
-                                          >
-                                            -
-                                          </Button>
-                                        }
-
-                                        {<Button>{counter}</Button>}
-                                        <Button
-                                          disabled={
-                                            counter >= product["countInStock"]
-                                          }
-                                          onClick={() => {
-                                            setCounter((pre) => pre + 1);
-                                          }}
-                                        >
-                                          +
-                                        </Button>
-                                      </ButtonGroup>
+                                      <img
+                                        src={`http://localhost:4000/${product.product_image}`}
+                                        style={{
+                                          height: "20px",
+                                          width: "20px",
+                                        }}
+                                        class="product-image"
+                                      />
                                     </td>
                                     <td>
                                       <div class="price-wrap">

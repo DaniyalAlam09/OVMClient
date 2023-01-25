@@ -107,7 +107,6 @@ function FeaturedProducts() {
                           }}
                         >
                           <div className="text -center">
-                            <div></div>
                             <img
                               src={`http://localhost:4000/${product.product_image}`}
                               style={{

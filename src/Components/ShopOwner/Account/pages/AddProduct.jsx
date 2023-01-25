@@ -89,7 +89,7 @@ const AddProduct = () => {
     axios
       .post(`http://localhost:4000/shops/add-product`, getFormData(), config)
       .then((response) => {
-        // navigate("../product-list");
+        navigate("../product-list");
         toast.success("Product Sucessfully Added", {
           position: "top-right",
           autoClose: 5000,

@@ -130,7 +130,7 @@ function Shops() {
   };
 
   return (
-    <Stack className="container heading " spacing={2}>
+    <Stack className="container " spacing={2}>
       <div className="featured-head">
         <h3>Shops</h3>
         <Link to="/shops" class="link-secondary see-all">
