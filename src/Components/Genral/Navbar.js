@@ -106,47 +106,44 @@ const Navbar = () => {
         console.log(err.response.data.message);
       });
   };
-  React.useEffect(
-    function () {
-      const config = {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      };
-      axios
-        .get("http://localhost:4000/users/user", config)
-        .then((res) => {
-          setUser(res.data.user);
-        })
-        .catch((err) => {
-          console.log(err.response.data);
-          setUser([]);
-        });
-      axios
-        .get("http://localhost:4000/shopowners/shopowner", config)
-        .then((res) => {
-          setShopowner(res.data.user);
-        })
-        .catch((err) => {
-          console.log(err.response.data);
-          setShopowner([]);
-        });
-      axios
-        .get("http://localhost:4000/product/cart", config)
-        .then((res) => {
-          setProducts(res.data.items);
+  React.useEffect(function () {
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+    axios
+      .get("http://localhost:4000/users/user", config)
+      .then((res) => {
+        setUser(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        setUser([]);
+      });
+    axios
+      .get("http://localhost:4000/shopowners/shopowner", config)
+      .then((res) => {
+        setShopowner(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        setShopowner([]);
+      });
+    axios
+      .get("http://localhost:4000/product/cart", config)
+      .then((res) => {
+        setProducts(res.data.items);
 
-          // console.log("product");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      getCategory();
-    },
-    [products]
-  );
+        // console.log("product");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    getCategory();
+  }, []);
 
   return (
     <div

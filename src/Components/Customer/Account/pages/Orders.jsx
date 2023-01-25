@@ -15,6 +15,7 @@ const Orders = () => {
       .get("http://localhost:4000/order/order", config)
       .then((res) => {
         setOrder(res.data);
+
         console.log(res.data);
       })
       .catch((err) => {
@@ -38,14 +39,19 @@ const Orders = () => {
           </thead>
           <tbody>
             {/* {Object.values(order).map((item, index) => ( */}
-            <tr>
-              {/* <td>{index + 1}</td> */}
-              <td>{order._id}</td>
-              <td>{order.productName}</td>
-              <td>{order.status}</td>
-              <td>{order.bill}</td>
-              <td>{order.date_added}</td>
-            </tr>
+            {order?.map((ord) => {
+              return (
+                <tr>
+                  {/* <td>{index + 1}</td> */}
+                  <td>{ord._id}</td>
+                  <td>{ord.productName}</td>
+                  <td>{ord.status}</td>
+                  <td>{ord.bill}</td>
+                  <td>{ord.date_added}</td>
+                </tr>
+              );
+            })}
+
             {/* ))} */}
           </tbody>
         </table>

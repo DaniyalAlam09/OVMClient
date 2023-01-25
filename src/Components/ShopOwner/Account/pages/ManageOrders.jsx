@@ -59,30 +59,35 @@ const ManageOrders = () => {
           </thead>
           <tbody className="mt-3">
             {/* {Object.values(order).map((item, index) => ( */}
-            <tr>
-              {/* <td>{index + 1}</td> */}
-              <td>{order._id}</td>
-              <td>{order.date_added}</td>
-              <td>{order.productName}</td>
-              <td>
-                <img
-                  src={`http://localhost:4000/${order.productImg}`}
-                  style={{ height: "5em", marginTop: "-5px" }}
-                />
-              </td>
-              {/* <td>{order.status}</td> */}
-              <td>{order.bill}</td>
-              <td>
-                {user.firstName} {user.lastName}
-              </td>
-              <td>dd</td>
-              <td>
-                <input />
-              </td>
-              <td>
-                <button>Update</button>
-              </td>
-            </tr>
+            {order?.map((ord) => {
+              return (
+                <tr>
+                  {/* <td>{index + 1}</td> */}
+                  <td>{ord._id}</td>
+                  <td>{ord.date_added}</td>
+                  <td>{ord.productName}</td>
+                  <td>
+                    <img
+                      src={`http://localhost:4000/${ord.productImg}`}
+                      style={{ height: "5em", marginTop: "-5px" }}
+                    />
+                  </td>
+                  {/* <td>{order.status}</td> */}
+                  <td>{ord.bill}</td>
+                  <td>
+                    {user.firstName} {user.lastName}
+                  </td>
+                  <td>dd</td>
+                  <td>
+                    <input />
+                  </td>
+                  <td>
+                    <button>Update</button>
+                  </td>
+                </tr>
+              );
+            })}
+
             {/* ))} */}
           </tbody>
         </table>

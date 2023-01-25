@@ -119,7 +119,6 @@ function Products() {
     axios
       .post("http://localhost:4000/shops/sentiment")
       .then((res) => {
-        console.log("jj");
         setProduct(res.data.pro);
       })
       .catch((err) => {
@@ -201,7 +200,7 @@ function Products() {
             <div class="border mb-4 p-3 mt-5">
               <div>
                 <button
-                  onClick={allProduct}
+                  onClick={() => allProduct()}
                   class="btn btn-danger mb-2"
                   style={{ width: "70%" }}
                 >
