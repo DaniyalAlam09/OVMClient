@@ -13,6 +13,7 @@ import hero6 from "./assets/img/clients/client-7.png";
 import hero7 from "./assets/img/clients/client-8.png";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
+import Carousel from "react-elastic-carousel";
 
 function Topbrands() {
   const [brands, setBrands] = React.useState([]);
@@ -40,6 +41,7 @@ function Topbrands() {
           All Brands
         </Link>
       </div>
+
       <div className="">
         {loading ? (
           <div className="d-flex justify-content-around mt-4">
@@ -77,41 +79,58 @@ function Topbrands() {
             </div>
           </div>
         ) : (
-          <div className="row text-center">
-            {brands?.slice(0, 4).map((brand) => (
-              <div key={brands.indexOf(brand)} className="col-lg-3 col-md-6">
-                <Link to={`/brand/${brand.name}`}>
-                  <div class="clients card block" style={{ height: "150px" }}>
-                    <div class="swiper-slide justify-content-between  align-items-center ">
-                      <img
-                        src={`http://localhost:4000/${brand.imageUrl}`}
-                        style={{
-                          height: "100px",
-                          width: "100px",
-                          cursor: "pointer",
-                          objectFit: "contain",
-                          marginTop: "-25px",
-                        }}
-                        // src={hero}
-                        alt={brand.name}
-                        // class="product-image"
-                        // style={{ width: "100%" }}
-                      />
+          <div>
+            <Carousel breakPoints={breakPoints} className="row text-center">
+              {brands?.slice(0, 6).map((brand) => (
+                <div key={brands.indexOf(brand)} className="col-lg-3 col-md-6">
+                  <Link to={`/brand/${brand.name}`}>
+                    <div
+                      class="clients card block manage"
+                      style={{
+                        height: "150px",
+                        width: "250px",
 
-                      {/* <div class="p-4">
+                        marginLeft: "-100px",
+                      }}
+                    >
+                      <div class="swiper-slide justify-content-between  align-items-center ">
+                        <img
+                          src={`http://localhost:4000/${brand.imageUrl}`}
+                          style={{
+                            height: "100px",
+                            width: "100px",
+                            cursor: "pointer",
+                            objectFit: "contain",
+                            marginTop: "-25px",
+                          }}
+                          // src={hero}
+                          alt={brand.name}
+                          // class="product-image"
+                          // style={{ width: "100%" }}
+                        />
+
+                        {/* <div class="p-4">
                     <p class="mb-0">{`${brand.name}`}</p>
                     <p class="small text-muted">CEO - Consultant</p>
                   </div> */}
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              ))}
+            </Carousel>
           </div>
         )}
       </div>
     </div>
   );
 }
+
+const breakPoints = [
+  { width: 50, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 },
+];
 
 export default Topbrands;

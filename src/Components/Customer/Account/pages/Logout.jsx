@@ -20,6 +20,7 @@ const Logout = () => {
         console.log(response.data);
 
         navigate("../../account");
+        navigate(0);
       })
       .catch((err) => {
         console.log(err.message);

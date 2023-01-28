@@ -21,13 +21,13 @@ function Home() {
         Name2={"Camera Product"}
         ImageSource={Hero}
       />
-      <BestDeals />
       <WorkDetails />
       <HotCollection />
-      <HomePageShops />
       <FeaturedCatagories />
       <FeaturedProducts />
       <Topbrands />
+      <HomePageShops />
+      {/* <BestDeals /> */}
 
       <Subscribe />
     </div>

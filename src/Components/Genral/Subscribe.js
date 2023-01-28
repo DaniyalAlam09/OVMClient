@@ -39,13 +39,13 @@ function Subscribe() {
       });
   };
   return (
-    <div className="container heading">
-      <div className="d-flex justify-content-between">
-        <div className="container col-xl-6 col-sm-6 mb-5 ">
+    <div className="container heading mb-5">
+      <div className="row d-flex justify-content-around">
+        <div className=" col-md-6 ">
           <h3>Don’t miss our update.</h3>
           <h3>Subscribe us for more info </h3>
         </div>
-        <div className="container col-xl-6 col-sm-6 mb-5 ">
+        <div className=" col-md-6 ">
           <div className="input-group mail">
             <form
               onSubmit={handleSubmit}

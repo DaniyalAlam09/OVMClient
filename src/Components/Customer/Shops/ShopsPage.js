@@ -10,7 +10,7 @@ function ShopsPage() {
     <div>
       {/* <Navbar /> */}
       {/* <HeroSection Name1={"Shops"} ImageSource={ShopHero} /> */}
-      <OtherHeroSections Name1={"Shops"} ImageSource={ShopHero} />
+      {/* <OtherHeroSections Name1={"Shops"} ImageSource={ShopHero} /> */}
       <Shops />
     </div>
   );

@@ -1,0 +1,35 @@
+.title-text {
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.iconss {
+  position: relative;
+  bottom: 11px;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+.profile img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+}
+
+.card-team {
+  border-radius: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.card-body-team {
+  /* position: relative; */
+  bottom: 35px;
+}
+.card-body-teamz {
+  position: relative;
+  bottom: 35px;
+}

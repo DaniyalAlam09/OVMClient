@@ -74,6 +74,16 @@ export default class SignUp extends Component {
               draggable: true,
               progress: undefined,
             });
+          } else if (user.message == "Phone No is not valid") {
+            toast.error("Phone No is not valid", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           } else if (user.message == "All Feild must be filled") {
             toast.error("Too Short Password", {
               position: "top-right",

@@ -53,9 +53,10 @@ import AllBrandPage from "./Components/Brands/AllBrandPage";
 import Brands from "./Components/Brands/Brands";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Team from "./Components/Customer/SimplePages/Team";
 
 const promise = loadStripe(
-  "pk_test_51MNbzESG2rFLRrIM8cP6C9Op0rv9dZDa1tPehKDuCvVBDgP7xK67KReSvJq3ipBsejS8lrAMZ3TgEi2hEn360gEx00ignv6O1a"
+  "pk_test_51MO12UBGAZ3oqEpyMdmmANOskndSrDKAKjLGmH0Nz2zG5M8yJyuW2b02hm5XSGbJd6kWPDiUlYUaNIPTPmMSV8WN003P00H5U9"
 );
 
 function App() {
@@ -86,6 +87,7 @@ function App() {
             <Route path="/brand/:brandName" element={<Brands />} />
             <Route path="/allcatagories" element={<AllCatagoreyPage />} />
             <Route path="/allbrands" element={<AllBrandPage />} />
+            <Route path="/team" element={<Team />} />
             {/* <Route path="/logout" element={<Logout />} /> */}
             <Route path="/account" element={<Login />} />
             <Route path="/create-account" element={<Signup />} />

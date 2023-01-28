@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ManageOrders = () => {
   const [order, setOrder] = React.useState([]);
   const [user, setUser] = React.useState([]);
   const [userId, setUserId] = React.useState([]);
+  const [state, setState] = useState({
+    status: "",
+    tracking: "",
+  });
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+    console.log(state);
+  };
+
   React.useEffect(function () {
     const config = {
       headers: {
@@ -33,7 +45,36 @@ const ManageOrders = () => {
         console.log(res);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
+        console.log(err.response);
+      });
+  };
+  const updateOrder = (id) => {
+    const formData = new FormData();
+    formData.append("status", state.status);
+    formData.append("tracking", state.tracking);
+
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .put("http://localhost:4000/shopowners/update/" + id, formData, config)
+
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          toast("Status Updated");
+          // return response.json();
+        } else {
+          console.log("SOMETHING WENT WRONG");
+        }
+      })
+      .catch((err) => {
+        console.log(err.response);
       });
   };
   return (
@@ -51,9 +92,9 @@ const ManageOrders = () => {
               <th>Bill</th>
               {/* <th>Order Status</th> */}
 
-              <th>User</th>
+              {/* <th>User</th> */}
               <th>Status</th>
-              <th>Tracking ID</th>
+              {/* <th>Tracking ID</th> */}
               <th>Submit</th>
             </tr>
           </thead>
@@ -64,7 +105,7 @@ const ManageOrders = () => {
                 <tr>
                   {/* <td>{index + 1}</td> */}
                   <td>{ord._id}</td>
-                  <td>{ord.date_added}</td>
+                  <td>{moment(ord.date_added).format("MMM Do YY")}</td>
                   <td>{ord.productName}</td>
                   <td>
                     <img
@@ -74,15 +115,36 @@ const ManageOrders = () => {
                   </td>
                   {/* <td>{order.status}</td> */}
                   <td>{ord.bill}</td>
-                  <td>
+                  {/* <td>
                     {user.firstName} {user.lastName}
-                  </td>
-                  <td>dd</td>
+                  </td> */}
                   <td>
-                    <input />
+                    <select
+                      onChange={handleChange}
+                      name="status"
+                      className="form-select"
+                    >
+                      <option selected>{ord.status}</option>
+                      <option value="Accept">Accept</option>
+                      <option value="Reject">Reject</option>
+                      <option value="Pending">Pending</option>
+                    </select>
                   </td>
+                  {/* <td>
+                    <input
+                      name="tracking"
+                      onChange={handleChange}
+                      value={state.tracking}
+                      type="text"
+                    />
+                  </td> */}
                   <td>
-                    <button>Update</button>
+                    <button
+                      onClick={() => updateOrder(ord._id)}
+                      class="buttons btn text-white btn-block btn-primary"
+                    >
+                      Update
+                    </button>
                   </td>
                 </tr>
               );
@@ -122,6 +184,17 @@ const ManageOrders = () => {
           </div>
         </div>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

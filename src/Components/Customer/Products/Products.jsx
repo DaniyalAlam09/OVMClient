@@ -189,11 +189,11 @@ function Products() {
   return (
     <>
       {/* <HeroSection /> */}
-      <OtherHeroSections
+      {/* <OtherHeroSections
         Name1={"All Products are available "}
         Name2={"Tech Products"}
         ImageSource="/images/ProductsHero.png"
-      />
+      /> */}
       <div class="container">
         <div class="row">
           <aside class="col-md-3">
@@ -201,8 +201,13 @@ function Products() {
               <div>
                 <button
                   onClick={() => allProduct()}
-                  class="btn btn-danger mb-2"
-                  style={{ width: "70%" }}
+                  className="btn  mt-3 mb-3 "
+                  style={{
+                    height: "40px",
+                    backgroundColor: "black",
+                    color: "white",
+                    width: "80%",
+                  }}
                 >
                   Clear All Filters
                 </button>

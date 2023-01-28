@@ -21,6 +21,7 @@ function Detail() {
   const [user, setUser] = useState({});
   const [counter, setCounter] = React.useState(1);
   const [value, setValue] = React.useState(0);
+  const [order, setOrder] = React.useState([]);
   const { _id } = useParams();
   const navigate = useNavigate();
 
@@ -82,6 +83,13 @@ function Detail() {
 
   React.useEffect(
     function () {
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      };
       axios
         .get("http://localhost:4000/shops/" + productId)
         .then((res) => {
@@ -114,6 +122,16 @@ function Detail() {
         })
         .catch((err) => {
           console.log(err);
+        });
+      axios
+        .get("http://localhost:4000/order/order", config)
+        .then((res) => {
+          setOrder(res.data);
+
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
         });
     },
     [productId, shopId]
@@ -191,7 +209,7 @@ function Detail() {
   return (
     <div>
       <ToastContainer />
-      <OtherHeroSections Name1={"Shops"} ImageSource={SingleShopHero} />
+      {/* <OtherHeroSections Name1={"Shops"} ImageSource={SingleShopHero} /> */}
       <div className="container">
         <div className="card">
           <div className="container-fliud">
@@ -278,90 +296,99 @@ function Detail() {
                 </div>
               </div>
             </div>
-            <div className="wrapper row mt-5">
+            <div className=" mt-5">
               <h3>Description</h3>
               <p className="product-description">
                 {product.product_description}
               </p>
 
-              <div
-                className="border rounded p-4 m-4 container row text-dark"
-                style={{ backgroundColor: "#a1e1fa", color: "#3b7197" }}
-              >
-                <div className=" col-xl-4 col-sm-6 mb-5 ">
-                  <Link to={`/singleshop/${shop._id}/${shop.shopName}`}>
-                    <div className="ship-style text-dark block">
-                      <h6 className="fw-bold">
-                        Shop Name: <span className="">{shop.shopName}</span>{" "}
-                      </h6>
-                      <h6>
-                        Owner:{" "}
-                        <span className=" ">
-                          {shop.firstName} {shop.lastName}
-                        </span>
-                      </h6>
-                    </div>
-                  </Link>
-                </div>
-                <div className="  col-xl-4 col-sm-6 mb-5  text-center">
-                  <Link to={`/singleshop/${shop._id}/${shop.shopName}`}>
-                    <div className="ship-style text-dark">
-                      <h6>
-                        Contact: <span className=" ">{shop.phone}</span>
-                      </h6>
-                      <h6>
-                        Provide Delivery:{" "}
-                        <span className="">{shop.delivery}</span>
-                      </h6>
-                    </div>
-                  </Link>
-                </div>
-                <div className=" col-xl-4 col-sm-6 mb-5 ">
-                  <Link to={`/singleshop/${shop._id}/${shop.shopName}`}>
-                    <div className="ship-style text-dark">
-                      <h6>
-                        Shop Number: <span className=" ">{shop.shopNo}</span>{" "}
-                      </h6>
-                      <h6>
-                        Shop Floor: <span className=" ">{shop.floor}</span>
-                      </h6>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="preview col-md-6">
-                <h2>Reviews</h2>
-                {product.reviews?.map((product) => (
-                  <div>
-                    <div className="">
-                      <div className="">
-                        <div>
-                          <p className="mt-3 ml-4 review-name">{`${product.name}`}</p>
+              <Link to={`/singleshop/${shop._id}/${shop.shopName}`}>
+                <div class="card-team text-center block pb-1 pt-3 mt-5 mb-5">
+                  <div class="card-content">
+                    <div class="row card-body-team mb-4 text-left ml-4">
+                      <div class="col-md-4 ">
+                        <div class="card-title mt-4 text-dark">
+                          Shop Name:{" "}
+                          <span class="link-secondary learn-more">
+                            {shop.shopName}
+                          </span>{" "}
                         </div>
-                        <div className="d-flex justify-content-start">
-                          <div className="ml">
-                            <p className="ml-5 comment">{`${product.comment}`}</p>
-                          </div>
-                          <div className="">
-                            <Rating
-                              className="ml-5"
-                              size="small"
-                              readOnly
-                              value={product.rating}
-                            />
-                          </div>
+                        <div class="card-title mt-4 text-dark">
+                          Owner Name:{" "}
+                          <span class="link-secondary learn-more">
+                            {" "}
+                            {shop.firstName} {shop.lastName}
+                          </span>{" "}
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card-title mt-4 text-dark">
+                          Shop Number:{" "}
+                          <span class="link-secondary learn-more">
+                            {shop.shopNo}
+                          </span>{" "}
+                        </div>
+                        <div class="card-title mt-4 text-dark">
+                          Floor Number:{" "}
+                          <span class="link-secondary learn-more">
+                            {shop.floor}
+                          </span>{" "}
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card-title mt-4 text-dark">
+                          Phone Number:{" "}
+                          <span class="link-secondary learn-more">
+                            {shop.phone}
+                          </span>{" "}
+                        </div>
+                        <div class="card-title mt-4 text-dark">
+                          Dilivery Status:{" "}
+                          <span class="link-secondary learn-more">
+                            {shop.delivery}
+                          </span>{" "}
                         </div>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-              <div className="preview col-md-6">
-                <h3>Enter Your Review</h3>
-                <form onSubmit={handleSubmit} className="container">
-                  <div className="">
-                    {/* <label for="inputZip" className="form-label">
+                </div>
+              </Link>
+
+              <div className="row">
+                <div className="preview col-md-6">
+                  <h2>Reviews</h2>
+                  {product.reviews?.map((product) => (
+                    <div>
+                      <div className="">
+                        <div className="">
+                          <div>
+                            <p className="mt-3 ml-4 review-name">{`${product.name}`}</p>
+                          </div>
+                          <div className="d-flex justify-content-start">
+                            <div className="ml">
+                              <p className="ml-5 comment">{`${product.comment}`}</p>
+                            </div>
+                            <div className="">
+                              <Rating
+                                className="ml-5"
+                                size="small"
+                                readOnly
+                                value={product.rating}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* ENter Reviews */}
+
+                <div className="preview col-md-6">
+                  <h3>Enter Your Review</h3>
+                  <form onSubmit={handleSubmit} className="container">
+                    <div className="">
+                      {/* <label for="inputZip" className="form-label">
                       Name
                     </label>
                     <input
@@ -371,33 +398,34 @@ function Detail() {
                       onChange={handleChange}
                       value={state.name}
                     /> */}
-                    <label for="inputZip" className="form-label">
-                      Enter Your Review
-                    </label>
-                    <textarea
-                      name="comment"
-                      type="text"
-                      className="form-control"
-                      rows="3"
-                      onChange={handleChange}
-                      value={state.comment}
-                    ></textarea>
-                    <Rating
-                      name="simple-controlled"
-                      value={value}
-                      onChange={(event, newValue) => {
-                        setValue(newValue);
-                      }}
-                    />
-                  </div>
+                      <label for="inputZip" className="form-label">
+                        Enter Your Review
+                      </label>
+                      <textarea
+                        name="comment"
+                        type="text"
+                        className="form-control"
+                        rows="3"
+                        onChange={handleChange}
+                        value={state.comment}
+                      ></textarea>
+                      <Rating
+                        name="simple-controlled"
+                        value={value}
+                        onChange={(event, newValue) => {
+                          setValue(newValue);
+                        }}
+                      />
+                    </div>
 
-                  <button
-                    type="submit"
-                    className="buttons btn   btn-primary mt-3"
-                  >
-                    Post
-                  </button>
-                </form>
+                    <button
+                      type="submit"
+                      className="buttons btn   btn-primary mt-3"
+                    >
+                      Post
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

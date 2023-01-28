@@ -19,9 +19,15 @@
   .catagory-style {
     width: 14rem;
   }
+  .manage {
+    margin-left: "-20px";
+  }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
+  .manage {
+    margin-left: "-20px";
+  }
   /* .left-deal {
     width: 50px;
   } */

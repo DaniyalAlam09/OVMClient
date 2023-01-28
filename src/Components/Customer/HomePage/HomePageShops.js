@@ -10,7 +10,6 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Link } from "react-router-dom";
 import { slice } from "lodash";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -19,6 +18,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -130,7 +131,7 @@ function Shops() {
   };
 
   return (
-    <Stack className="container " spacing={2}>
+    <Stack className="heading container " spacing={2}>
       <div className="featured-head">
         <h3>Shops</h3>
         <Link to="/shops" class="link-secondary see-all">
@@ -160,15 +161,20 @@ function Shops() {
                     src={`http://localhost:4000${elem.shopImage}`}
                   />
                   {elem?.verified === true && (
-                    <VerifiedIcon
+                    <Tooltip
+                      title="Verified"
                       style={{
                         color: "#1C99E6",
-                        fontSize: "40px",
+                        fontSize: "25px",
                         position: "absolute",
-                        top: "20px",
-                        left: "180px",
+                        top: "25px",
+                        left: "190px",
                       }}
-                    />
+                    >
+                      {/* <IconButton> */}
+                      <VerifiedIcon />
+                      {/* </IconButton> */}
+                    </Tooltip>
                   )}
                   <p className="brand-name" style={{ marginTop: "-4px" }}>
                     Shop no {`${elem.shopNo}`}

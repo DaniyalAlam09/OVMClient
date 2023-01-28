@@ -26,6 +26,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import "./Style.css";
 import OtherHeroSections from "../../HomePage/OtherHeroSections";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import Tooltip from "@mui/material/Tooltip";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -126,53 +127,66 @@ function SingleShop() {
           <h1>{shopName}</h1>
           <h6>
             {shop?.verified === true && (
-              <VerifiedIcon style={{ color: "#1C99E6" }} />
+              <Tooltip
+                title="Verified"
+                style={{
+                  color: "#1C99E6",
+                  fontSize: "25px",
+                  // position: "absolute",
+                  // top: "25px",
+                  // left: "190px",
+                }}
+              >
+                {/* <IconButton> */}
+                <VerifiedIcon />
+                {/* </IconButton> */}
+              </Tooltip>
             )}
           </h6>
 
           {/* <h1>{ShopId}</h1> */}
         </div>
-        <div
-          className="border rounded p-4  row mb-4 text-dark"
-          style={{ backgroundColor: "#0C8AA0" }}
-        >
-          <div className=" col-xl-4 col-sm-6 mb-5 ">
-            <div className="ship-style text-dark">
-              <h6>
-                Shop Name: <span className="text-white">{shop.shopName}</span>{" "}
-              </h6>
-
-              <h6>
-                Owner:{" "}
-                <span className="text-white">
-                  {shop.firstName} {shop.lastName}
-                </span>
-              </h6>
-            </div>
-          </div>
-          <div className="  col-xl-4 col-sm-6 mb-5  text-center">
-            <div className="ship-style text-dark">
-              <h6>
-                Contact: <span className="text-white">{shop.phone}</span>
-              </h6>
-              <h6>
-                Provide Delivery:{" "}
-                <span className="text-white">{shop.delivery}</span>
-              </h6>
-            </div>
-          </div>
-          <div className=" col-xl-4 col-sm-6 mb-5 ">
-            <div className="ship-style text-dark">
-              <h6>
-                Shop Number: <span className="text-white">{shop.shopNo}</span>{" "}
-              </h6>
-              <h6>
-                Shop Floor: <span className="text-white">{shop.floor}</span>
-              </h6>
+        <div class="card-team text-center  pb-1 pt-3">
+          <div class="card-content">
+            <div class="row card-body-team mb-4 text-left ml-4">
+              <div class="col-md-4 ">
+                <div class="card-title mt-4 ">
+                  Shop Name:{" "}
+                  <span class="link-secondary learn-more">{shop.shopName}</span>{" "}
+                </div>
+                <div class="card-title mt-4">
+                  Owner Name:{" "}
+                  <span class="link-secondary learn-more">
+                    {" "}
+                    {shop.firstName} {shop.lastName}
+                  </span>{" "}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card-title mt-4">
+                  Shop Number:{" "}
+                  <span class="link-secondary learn-more">{shop.shopNo}</span>{" "}
+                </div>
+                <div class="card-title mt-4">
+                  Floor Number:{" "}
+                  <span class="link-secondary learn-more">{shop.floor}</span>{" "}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card-title mt-4">
+                  Phone Number:{" "}
+                  <span class="link-secondary learn-more">{shop.phone}</span>{" "}
+                </div>
+                <div class="card-title mt-4">
+                  Dilivery Status:{" "}
+                  <span class="link-secondary learn-more">{shop.delivery}</span>{" "}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class=" container d-flex justify-content-center">
+
+        <div class=" container d-flex justify-content-center mt-5">
           <div className="">
             <Box>
               <Toolbar>

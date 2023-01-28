@@ -39,7 +39,7 @@ function HotCollection() {
   }, []);
 
   return (
-    <div className=" container ">
+    <div className="heading container ">
       <div className="featured-head">
         <h3>Hot Collection</h3>
         <Link to="/sentimental-products" class="link-secondary see-all">
@@ -88,7 +88,7 @@ function HotCollection() {
                 <div class="row">
                   {/* <div class=" col-md-6 col-lg-4 mb-4 mb-md-0"> */}
                   {Object.values(product)
-                    .slice(0, 4)
+                    .slice(0, 8)
                     .map((product, index) => (
                       <div key={index} class=" col-md-6 col-lg-3">
                         <Link

@@ -21,6 +21,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import Tooltip from "@mui/material/Tooltip";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -137,6 +138,9 @@ function Shops() {
 
   return (
     <Stack className="container heading " spacing={2}>
+      <div className=" d-flex justify-content-center">
+        <h1 style={{ marginTop: "-40px" }}>All Shops</h1>
+      </div>
       <div class=" container d-flex justify-content-center">
         <div className="">
           <Box>
@@ -164,16 +168,9 @@ function Shops() {
           </Box>
         </div>
       </div>
-      <div className=" container d-flex justify-content-around">
+      <div className=" container d-flex justify-content-between mb-4">
         <button
-          className="btn btn-danger  mt-3 ml-3"
-          style={{ height: "40px" }}
-          onClick={fetchShops}
-        >
-          Clear All Filters
-        </button>
-        <button
-          className="btn btn-primary signin mt-3"
+          className="btn btn-primary signin mt-3 ml-5"
           style={{ height: "40px" }}
           onClick={verified}
         >
@@ -224,6 +221,13 @@ function Shops() {
             <MenuItem value={3}>3</MenuItem>
           </Select>
         </FormControl>
+        <button
+          className="btn  mt-3 "
+          style={{ height: "40px", backgroundColor: "black", color: "white" }}
+          onClick={fetchShops}
+        >
+          Clear All Filters
+        </button>
       </div>
       <div className="container products ">
         <div className="row text-center justify-content-start">
@@ -252,15 +256,20 @@ function Shops() {
                     src={`http://localhost:4000${elem.shopImage}`}
                   />
                   {elem?.verified === true && (
-                    <VerifiedIcon
+                    <Tooltip
+                      title="Verified"
                       style={{
                         color: "#1C99E6",
-                        fontSize: "40px",
+                        fontSize: "25px",
                         position: "absolute",
-                        top: "20px",
-                        left: "180px",
+                        top: "25px",
+                        left: "190px",
                       }}
-                    />
+                    >
+                      {/* <IconButton> */}
+                      <VerifiedIcon />
+                      {/* </IconButton> */}
+                    </Tooltip>
                   )}
                   <p className="brand-name">Shop no {`${elem.shopNo}`}</p>
 

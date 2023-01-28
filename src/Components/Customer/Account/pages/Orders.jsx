@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 const Orders = () => {
   const [order, setOrder] = React.useState([]);
@@ -23,7 +24,7 @@ const Orders = () => {
       });
   }, []);
   return (
-    <div className="text-center ml-3 mt-4">
+    <div className="text-center ml-3 mt-4" style={{ width: "100%" }}>
       <div class=" container d-flex justify-content-center"></div>
       {order ? (
         <table className="table">
@@ -47,7 +48,7 @@ const Orders = () => {
                   <td>{ord.productName}</td>
                   <td>{ord.status}</td>
                   <td>{ord.bill}</td>
-                  <td>{ord.date_added}</td>
+                  <td>{moment(ord.date_added).format("MMM Do YY")}</td>
                 </tr>
               );
             })}

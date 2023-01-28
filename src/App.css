@@ -20,11 +20,6 @@ a,
 .small-link {
   color: #0c8aa0;
 }
-a:hover,
-Link:hover {
-  /* text-decoration: none;
-  color: #0ea2bd; */
-}
 
 .heading {
   margin-top: 5rem;
@@ -80,6 +75,7 @@ main {
 }
 .logo {
   font-size: 30px;
+  cursor: pointer;
 }
 .bars {
   display: flex;

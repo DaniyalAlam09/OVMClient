@@ -15,6 +15,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useLocation } from "react-router-dom";
 import {
   UilUserCircle,
   UilUser,
@@ -69,6 +70,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isEmpty, totalItems } = useCart();
   const [user, setUser] = React.useState([]);
@@ -145,80 +147,22 @@ const Navbar = () => {
     getCategory();
   }, []);
 
+  // if (pathname === "/user/customer-dashboard") return null;
+  // if (pathname === "/user/customer-orders") return null;
+  // if (pathname === "/user/edit-profile") return null;
+  // if (pathname === "/user/logout") return null;
+
   return (
-    <div
-      classNameName="navbar container"
-      style={
-        {
-          // position: "fixed",
-          // width: "100%",
-          // backgroundColor: "red",
-        }
-      }
-    >
-      {/* <header class="site-header">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-12 d-flex flex-wrap">
-              <p class="d-flex me-10 mb-0">
-                <i class="bi-geo-alt me-2"></i>
-                Akershusstranda 20, 0150 Oslo, Norway
-              </p>
-
-              <p class="d-flex mb-0">
-                <i class="bi-envelope me-2"></i>
-
-                <a href="mailto:info@company.com">info@company.com</a>
-              </p>
-            </div>
-
-            <div class="col-lg-3 col-12 ms-auto d-lg-block d-none pt-2">
-              <UilFacebook
-                style={{
-                  color: "white",
-                  marginLeft: "12px",
-                }}
-              />
-              <UilInstagram
-                style={{
-                  color: "white",
-                  marginLeft: "12px",
-                }}
-              />
-              <UilTwitter
-                style={{
-                  color: "white",
-                  marginLeft: "12px",
-                }}
-              />
-              <UilYoutube
-                style={{
-                  color: "white",
-                  marginLeft: "12px",
-                }}
-              />
-              <UilGithub
-                style={{
-                  color: "white",
-                  marginLeft: "12px",
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </header> */}
+    <div classNameName="navbar container">
       <nav
-        className=" navbar header fixed-top sticky-top navbar-expand-lg navbar-light ovm "
+        className="navbar navbar-expand-lg navbar-light bg-light"
         style={{
           // position: "fixed",
           // width: "100%",
           backgroundColor: "#F8FBFE",
         }}
       >
-        {/* <a className="navbar-brand" href="#">
-          OVM
-        </a> */}
-        <Link to="/" className="navbar-brand">
+        <Link to="/" className="navbar-brand ml-4">
           {/* <img src="/images/logo.jpg" alt="" width="100" height="40" /> */}
           <div className="text-logo">
             <span className="textlogo">O</span>
@@ -230,14 +174,15 @@ const Navbar = () => {
           class="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarText"
-          aria-controls="navbarText"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item dropdown">
               <a
@@ -309,15 +254,7 @@ const Navbar = () => {
                 </a>
               </div>
             </li>
-            {/* <li className="nav-item">
-              <a
-                className="nav-link"
-                target="_blank"
-                href="https://kuula.co/post/NsNPr/collection/79km6"
-              >
-                Virtual Tour
-              </a>
-            </li> */}
+
             <li className="nav-item">
               <Link to="/about" className="nav-link">
                 About Us
@@ -329,8 +266,130 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+          <div className="row mr-4">
+            <div className="icon">
+              <Link to="/cart">
+                <UilShoppingBag className="icons mt-2" />
+              </Link>
+            </div>
+            {user?.firstName && (
+              <div class="nav-item dropdown nav-user">
+                <a
+                  class="nav-link nav-user-img"
+                  href="#"
+                  id="navbarDropdownMenuLink2"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <UilUserCircle
+                    className="icons"
+                    style={{ marginLeft: "-8px" }}
+                  />
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                  aria-labelledby="navbarDropdownMenuLink2"
+                >
+                  <div class="nav-user-info">
+                    <h5 class="mb-0 text-white nav-user-name">
+                      Hi, {user.firstName}
+                    </h5>
+                  </div>
+                  <Link to="user/customer-dashboard" type="submit">
+                    <button class="">
+                      {" "}
+                      <UilUser
+                        className="icons"
+                        style={{
+                          marginTop: "4px",
+                          marginRight: "2px",
+                          width: "20%",
+                        }}
+                      />
+                      Profile
+                    </button>
+                  </Link>
+                  <br />
+                  <Link to="/logout" type="submit" class="">
+                    <button class="" onClick={handleLogout}>
+                      <UilSignout
+                        style={{
+                          marginTop: "4px",
+                          marginRight: "2px",
+                          width: "20%",
+                        }}
+                        className="icons"
+                      />
+                      Logout
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            )}
+            {!user?.firstName && !shopowner?.firstName && (
+              <Link to="/account" type="submit">
+                <button class="btn btn-primary signin ml-2">Sign IN</button>
+              </Link>
+            )}
+            {shopowner?.firstName && (
+              <div class="nav-item dropdown nav-user">
+                <a
+                  class="nav-link nav-user-img"
+                  href="#"
+                  id="navbarDropdownMenuLink2"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <UilUserCircle
+                    className="icons"
+                    style={{ marginLeft: "-8px" }}
+                  />
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                  aria-labelledby="navbarDropdownMenuLink2"
+                >
+                  <div class="nav-user-info">
+                    <h5 class="mb-0 text-white nav-user-name">
+                      Hi, {shopowner.firstName}
+                    </h5>
+                  </div>
+                  <Link to="shopowner/shoponwer-dashboard" type="submit">
+                    <button class="">
+                      {" "}
+                      <UilUser
+                        className="icons"
+                        style={{
+                          marginTop: "4px",
+                          marginRight: "2px",
+                          width: "20%",
+                        }}
+                      />
+                      Profile
+                    </button>
+                  </Link>
+                  <br />
+                  <Link to="/logout" type="submit" class="">
+                    <button class="" onClick={handleLogout}>
+                      <UilSignout
+                        style={{
+                          marginTop: "4px",
+                          marginRight: "2px",
+                          width: "20%",
+                        }}
+                        className="icons"
+                      />
+                      Logout
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-        <form className="form-inline">
+        {/* <form className="form-inline">
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -343,152 +402,7 @@ const Navbar = () => {
               }}
             />
           </Search>
-        </form>
-        <div className="icon">
-          {/* <Link to="/search">
-            <UilSearch className="icons" />
-          </Link> */}
-          <Link to="/cart">
-            <UilShoppingBag className="icons" />
-            <span
-              style={{
-                marginLeft: "-10px",
-                marginBottom: "-5px",
-                fontSize: "10px",
-              }}
-              class="badge badge-pill badge-danger"
-            >
-              {products?.length}
-            </span>
-            {!isEmpty && (
-              <span
-                style={{ position: "relative", left: "-21px", top: "-18px" }}
-              >
-                {totalItems}
-              </span>
-            )}
-            <span style={{ marginLeft: !isEmpty ? "-13px" : 0 }}></span>
-          </Link>
-          {/* <span>{size}</span> */}
-          {/* <UilHeart className="icons" /> */}
-        </div>
-        {user?.firstName && (
-          <div class="nav-item dropdown nav-user">
-            <a
-              class="nav-link nav-user-img"
-              href="#"
-              id="navbarDropdownMenuLink2"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <UilUserCircle className="icons" style={{ marginLeft: "-8px" }} />
-              {/* <img
-                src="https://img.icons8.com/dusk/100/000000/user-female-circle.png"
-                alt=""
-              /> */}
-            </a>
-            <div
-              class="dropdown-menu dropdown-menu-right nav-user-dropdown"
-              aria-labelledby="navbarDropdownMenuLink2"
-            >
-              <div class="nav-user-info">
-                <h5 class="mb-0 text-white nav-user-name">
-                  Hi, {user.firstName}
-                </h5>
-              </div>
-              <Link to="user/customer-dashboard" type="submit">
-                <button class="">
-                  {" "}
-                  <UilUser
-                    className="icons"
-                    style={{
-                      marginTop: "4px",
-                      marginRight: "2px",
-                      width: "20%",
-                    }}
-                  />
-                  Profile
-                </button>
-              </Link>
-              <br />
-              <Link to="/logout" type="submit" class="">
-                <button class="" onClick={handleLogout}>
-                  <UilSignout
-                    style={{
-                      marginTop: "4px",
-                      marginRight: "2px",
-                      width: "20%",
-                    }}
-                    className="icons"
-                  />
-                  Logout
-                </button>
-              </Link>
-            </div>
-          </div>
-        )}
-        {!user?.firstName && !shopowner?.firstName && (
-          <Link to="/account" type="submit">
-            <button class="btn btn-primary signin ml-2">Sign IN</button>
-          </Link>
-        )}
-        {shopowner?.firstName && (
-          <div class="nav-item dropdown nav-user">
-            <a
-              class="nav-link nav-user-img"
-              href="#"
-              id="navbarDropdownMenuLink2"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <UilUserCircle className="icons" style={{ marginLeft: "-8px" }} />
-              {/* <img
-              src="https://img.icons8.com/dusk/100/000000/user-female-circle.png"
-              alt=""
-            /> */}
-            </a>
-            <div
-              class="dropdown-menu dropdown-menu-right nav-user-dropdown"
-              aria-labelledby="navbarDropdownMenuLink2"
-            >
-              <div class="nav-user-info">
-                <h5 class="mb-0 text-white nav-user-name">
-                  Hi, {shopowner.firstName}
-                </h5>
-              </div>
-              <Link to="shopowner/shoponwer-dashboard" type="submit">
-                <button class="">
-                  {" "}
-                  <UilUser
-                    className="icons"
-                    style={{
-                      marginTop: "4px",
-                      marginRight: "2px",
-                      width: "20%",
-                    }}
-                  />
-                  Profile
-                </button>
-              </Link>
-              <br />
-              <Link to="/logout" type="submit" class="">
-                <button class="" onClick={handleLogout}>
-                  <UilSignout
-                    style={{
-                      marginTop: "4px",
-                      marginRight: "2px",
-                      width: "20%",
-                    }}
-                    className="icons"
-                  />
-                  Logout
-                </button>
-              </Link>
-            </div>
-          </div>
-        )}
+        </form> */}
       </nav>
     </div>
   );

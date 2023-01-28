@@ -110,6 +110,16 @@ export default class ShopOwnerSignUp extends Component {
               draggable: true,
               progress: undefined,
             });
+          } else if (shopOwner.message == "Phone No is not valid") {
+            toast.error("Phone No is not valid", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           } else if (shopOwner.message == "Email is not valid") {
             toast.error("Email is not valid", {
               position: "top-right",
@@ -284,7 +294,7 @@ export default class ShopOwnerSignUp extends Component {
                 </select>
               </div>
               <div class="mb-3 row d-flex">
-                Dilivery Status
+                Provide Home Delivery
                 <div class="ml-5 form-check">
                   <label>
                     <input

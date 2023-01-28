@@ -8,7 +8,7 @@ const Homex = () => {
         <div style={{ display: "flex", width: "auto" }}>
           <Sidebar />
         </div>
-        <div style={{ display: "flex", width: "auto" }}>
+        <div style={{ display: "flex", width: "100%" }}>
           <Outlet />
         </div>
       </div>

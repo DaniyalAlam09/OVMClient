@@ -8,6 +8,7 @@ import {
 } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Products from "./../Customer/Products/Products";
 
 function Footer() {
   const { pathname } = useLocation();
@@ -31,6 +32,7 @@ function Footer() {
   if (pathname === "/shopowner/product-list") return null;
   if (pathname === "/shopowner/logout") return null;
   if (pathname === "/shopowner/edit-profile/:itemId") return null;
+  if (pathname === "/user/customer-dashboard") return null;
   return (
     <div class="hero pt-4">
       <div className="container footer-style">
@@ -67,13 +69,18 @@ function Footer() {
             <p className="footer-info">Demo</p>
           </div> */}
           <div className="col-md-2">
-            <h6>Teams</h6>
-            <p className="footer-info">Engineering</p>
-            <p className="footer-info">Financial Services</p>
-            <p className="footer-info">Sales</p>
-            <p className="footer-info">Customer Support</p>
-            <p className="footer-info">Human Resources</p>
-            <p className="footer-info">Media</p>
+            <h6>Team and Features</h6>
+            <Link to="/team" className="footer-info">
+              Team
+            </Link>
+            <br />
+            <Link to="/allbrands" className="footer-info">
+              Brands
+            </Link>
+            <br />
+            <Link to="/sentimental-products" className="footer-info">
+              Sentiment Products
+            </Link>
           </div>
           <div className="col-md-2">
             <h6>Company</h6>
