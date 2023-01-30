@@ -13,7 +13,7 @@ export default class SignUp extends Component {
       password: "",
       phoneNo: "",
       address: "",
-      profession: "",
+      city: "",
       isChecked: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +32,7 @@ export default class SignUp extends Component {
       password,
       address,
       phoneNo,
-      profession,
+      city,
       showPassword,
     } = this.state;
     console.log(firstName, lastName, email, password, address, phoneNo);
@@ -51,7 +51,7 @@ export default class SignUp extends Component {
         password,
         address,
         phoneNo,
-        profession,
+        city,
       }),
     })
       .then((res) => res.json())
@@ -226,18 +226,7 @@ export default class SignUp extends Component {
                     />
                   </div>
                 </div>
-                <div class="form-wrapper mb-2 form-group required">
-                  <label class="control-label" for="">
-                    Profession
-                  </label>
-                  <input
-                    type="tel"
-                    class="form-control"
-                    onChange={(e) =>
-                      this.setState({ profession: e.target.value })
-                    }
-                  />
-                </div>
+
                 <div class="form-wrapper mb-2 form-group required">
                   <label class="control-label" for="">
                     Password
@@ -265,6 +254,16 @@ export default class SignUp extends Component {
                     rows="3"
                     onChange={(e) => this.setState({ address: e.target.value })}
                   ></textarea>
+                </div>
+                <div class="form-wrapper mb-2 form-group required">
+                  <label class="control-label" for="">
+                    City
+                  </label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    onChange={(e) => this.setState({ city: e.target.value })}
+                  />
                 </div>
                 <div class="checkbox mb-3">
                   <label>

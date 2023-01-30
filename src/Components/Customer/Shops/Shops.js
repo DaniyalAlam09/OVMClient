@@ -244,7 +244,10 @@ function Shops() {
               }
             })
             .map((elem) => (
-              <div key={user.indexOf(elem)} className=" col-xl-3 col-sm-6 mb-5">
+              <div
+                key={user.indexOf(elem)}
+                className=" col-xl-3 col-sm-6 mb-5 block"
+              >
                 <Link to={`/singleshop/${elem._id}/${elem.shopName}`}>
                   <img
                     className=" rounded product-image"

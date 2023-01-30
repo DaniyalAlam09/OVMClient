@@ -1,87 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import HeroSection from "../HomePage/HeroSection";
-import CartHero from "../Images/CartHero.png";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Divider } from "@material-ui/core";
-import OtherHeroSections from "../HomePage/OtherHeroSections";
-import Checkout from "./../Checkout/Checkout";
 import { useNavigate } from "react-router-dom";
 import CountUp from "react-countup";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
-import TablePagination from "@mui/material/TablePagination";
-import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import Paper from "@mui/material/Paper";
-import SearchIcon from "@material-ui/icons/Search";
 import RetrunPolicy from "./RetrunPolicy";
+import Cart from "./Cart";
+import "./CartStyle.css";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: " rgba(218, 216, 216, 0.26)",
-  "&:hover": {
-    backgroundColor: "rgba(218, 216, 216, 0.26)",
-    // width: "80%",
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "100%",
-  },
-}));
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "50ch",
-      "&:focus": {
-        width: "70ch",
-      },
-    },
-  },
-}));
-
+const ReadMore = ({ children }) => {
+  const text = children;
+  const [isReadMore, setIsReadMore] = useState(true);
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  return (
+    <p className="text">
+      {isReadMore ? text?.slice(0, 60) : text}
+      <span
+        onClick={toggleReadMore}
+        className="read-or-hide underline"
+        style={{ color: "grey", cursor: "pointer" }}
+      >
+        {isReadMore ? "...read more" : " show less"}
+      </span>
+    </p>
+  );
+};
 function CartPage() {
   const [products, setProducts] = React.useState([]);
   const [bill, setBill] = React.useState();
   const [loadig, setLoadig] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [delet, setDelete] = React.useState(false);
-  const [counter, setCounter] = React.useState(1);
   const [user, setUser] = React.useState({});
   const [clientSecret, setClientSecret] = React.useState("");
   const [open, setOpen] = React.useState(false);
@@ -103,6 +68,29 @@ function CartPage() {
   const stripe = useStripe();
   React.useEffect(
     function () {
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      };
+      axios
+        .get(`http://localhost:4000/users/user`, config)
+        .then((res) => {
+          setUser(res.data?.user);
+          console.log(res.data);
+          setState((pre) => ({ ...pre, fname: res?.data?.user?.firstName }));
+          setState((pre) => ({ ...pre, lname: res?.data?.user?.lastName }));
+          setState((pre) => ({ ...pre, email: res?.data.user?.email }));
+          setState((pre) => ({ ...pre, phoneNo: res?.data?.user?.phoneNo }));
+          setState((pre) => ({ ...pre, address: res?.data?.user?.address }));
+          setState((pre) => ({ ...pre, city: res?.data?.user?.city }));
+          console.log(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       getCart();
     },
     [delet]
@@ -327,7 +315,10 @@ function CartPage() {
   const promise = loadStripe(
     "pk_test_51MNbzESG2rFLRrIM8cP6C9Op0rv9dZDa1tPehKDuCvVBDgP7xK67KReSvJq3ipBsejS8lrAMZ3TgEi2hEn360gEx00ignv6O1a"
   );
-
+  function multiplyNumbers(x, y) {
+    return x * y;
+  }
+  var z = 0;
   return (
     <>
       <ToastContainer
@@ -390,111 +381,149 @@ function CartPage() {
                           <CountUp end={products?.length} duration={1} />
                         </span>
                       </h4>
-                      <div class="card">
-                        <div>
-                          <table class="table table-borderless table-shopping-cart">
-                            <thead class="text-muted">
-                              <tr class="small text-uppercase">
-                                <th scope="col">Sr #</th>
-                                <th scope="col">Product</th>
-                                <th scope="col" width="120">
-                                  Quantity
-                                </th>
-                                <th scope="col" width="120">
-                                  Price
-                                </th>
-                                <th scope="col" class="text-right" width="200">
-                                  {" "}
-                                </th>
+                      <table
+                        id="cart"
+                        class="table table-hover table-condensed border "
+                      >
+                        <thead>
+                          <tr>
+                            <th style={{ width: "50%" }}>Product</th>
+                            <th style={{ width: "10%" }}>Price</th>
+                            <th style={{ width: "8%" }}>Quantity</th>
+                            <th style={{ width: "22%" }} class="text-center">
+                              Subtotal
+                            </th>
+                            <th style={{ width: "10%" }}></th>
+                          </tr>
+                        </thead>
+                        {products?.map((product, index) => {
+                          return (
+                            <tbody className="">
+                              <tr>
+                                <td data-th="Product">
+                                  <div class="row">
+                                    <div class="col-sm-2 hidden-xs">
+                                      <img
+                                        src={`http://localhost:4000/${product.image}`}
+                                        alt={product?.name}
+                                        class="img-responsive"
+                                      />
+                                    </div>
+                                    <div class="col-sm-10">
+                                      <h5 class="nomargin">
+                                        {" "}
+                                        <Link
+                                          class="text-dark"
+                                          to={`../singleProduct/${product.productId}/${product.owner}`}
+                                        >{`${product?.name}`}</Link>
+                                      </h5>
+                                      <ReadMore>
+                                        {product?.description}
+                                      </ReadMore>{" "}
+                                    </div>
+                                  </div>
+                                </td>
+                                <td data-th="Price">{`${product?.price}`}</td>
+                                <td data-th="Quantity">
+                                  <div class="border p-2 rounded text-center">
+                                    {`${product?.quantity}`}
+                                  </div>
+                                </td>
+                                <td data-th="Subtotal" class="text-center">
+                                  {
+                                    (z = multiplyNumbers(
+                                      product?.price,
+                                      product?.quantity
+                                    ))
+                                  }
+                                </td>
+                                <td class="actions" data-th="">
+                                  <button onClick={() => getCart()}>
+                                    <RefreshOutlinedIcon
+                                      style={{
+                                        color: "white",
+                                        backgroundColor: "#2b8ab7",
+                                        padding: "2px",
+                                        borderRadius: "3px",
+                                        fontSize: "30px",
+                                        cursor: "pointer",
+                                        marginRight: "10px",
+                                      }}
+                                    />
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      handleDelete(product.productId)
+                                    }
+                                  >
+                                    <DeleteForeverOutlinedIcon
+                                      style={{
+                                        color: "white",
+                                        backgroundColor: "#D9534F",
+                                        padding: "3px",
+                                        borderRadius: "3px",
+                                        fontSize: "30px",
+                                        marginLeft: "10px",
+                                        cursor: "pointer",
+                                      }}
+                                    />
+                                  </button>
+                                </td>
                               </tr>
-                            </thead>
-                            {products
-                              // .filter((person) => {
-                              //   if (search == "") {
-                              //     return person;
-                              //   } else if (
-                              //     person.name
-                              //       .toLowerCase()
-                              //       .includes(search.toLowerCase())
-                              //   ) {
-                              //     return person;
-                              //   }
-                              // })
-                              ?.map((product, index) => {
-                                return (
-                                  <tbody key={index}>
-                                    <tr>
-                                      <td>{index + 1}</td>
-                                      <td>
-                                        <figure class="itemside">
-                                          <figcaption class="info">
-                                            <Link
-                                              to={`../singleProduct/${product._id}/${product.owner}`}
-                                              class="title text-dark"
-                                            >
-                                              {`${product?.name}`}
-                                            </Link>
-                                          </figcaption>
-                                        </figure>
-                                      </td>
-                                      <td>
-                                        <var class="price">{`${product?.quantity}`}</var>
-                                      </td>
-                                      <td>
-                                        <div class="price-wrap">
-                                          <var class="price">{`${product?.price}`}</var>
-                                        </div>
-                                      </td>
+                            </tbody>
+                          );
+                        })}
 
-                                      <td class="text-right">
-                                        <button
-                                          onClick={() =>
-                                            handleDelete(product.productId)
-                                          }
-                                          class="btn btn-danger"
-                                        >
-                                          {" "}
-                                          Remove
-                                        </button>
-                                      </td>
-                                    </tr>
-                                    <tr></tr>
-                                  </tbody>
-                                );
-                              })}
-                          </table>
-                        </div>
-                        <div class="card-body border-top d-flex justify-content-between">
-                          <Link to="/" class="btn btn-light">
-                            Continue shopping
-                          </Link>
-                          <button
-                            class="buttons btn text-white btn-primary"
-                            onClick={() => {
-                              window.scrollTo(0, 1350);
-                            }}
-                          >
-                            Continue to Checkout
-                          </button>
-                        </div>
-                      </div>
+                        <tfoot>
+                          <tr>
+                            <td>
+                              <button class="btn btn-secondary ">
+                                <ArrowBackIosNewOutlinedIcon
+                                  style={{
+                                    fontSize: "10px",
+                                  }}
+                                />
+                                <ArrowBackIosNewOutlinedIcon
+                                  style={{
+                                    fontSize: "10px",
+                                  }}
+                                />{" "}
+                                <Link className="text-white" to="/">
+                                  Continue shopping
+                                </Link>
+                              </button>
+                            </td>
+                            <td colspan="2" class="hidden-xs"></td>
+                            <td class="hidden-xs text-center">
+                              <strong>
+                                {bill && <dd>Total: RS.{bill}</dd>}
+                              </strong>
+                            </td>
+                            <td>
+                              <button
+                                onClick={() => {
+                                  window.scrollTo(0, 1550);
+                                }}
+                                class="btn btn-primary signin"
+                              >
+                                Continue to Checkout{" "}
+                                <ArrowForwardIosOutlinedIcon
+                                  style={{
+                                    fontSize: "10px",
+                                  }}
+                                />
+                                <ArrowForwardIosOutlinedIcon
+                                  style={{
+                                    fontSize: "10px",
+                                  }}
+                                />
+                              </button>
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
                     </main>
-                    <aside class="">
-                      <div class="card ">
-                        <div class="card-body">
-                          <Divider />
-
-                          <dl class="dlist-align">
-                            <dt>Total:</dt>
-                            <dd class="text-right  h5">
-                              <strong>{bill && <dd>Total: {bill}</dd>}</strong>
-                            </dd>
-                          </dl>
-                        </div>
-                      </div>
-                    </aside>
                   </div>
-                  {/* </div> */}
                 </div>
               </section>
               <div class="alert alert-success">
@@ -526,14 +555,24 @@ function CartPage() {
               {products?.map((product, index) => {
                 return (
                   <ul class="list-group mb-3" key={index}>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                      <div>
-                        <h6 class="my-0">{`${product?.name}`}</h6>
-                        {/* <small class="text-muted">{`${product?.product_brand}`}</small> */}
-                      </div>
+                    <Link
+                      class="text-dark"
+                      to={`../singleProduct/${product.productId}/${product.owner}`}
+                    >
+                      <li class="list-group-item d-flex justify-content-between lh-condensed block">
+                        <div>
+                          <h6 class="my-0">
+                            <Link
+                              class="text-dark"
+                              to={`../singleProduct/${product.productId}/${product.owner}`}
+                            >{`${product?.name}`}</Link>
+                          </h6>
+                          {/* <small class="text-muted">{`${product?.product_brand}`}</small> */}
+                        </div>
 
-                      <span class="text-muted">{`${product?.price}`}</span>
-                    </li>
+                        <span class="text-muted">{`${product?.price}`}</span>
+                      </li>
+                    </Link>
                   </ul>
                 );
               })}
@@ -572,14 +611,19 @@ function CartPage() {
                 </div>
                 <div class="mb-3">
                   <label for="email">Phone Number</label>
-                  <input
-                    type="Num"
-                    class="form-control"
-                    placeholder="0300-000 0000"
-                    name="phoneNo"
-                    value={state.phoneNo}
-                    onChange={handleChange}
-                  />
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">+92</div>
+                    </div>
+                    <input
+                      type="Num"
+                      class="form-control"
+                      placeholder="3XX XXXXXXX"
+                      name="phoneNo"
+                      value={state.phoneNo}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
 
                 <div class="mb-3">

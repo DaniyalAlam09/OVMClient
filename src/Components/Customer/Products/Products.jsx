@@ -642,11 +642,14 @@ function Products() {
                                         </a>
                                       </p>
                                       <p class="small text-danger">
-                                        <s
-                                          style={{
-                                            textDecoration: "line-through",
-                                          }}
-                                        >{`${product.product_price}`}</s>
+                                        {product.discounted_price && (
+                                          <s
+                                            style={{
+                                              textDecoration: "line-through",
+                                            }}
+                                          >{`${product.product_price}`}</s>
+                                        )}
+                                        <s></s>
                                       </p>
                                     </div>
                                     <Divider />

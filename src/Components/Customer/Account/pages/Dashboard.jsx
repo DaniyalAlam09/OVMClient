@@ -42,7 +42,7 @@ const Dashboard = () => {
                   />
                   <div class="mt-3">
                     <h4> {user.firstName}</h4>
-                    <p class="text-secondary mb-1">{user.profession}</p>
+                    <p class="text-secondary mb-1">{user.city}</p>
                     <p class="text-muted font-size-sm">{user.email}</p>
                   </div>
                 </div>

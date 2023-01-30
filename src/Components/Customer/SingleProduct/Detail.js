@@ -30,7 +30,7 @@ function Detail() {
   //   console.log(product._id);
   // };
 
-  const Cart = () => {
+  const Cart = async () => {
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -62,7 +62,7 @@ function Detail() {
             progress: undefined,
             theme: "light",
           });
-          // navigate("../product-list");
+          navigate("/cart");
         } else {
           console.log("SOMETHING WENT WRONG");
         }
@@ -219,6 +219,7 @@ function Detail() {
                   <div className=" large">
                     <div className="tab-pane active" id="pic-1">
                       <img
+                        className="block"
                         src={`http://localhost:4000/${product.product_image}`}
                         style={{ height: "20em" }}
                       />
@@ -245,16 +246,26 @@ function Detail() {
                   Colour <strong> {product.product_color}</strong>
                 </p>
                 <p class="small text-danger">
-                  <s
-                    style={{
-                      textDecoration: "line-through",
-                    }}
-                  >{`${product.product_price}`}</s>
+                  {product.discounted_price && (
+                    <s
+                      style={{
+                        textDecoration: "line-through",
+                      }}
+                    >{`${product.product_price}`}</s>
+                  )}
                 </p>
                 <Divider />
                 <div className=" row">
                   <h4 className="colors col-6 col-sm-4">Price:</h4>
-                  <h5 className="col-6 col-sm-4">RS.{product.product_price}</h5>
+                  <h5 className="col-6 col-sm-4">
+                    RS.
+                    {product.discounted_price && (
+                      <>{`${product.discounted_price}`}</>
+                    )}
+                    {!product.discounted_price && (
+                      <>{`${product.product_price}`}</>
+                    )}
+                  </h5>
                 </div>
                 <Divider />
                 <div className=" d-flex justify-content-between mt-4">

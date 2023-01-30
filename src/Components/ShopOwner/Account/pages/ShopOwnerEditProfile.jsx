@@ -17,6 +17,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const ShopOwnerEditProfile = () => {
   let { itemId } = useParams();
   const [image, setImage] = React.useState("");
+  const [brands, setBrands] = React.useState([]);
 
   const [catagories, setCatagories] = React.useState([]);
 
@@ -131,6 +132,17 @@ const ShopOwnerEditProfile = () => {
         console.log(error.message);
       });
   };
+  const getBrands = () => {
+    axios
+      .get("http://localhost:4000/brand")
+      .then((res) => {
+        setBrands(res.data.brand);
+        console.log(res.data.brand);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   React.useEffect(
     function () {
       axios
@@ -157,6 +169,7 @@ const ShopOwnerEditProfile = () => {
           console.log(err);
         });
       getCategory();
+      getBrands();
     },
     [itemId]
   );
@@ -188,14 +201,32 @@ const ShopOwnerEditProfile = () => {
           <select
             name="category"
             className="form-select"
-            onChange={(e) => {
-              setState((prev) => ({ ...prev, category: e.target.value }));
-            }}
+            onChange={handleChange}
+            value={state.category}
           >
             <option selected> Choose...</option>
             {catagories?.map((catagory, index) => (
               <option key={index} value={catagory.name}>
                 {catagory.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="col-md-3 form-group required">
+          <label for="" class="control-label">
+            Select Brand
+          </label>
+          <br />
+          <select
+            name="brand"
+            className="form-select"
+            value={state.brand}
+            onChange={handleChange}
+          >
+            <option selected> Choose...</option>
+            {brands?.map((brand, index) => (
+              <option key={index} value={brand.name}>
+                {brand.name}
               </option>
             ))}
           </select>

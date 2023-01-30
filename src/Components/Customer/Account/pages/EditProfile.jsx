@@ -20,7 +20,7 @@ const EditProfile = () => {
     password: "",
     phoneNo: "",
     address: "",
-    profession: "",
+    city: "",
   });
 
   const handleClose = (event, reason) => {
@@ -54,7 +54,7 @@ const EditProfile = () => {
         setState((pre) => ({ ...pre, email: res.data.user.email }));
         setState((pre) => ({ ...pre, phoneNo: res.data.user.phoneNo }));
         setState((pre) => ({ ...pre, address: res.data.user.address }));
-        setState((pre) => ({ ...pre, profession: res.data.user.profession }));
+        setState((pre) => ({ ...pre, city: res.data.user.city }));
         console.log(user);
       })
       .catch((err) => {
@@ -69,7 +69,7 @@ const EditProfile = () => {
     formData.append("email", state.email);
     formData.append("phoneNo", state.phoneNo);
     formData.append("address", state.address);
-    formData.append("profession", state.profession);
+    formData.append("city", state.city);
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -154,17 +154,6 @@ const EditProfile = () => {
         </div>
 
         <div class="form-outline mb-4 form-group required">
-          <label class="form-label control-label">Profession</label>
-          <input
-            name="profession"
-            value={state.profession}
-            onChange={handleChange}
-            type="text"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-outline mb-4 form-group required">
           <label class="form-label control-label">Phone Number</label>
           <input
             name="phoneNo"
@@ -180,6 +169,16 @@ const EditProfile = () => {
           <input
             name="address"
             value={state.address}
+            onChange={handleChange}
+            type="text"
+            class="form-control"
+          />
+        </div>
+        <div class="form-outline mb-4 form-group required">
+          <label class="form-label control-label">City</label>
+          <input
+            name="city"
+            value={state.city}
             onChange={handleChange}
             type="text"
             class="form-control"

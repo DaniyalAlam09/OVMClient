@@ -267,9 +267,14 @@ function SingleShop() {
                           <a class="text-muted">{`${product.product_brand}`}</a>
                         </p>
                         <p class="small text-danger">
-                          <s
-                            style={{ textDecoration: "line-through" }}
-                          >{`${product.product_price}`}</s>
+                          {product.discounted_price && (
+                            <s
+                              style={{
+                                textDecoration: "line-through",
+                              }}
+                            >{`${product.product_price}`}</s>
+                          )}
+                          <s></s>
                         </p>
                       </div>
                       <Divider />
@@ -281,7 +286,14 @@ function SingleShop() {
                         <p
                           className="product-price"
                           // class="text-dark mb-0"
-                        >{`${product.product_price}`}</p>
+                        >
+                          {product.discounted_price && (
+                            <s>{`${product.discounted_price}`}</s>
+                          )}
+                          {!product.discounted_price && (
+                            <s>{`${product.product_price}`}</s>
+                          )}
+                        </p>
                       </div>
 
                       <div class="d-flex justify-content-between">
@@ -289,15 +301,18 @@ function SingleShop() {
                           Stoke: {`${product.product_stoke}`}
                         </p>
                         <div class="rating">
-                          {product.reviews
-                            ? product.reviews?.map((rew) => (
-                                <Rating
-                                  size="small"
-                                  value={rew.rating}
-                                  readOnly
-                                />
-                              ))
-                            : "kj"}
+                          {/* { */}
+                          {/* // product.reviews?.rating && (
+                                            // ? product.reviews?.map((rew) => ( */}
+                          <Rating
+                            size="small"
+                            value={product.reviews[0]?.rating}
+                            readOnly
+                          />
+                          {/* // )
+
+                                          // : "kj" */}
+                          {/* } */}
                           {/* {product.reviews.rating ?(
                                   <p>oid</p>)
                                   : <p>dsk</p>} */}

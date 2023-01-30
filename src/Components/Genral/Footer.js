@@ -17,6 +17,7 @@ function Footer() {
   if (pathname === "/user/edit-profile") return null;
   if (pathname === "/user/logout") return null;
   if (pathname === "/account") return null;
+  if (pathname === "/cart") return null;
   if (pathname === "/privacy") return null;
   if (pathname === "/safepayment") return null;
   if (pathname === "/shipping") return null;

@@ -218,8 +218,11 @@ const Navbar = () => {
                 Shops
               </Link>
             </li>
-            <li className="nav-item dropdown">
-              <a
+            <li className="nav-item">
+              <Link to="/tourguides" className="nav-link">
+                Virtual Tour
+              </Link>
+              {/* <a
                 className="nav-link dropdown-toggle"
                 href="#"
                 id="navbarDropdown"
@@ -252,7 +255,7 @@ const Navbar = () => {
                 >
                   Second Floor
                 </a>
-              </div>
+              </div> */}
             </li>
 
             <li className="nav-item">

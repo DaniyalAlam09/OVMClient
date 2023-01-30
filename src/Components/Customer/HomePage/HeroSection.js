@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Homepage.css";
-import Hero from "../Images/Hero.png";
-// import Hero1 from "/images/Hero1.png";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import hero from "./assets/img/hero-carousel/hero-carousel-3.svg";
 
 function HeroSection({ Name1, Name2, ImageSource }) {
+  const [user, setUser] = React.useState([]);
+  const [shopowner, setShopowner] = React.useState([]);
+
+  React.useEffect(function () {
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+    axios
+      .get("http://localhost:4000/users/user", config)
+      .then((res) => {
+        setUser(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        setUser([]);
+      });
+    axios
+      .get("http://localhost:4000/shopowners/shopowner", config)
+      .then((res) => {
+        setShopowner(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        setShopowner([]);
+      });
+  }, []);
   return (
     <section
       id="hero-animated"
@@ -24,16 +53,12 @@ function HeroSection({ Name1, Name2, ImageSource }) {
             our humanity.
           </p>
           <div class="d-flex justify-content-center">
-            <Link to="/create-account">
-              <button class="btn-get-started scrollto"> Get Started</button>
-            </Link>{" "}
-            {/* <a
-              href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-              class="glightbox btn-watch-video d-flex align-items-center"
-            >
-              <i class="bi bi-play-circle"></i>
-              <span>Take Tour</span>
-            </a> */}
+            {!user?.firstName && !shopowner?.firstName && (
+              <Link to="/account" type="submit">
+                <button class="btn-get-started scrollto"> Get Started</button>
+              </Link>
+            )}
+            {user?.firstName && <h6>Welcome Back</h6>}
           </div>
         </div>
         <img src={hero} class="img-fluid animated col-xl-6 col-sm-12 mb-12 " />

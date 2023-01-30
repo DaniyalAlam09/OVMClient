@@ -68,7 +68,7 @@ function FeaturedCatagories() {
                 className="col-lg-3 col-md-6 mt-3"
               >
                 <div class=" border rounded p-3 block">
-                  <Link to={`/allproducts/${categorey.name}`}>
+                  <Link to={`/category/${categorey.name}`}>
                     <img
                       src={`http://localhost:4000/${categorey.imageUrl}`}
                       alt=""
