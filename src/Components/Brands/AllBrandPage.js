@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import "./ShopStyle.css";
 import Pagination from "@mui/material/Pagination";
+import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Link } from "react-router-dom";
@@ -61,16 +62,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function AllBrandPage() {
   const [brands, setBrands] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
   const [index, setIndex] = useState(12);
   const [isCompleted, setIsCompleted] = useState(false);
   const [search, setSearch] = useState("");
   const initialPosts = slice(brands, 0, index);
-  const getCategory = () => {
+  const getBrand = () => {
     axios
       .get("http://localhost:4000/brand")
       .then((res) => {
         setBrands(res.data.brand);
-        console.log(res.data.brand);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -85,7 +87,7 @@ function AllBrandPage() {
     }
   };
   React.useEffect(function () {
-    getCategory();
+    getBrand();
   }, []);
   return (
     <Container maxWidth={"md"} className="mb-5 mt-5">
@@ -109,84 +111,191 @@ function AllBrandPage() {
           </Box>
         </div>
       </div>
-      <div className="container ">
-        <div className="container mt-100">
-          <div className="row">
-            {initialPosts
-              ?.filter((person) => {
-                if (search == "") {
-                  return person;
-                } else if (
-                  person.name.toLowerCase().includes(search.toLowerCase())
-                ) {
-                  return person;
-                }
-              })
-              ?.map((brand) => (
-                <div className="col-md-3 col-sm-6 ">
-                  <div key={brands.indexOf(brand)}>
-                    <Link to={`/brand/${brand.name}`}>
-                      <div
-                        className="card card1 mb-10 block align-items-center justify-content-center"
-                        style={{
-                          height: "150px",
-                          backgroundColor: " rgba(236, 235, 235, 0.137)",
-                        }}
-                      >
-                        <a class="card-img-tiles" href="#" data-abc="true">
-                          <div class="inner" style={{ height: "1px" }}>
-                            <div class="main-img ">
-                              <img
-                                src={`http://localhost:4000/${brand.imageUrl}`}
-                                style={{
-                                  height: "70px",
-                                  width: "70px",
-                                  cursor: "pointer",
-                                  objectFit: "contain",
-                                  marginTop: "-25px",
-                                }}
-                                // src={hero}
-                                alt="Category"
-                              />
+      {loading ? (
+        <>
+          <div className="row d-flex justify-content-around mt-4">
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-around mt-4">
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-around mt-4">
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+            <div className="col-md-3 mt-1">
+              <Skeleton
+                variant="rectangular"
+                width={210}
+                height={150}
+                className="rounded"
+              />
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="container ">
+          <div className="container mt-100">
+            <div className="row">
+              {initialPosts
+                ?.filter((person) => {
+                  if (search == "") {
+                    return person;
+                  } else if (
+                    person.name.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return person;
+                  }
+                })
+                ?.map((brand) => (
+                  <div className="col-md-3 col-sm-6 ">
+                    <div key={brands.indexOf(brand)}>
+                      <Link to={`/brand/${brand.name}`}>
+                        <div
+                          className="card card1 mb-10 block align-items-center justify-content-center"
+                          style={{
+                            height: "150px",
+                            backgroundColor: " rgba(236, 235, 235, 0.137)",
+                          }}
+                        >
+                          <a class="card-img-tiles" href="#" data-abc="true">
+                            <div class="inner" style={{ height: "1px" }}>
+                              <div class="main-img ">
+                                <img
+                                  src={`http://localhost:4000/${brand.imageUrl}`}
+                                  style={{
+                                    height: "70px",
+                                    width: "70px",
+                                    cursor: "pointer",
+                                    objectFit: "contain",
+                                    marginTop: "-25px",
+                                  }}
+                                  // src={hero}
+                                  alt="Category"
+                                />
+                              </div>
                             </div>
+                          </a>
+                          <div class="mt-3 text-center">
+                            <h6 class="card-title">{brand.name}</h6>
                           </div>
-                        </a>
-                        <div class="mt-3 text-center">
-                          <h6 class="card-title">{brand.name}</h6>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+            </div>
+          </div>
+          <div className="d-grid mt-3 mb-5 mt-4">
+            {isCompleted ? (
+              <div class="text-center">
+                {" "}
+                <button
+                  onClick={loadMore}
+                  type="button"
+                  className="btn btn-danger disabled"
+                >
+                  No More Items
+                </button>
+              </div>
+            ) : (
+              <div class="text-center">
+                <button
+                  onClick={loadMore}
+                  type="button"
+                  class="btn btn-primary signin ml-2"
+                >
+                  Load More
+                  {/* <KeyboardDoubleArrowDownSharpIcon /> */}
+                </button>
+              </div>
+            )}
           </div>
         </div>
-        <div className="d-grid mt-3 mb-5 mt-4">
-          {isCompleted ? (
-            <div class="text-center">
-              {" "}
-              <button
-                onClick={loadMore}
-                type="button"
-                className="btn btn-danger disabled"
-              >
-                No More Items
-              </button>
-            </div>
-          ) : (
-            <div class="text-center">
-              <button
-                onClick={loadMore}
-                type="button"
-                class="btn btn-primary signin ml-2"
-              >
-                Load More
-                {/* <KeyboardDoubleArrowDownSharpIcon /> */}
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
+      )}
     </Container>
   );
 }

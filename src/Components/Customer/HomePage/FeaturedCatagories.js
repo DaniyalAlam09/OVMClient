@@ -15,7 +15,6 @@ function FeaturedCatagories() {
       .then((res) => {
         setCatagories(res.data.categories);
         setLoading(false);
-        console.log(res.data.categories);
       })
       .catch((err) => {
         console.log(err);
@@ -34,26 +33,26 @@ function FeaturedCatagories() {
       </div>
       <div className="mt-5">
         {loading ? (
-          <div className="d-flex justify-content-around">
-            <div>
+          <div className="row d-flex justify-content-around">
+            <div className="col-md-3 mt-1">
               <Skeleton variant="rectangular" width={210} height={200} />
               <Box sx={{ pt: 0.5 }}>
                 <Skeleton width={210} />
               </Box>
             </div>
-            <div>
+            <div className="col-md-3 mt-1">
               <Skeleton variant="rectangular" width={210} height={200} />
               <Box sx={{ pt: 0.5 }}>
                 <Skeleton width={210} />
               </Box>
             </div>
-            <div>
+            <div className="col-md-3 mt-1">
               <Skeleton variant="rectangular" width={210} height={200} />
               <Box sx={{ pt: 0.5 }}>
                 <Skeleton width={210} />
               </Box>
             </div>
-            <div>
+            <div className="col-md-3 mt-1">
               <Skeleton variant="rectangular" width={210} height={200} />
               <Box sx={{ pt: 0.5 }}>
                 <Skeleton width={210} />
@@ -78,7 +77,7 @@ function FeaturedCatagories() {
                       <p class="mb-0">{`${categorey.name}`}</p>
                       {/* <p class="small text-muted">CEO - Consultant</p> */}
                       <Link
-                        to={`/allproducts/${categorey.name}`}
+                        to={`/category/${categorey.name}`}
                         class="small-link text-right"
                       >
                         VISIT

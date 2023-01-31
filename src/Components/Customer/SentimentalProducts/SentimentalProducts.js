@@ -93,7 +93,6 @@ function Products() {
       .post("http://localhost:4000/shops/sentiment")
       .then((res) => {
         setProduct(res.data.pro);
-        console.log(res.data);
         setLoading(false);
       })
       .catch((err) => {

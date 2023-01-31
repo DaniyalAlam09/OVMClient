@@ -22,6 +22,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import Tooltip from "@mui/material/Tooltip";
+import Skeleton from "@mui/material/Skeleton";
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -72,6 +74,7 @@ function Shops() {
   const [search, setSearch] = useState("");
   const initialPosts = slice(user, 0, index);
   const [selectValue, setSelectValue] = React.useState("");
+  const [loading, setLoading] = React.useState(true);
   const onChange = (event) => {
     const value = event.target.value;
     setSelectValue(value);
@@ -89,6 +92,7 @@ function Shops() {
       .then((response) => response.json())
       .then((actualData) => {
         // window.scrollTo(0, 0);
+        setLoading(false);
         setUser(actualData);
         onChange();
       })
@@ -176,37 +180,7 @@ function Shops() {
         >
           Verified Shops
         </button>
-        {/* <button
-          className="btn btn-primary signin mt-2 ml-3"
-          onClick={firstFloor}
-        >
-          First Floor
-        </button>
-        <button
-          className="btn btn-primary signin mt-2 ml-3"
-          onClick={secondFloor}
-        >
-          Second Floor
-        </button>
-        <button
-          className="btn btn-primary signin mt-2 ml-3"
-          onClick={thirdFloor}
-        >
-          Third Floor
-        </button>
-        <button
-          className="btn btn-primary signin mt-2 ml-3"
-          onClick={fourthFloor}
-        >
-          Fourth Floor
-        </button> */}
-        {/* <select onChange={onChange} className="col-md-2 flex-row-reverse">
-          <option value="">Floors...</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select> */}
+
         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-standard-label">Floor</InputLabel>
           <Select
@@ -229,86 +203,155 @@ function Shops() {
           Clear All Filters
         </button>
       </div>
-      <div className="container products ">
-        <div className="row text-center justify-content-start">
-          {Object.values(initialPosts)
-            // .slice(0, 8)
-
-            .filter((person) => {
-              if (search == "") {
-                return person;
-              } else if (
-                person.shopName.toLowerCase().includes(search.toLowerCase())
-              ) {
-                return person;
-              }
-            })
-            .map((elem) => (
-              <div
-                key={user.indexOf(elem)}
-                className=" col-xl-3 col-sm-6 mb-5 block"
-              >
-                <Link to={`/singleshop/${elem._id}/${elem.shopName}`}>
-                  <img
-                    className=" rounded product-image"
-                    style={{
-                      width: "10rem",
-                      height: "10rem",
-                      objectFit: "contain",
-                    }}
-                    src={`http://localhost:4000${elem.shopImage}`}
-                  />
-                  {elem?.verified === true && (
-                    <Tooltip
-                      title="Verified"
-                      style={{
-                        color: "#1C99E6",
-                        fontSize: "25px",
-                        position: "absolute",
-                        top: "25px",
-                        left: "190px",
-                      }}
-                    >
-                      {/* <IconButton> */}
-                      <VerifiedIcon />
-                      {/* </IconButton> */}
-                    </Tooltip>
-                  )}
-                  <p className="brand-name">Shop no {`${elem.shopNo}`}</p>
-
-                  <p className="product-name">{`${elem.shopName}`}</p>
-                </Link>
-              </div>
-            ))}
-        </div>
-        {user.length >= 8 && (
-          <div className="d-grid mt-3 mb-5">
-            {isCompleted ? (
-              <div class="text-center">
-                {" "}
-                <button
-                  onClick={loadMore}
-                  type="button"
-                  className="btn btn-danger disabled"
-                >
-                  No More Items
-                </button>
-              </div>
-            ) : (
-              <div class="text-center">
-                <button
-                  onClick={loadMore}
-                  type="button"
-                  class="btn btn-primary signin ml-2"
-                >
-                  Load More
-                  {/* <KeyboardDoubleArrowDownSharpIcon /> */}
-                </button>
-              </div>
-            )}
+      {loading ? (
+        <div className="row d-flex justify-content-around mt-4 mb-5">
+          <div className="col-md-3 mt-1">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded "
+            />
           </div>
-        )}
-      </div>
+          <div className="col-md-3 mt-1">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+          <div className="col-md-3 mt-1">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+          <div className="col-md-3 mt-1">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+          <div className="col-md-3 mt-3">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+          <div className="col-md-3 mt-3">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+          <div className="col-md-3 mt-3">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+          <div className="col-md-3 mt-3">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="container products ">
+          <div className="row text-center justify-content-start">
+            {Object.values(initialPosts)
+              // .slice(0, 8)
+
+              .filter((person) => {
+                if (search == "") {
+                  return person;
+                } else if (
+                  person.shopName.toLowerCase().includes(search.toLowerCase())
+                ) {
+                  return person;
+                }
+              })
+              .map((elem) => (
+                <div
+                  key={user.indexOf(elem)}
+                  className=" col-xl-3 col-sm-6 mb-5 block"
+                >
+                  <Link to={`/singleshop/${elem._id}/${elem.shopName}`}>
+                    <img
+                      className=" rounded product-image"
+                      style={{
+                        width: "10rem",
+                        height: "10rem",
+                        objectFit: "contain",
+                      }}
+                      src={`http://localhost:4000${elem.shopImage}`}
+                    />
+                    {elem?.verified === true && (
+                      <Tooltip
+                        title="Verified"
+                        style={{
+                          color: "#1C99E6",
+                          fontSize: "25px",
+                          position: "absolute",
+                          top: "25px",
+                          left: "190px",
+                        }}
+                      >
+                        {/* <IconButton> */}
+                        <VerifiedIcon />
+                        {/* </IconButton> */}
+                      </Tooltip>
+                    )}
+                    <p className="brand-name">Shop no {`${elem.shopNo}`}</p>
+
+                    <p className="product-name">{`${elem.shopName}`}</p>
+                  </Link>
+                </div>
+              ))}
+          </div>
+          {user.length >= 8 && (
+            <div className="d-grid mt-3 mb-5">
+              {isCompleted ? (
+                <div class="text-center">
+                  {" "}
+                  <button
+                    onClick={loadMore}
+                    type="button"
+                    className="btn btn-danger disabled"
+                  >
+                    No More Items
+                  </button>
+                </div>
+              ) : (
+                <div class="text-center">
+                  <button
+                    onClick={loadMore}
+                    type="button"
+                    class="btn btn-primary signin ml-2"
+                  >
+                    Load More
+                    {/* <KeyboardDoubleArrowDownSharpIcon /> */}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </Stack>
   );
 }

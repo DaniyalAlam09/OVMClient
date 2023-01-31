@@ -49,7 +49,6 @@ const ShopOwnerProductList = () => {
     axios
       .get(`http://localhost:4000/shopowners/deleteproduct/${id}`, config)
       .then((user) => {
-        console.log("user delete");
         setOpen(false);
         fetchProducts();
         // navigate(0);
@@ -70,7 +69,6 @@ const ShopOwnerProductList = () => {
       .get("http://localhost:4000/shopowners/myproducts", config)
       .then((response) => {
         setUser(response.data.products);
-        console.log(response.data.products);
       })
       .catch((err) => {
         console.log(err);

@@ -19,8 +19,6 @@ const Dashboard = () => {
       .get("http://localhost:4000/users/user", config)
       .then((res) => {
         setUser(res.data.user);
-        console.log(res.data.user);
-        console.log(user);
       })
       .catch((err) => {
         console.log(err);

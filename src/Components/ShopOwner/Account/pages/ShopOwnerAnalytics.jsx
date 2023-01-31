@@ -40,7 +40,6 @@ const ShopOwnerAnalytics = () => {
       .get("http://localhost:4000/shopowners/myproducts", config)
       .then((response) => {
         setProducts(response.data.products);
-        console.log(response.data.products);
       })
       .catch((err) => {
         console.log(err);
@@ -48,9 +47,9 @@ const ShopOwnerAnalytics = () => {
   };
   return (
     <>
-      <div className="container mt-5 d-flex justify-content-around">
+      <div className="container row mt-5 d-flex justify-content-around">
         <div
-          className="block border text-center pt-4 m-3"
+          className="block border text-center pt-4 m-3 col-md-3"
           style={{
             height: "150px",
             width: "300px",
@@ -64,7 +63,7 @@ const ShopOwnerAnalytics = () => {
           </p>
         </div>
         <div
-          className="block border text-center pt-4 m-3"
+          className="block border text-center pt-4 m-3 col-md-3"
           style={{
             height: "150px",
             width: "300px",
@@ -78,7 +77,7 @@ const ShopOwnerAnalytics = () => {
           </p>
         </div>
         <div
-          className="block border text-center pt-4 m-3"
+          className="block border text-center pt-4 m-3 col-md-3"
           style={{
             height: "150px",
             width: "300px",

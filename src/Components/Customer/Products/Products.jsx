@@ -439,155 +439,32 @@ function Products() {
               </h2>
               <div>
                 {loading ? (
-                  <>
+                  <div className="col">
                     <div
-                      className="d-flex col-md-6 col-lg-4 justify-content-around mb-5"
-                      style={{ marginLeft: "290px" }}
+                      className="row d-flex col-md-6 col-lg-4  justify-content-around mb-5"
+                      style={{ marginLeft: "-90px" }}
                     >
-                      <div className="ml-3 ">
+                      <div className="ml-3 col-md-3">
                         <Skeleton
                           variant="rectangular"
-                          width={210}
+                          width={350}
                           height={200}
                         />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
                       </div>
                     </div>
                     <div
-                      className="d-flex col-md-6 col-lg-4 justify-content-around mb-5 mt-5"
-                      style={{ marginLeft: "290px" }}
+                      className="row d-flex col-md-6 col-lg-4  justify-content-around mb-5"
+                      style={{ marginLeft: "-90px" }}
                     >
-                      <div className="ml-3 ">
+                      <div className="ml-3 col-md-3">
                         <Skeleton
                           variant="rectangular"
-                          width={210}
+                          width={350}
                           height={200}
                         />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
                       </div>
                     </div>
-                    <div
-                      className="d-flex col-md-6 col-lg-4 justify-content-around"
-                      style={{ marginLeft: "290px" }}
-                    >
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                      <div className="ml-3 ">
-                        <Skeleton
-                          variant="rectangular"
-                          width={210}
-                          height={200}
-                        />
-                        <Box sx={{ pt: 0.5 }}>
-                          <Skeleton width={210} />
-                          <Skeleton width={210} />
-                        </Box>
-                      </div>
-                    </div>
-                  </>
+                  </div>
                 ) : (
                   <section>
                     <div class="container">

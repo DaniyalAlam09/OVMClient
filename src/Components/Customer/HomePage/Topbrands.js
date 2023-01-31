@@ -24,7 +24,6 @@ function Topbrands() {
       .then((res) => {
         setBrands(res.data.brand);
         setLoading(false);
-        console.log(res.data.brand);
       })
       .catch((err) => {
         console.log(err);
@@ -44,8 +43,8 @@ function Topbrands() {
 
       <div className="">
         {loading ? (
-          <div className="d-flex justify-content-around mt-4">
-            <div>
+          <div className="row d-flex justify-content-around mt-4">
+            <div className="col-md-3 mt-1">
               <Skeleton
                 variant="rectangular"
                 width={210}
@@ -53,7 +52,7 @@ function Topbrands() {
                 className="rounded"
               />
             </div>
-            <div>
+            <div className="col-md-3 mt-1">
               <Skeleton
                 variant="rectangular"
                 width={210}
@@ -61,7 +60,7 @@ function Topbrands() {
                 className="rounded"
               />
             </div>
-            <div>
+            <div className="col-md-3 mt-1">
               <Skeleton
                 variant="rectangular"
                 width={210}
@@ -69,7 +68,7 @@ function Topbrands() {
                 className="rounded"
               />
             </div>
-            <div>
+            <div className="col-md-3 mt-1">
               <Skeleton
                 variant="rectangular"
                 width={210}

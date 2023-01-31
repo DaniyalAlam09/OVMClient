@@ -26,10 +26,6 @@ function Detail() {
   const navigate = useNavigate();
 
   const item = { _id };
-  // const Cart = (e) => {
-  //   console.log(product._id);
-  // };
-
   const Cart = async () => {
     const config = {
       headers: {
@@ -94,10 +90,7 @@ function Detail() {
         .get("http://localhost:4000/shops/" + productId)
         .then((res) => {
           setProduct(res.data);
-          console.log(res.data);
           // window.scrollTo(0, 0);
-          // console.log(res.data);
-          // console.log(product);
         })
         .catch((err) => {
           console.log(err);
@@ -106,9 +99,6 @@ function Detail() {
         .get("http://localhost:4000/shopowners/" + shopId)
         .then((res) => {
           setShop(res.data);
-          console.log(shopId);
-          console.log(res.data);
-          console.log(shop);
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -116,9 +106,7 @@ function Detail() {
       axios
         .get("http://localhost:4000/shopowners/shopproducts/" + shopId)
         .then((actualData) => {
-          console.log(actualData.data.products);
           setUser(actualData.data.products);
-          console.log(user);
         })
         .catch((err) => {
           console.log(err);
@@ -127,11 +115,9 @@ function Detail() {
         .get("http://localhost:4000/order/order", config)
         .then((res) => {
           setOrder(res.data);
-
-          console.log(res.data);
         })
         .catch((err) => {
-          console.log(err.response.data.message);
+          console.log(err.response.data);
         });
     },
     [productId, shopId]
@@ -165,10 +151,10 @@ function Detail() {
     axios
       .post(`http://localhost:4000/shops/review/${productId}`, formData, config)
       .then((response) => {
-        if (response.status === 200 || response.status === 201) {
+        if (response.data.message === "Review added") {
           navigate(0);
           console.log(response.data.message);
-          toast.success(response.data.message, {
+          toast.success("Review added", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -178,10 +164,30 @@ function Detail() {
             progress: undefined,
             theme: "light",
           });
+        } else if (response.data.message === "First Buy this Product") {
+          toast.error("First Buy this Product To Review", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else if (response.data.message === "Already Reviewed") {
+          toast.error("Already Reviewed", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         } else if (
-          response.response.data.message === "Comment and Rating is Required"
+          response.data.message === "You Can't Review your Own Product"
         ) {
-          toast.error("Comment and Rating is Required", {
+          toast.error("You Can't Review your Own Product", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -193,16 +199,27 @@ function Detail() {
         }
       })
       .catch((error) => {
-        console.log(error.response.data);
-        toast.error(error.response.data, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        if (error.response.data === "Please Login First") {
+          toast.error("Please Login First", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          toast.error(error.response.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       });
   };
 
@@ -254,7 +271,7 @@ function Detail() {
                     >{`${product.product_price}`}</s>
                   )}
                 </p>
-                <Divider />
+                {/* <Divider /> */}
                 <div className=" row">
                   <h4 className="colors col-6 col-sm-4">Price:</h4>
                   <h5 className="col-6 col-sm-4">

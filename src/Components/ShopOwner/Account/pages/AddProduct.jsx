@@ -34,7 +34,6 @@ const AddProduct = () => {
   });
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
-    console.log(state);
   };
   const getFormData = () => {
     var form_data = new FormData();
@@ -49,7 +48,6 @@ const AddProduct = () => {
       .get("http://localhost:4000/category")
       .then((res) => {
         setCatagories(res.data.categories);
-        console.log(res.data.categories);
       })
       .catch((err) => {
         console.log(err);
@@ -60,7 +58,6 @@ const AddProduct = () => {
       .get("http://localhost:4000/brand")
       .then((res) => {
         setBrands(res.data.brand);
-        console.log(res.data.brand);
       })
       .catch((err) => {
         console.log(err);
@@ -89,7 +86,7 @@ const AddProduct = () => {
     axios
       .post(`http://localhost:4000/shops/add-product`, getFormData(), config)
       .then((response) => {
-        navigate("../product-list");
+        // navigate("../product-list");
         toast.success("Product Sucessfully Added", {
           position: "top-right",
           autoClose: 5000,

@@ -53,6 +53,7 @@ function CartPage() {
   const [success, setSuccess] = React.useState(false);
   const [disable, setDisable] = React.useState(false);
   const [load, setLoad] = React.useState(false);
+  const [noProduct, setNoProduct] = React.useState(false);
   const [search, setSearch] = React.useState("");
   const navigate = useNavigate();
   const [state, setState] = React.useState({
@@ -79,14 +80,12 @@ function CartPage() {
         .get(`http://localhost:4000/users/user`, config)
         .then((res) => {
           setUser(res.data?.user);
-          console.log(res.data);
           setState((pre) => ({ ...pre, fname: res?.data?.user?.firstName }));
           setState((pre) => ({ ...pre, lname: res?.data?.user?.lastName }));
           setState((pre) => ({ ...pre, email: res?.data.user?.email }));
           setState((pre) => ({ ...pre, phoneNo: res?.data?.user?.phoneNo }));
           setState((pre) => ({ ...pre, address: res?.data?.user?.address }));
           setState((pre) => ({ ...pre, city: res?.data?.user?.city }));
-          console.log(user);
         })
         .catch((err) => {
           console.log(err);
@@ -116,14 +115,18 @@ function CartPage() {
       .get("http://localhost:4000/product/cart", config)
       .then((res) => {
         setProducts(res.data.items);
-        console.log(res.data);
         setBill(res.data.bill);
         setLoadig(false);
 
         // console.log("product");
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data === "Please Login First") {
+          console.log("kkk");
+          setNoProduct(true);
+        } else {
+          console.log(err.response.data);
+        }
         setLoadig(false);
         setError(true);
       });
@@ -333,6 +336,34 @@ function CartPage() {
         pauseOnHover
       />
       {loadig && <h1>Loading ...</h1>}
+      {noProduct && (
+        <div>
+          <div class="container bootstrap snippets bootdey mb-5 mt-5">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="pull-right" style={{ marginTop: "10px" }}>
+                  <div class="row d-flex align-items-center justify-content-around text-center">
+                    <img
+                      // class="img-thumbnail "
+                      style={{ width: "40%" }}
+                      src="/images/No.png"
+                      className="col-md-6"
+                    />
+                    <div className="col-md-6">
+                      <h5>Please Login To See Your Cart</h5>
+                      <div class="error-actions">
+                        <Link to="/" class="">
+                          Back to home
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {!products && (
         <div>
@@ -340,23 +371,24 @@ function CartPage() {
             <div class="row">
               <div class="col-md-12">
                 <div class="pull-right" style={{ marginTop: "10px" }}>
-                  <div class="d-flex align-items-center justify-content-around text-center">
+                  <div class="row d-flex align-items-center justify-content-around text-center">
                     <img
                       // class="img-thumbnail "
                       style={{ width: "40%" }}
                       src="/images/No.png"
+                      className="col-md-6"
                     />
-                    <div>
+                    <div className="col-md-6">
                       <h2>No Item In Cart</h2>
                       {/* <p>Requested page not found!</p> */}
-                      {/* <div class="error-actions">
-                              <Link
-                                to="/"
-                                class="btn btn-primary  signin btn-lg sign-in"
-                              >
-                                Back Home
-                              </Link>
-                            </div> */}
+                      <div class="error-actions">
+                        <Link
+                          to="/"
+                          // class="btn btn-primary  signin btn-lg sign-in"
+                        >
+                          Back Home
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>

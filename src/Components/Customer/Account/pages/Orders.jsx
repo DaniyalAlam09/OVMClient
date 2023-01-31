@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 const Orders = () => {
@@ -16,8 +17,6 @@ const Orders = () => {
       .get("http://localhost:4000/order/order", config)
       .then((res) => {
         setOrder(res.data);
-
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -26,7 +25,8 @@ const Orders = () => {
   return (
     <div className="text-center ml-3 mt-4" style={{ width: "100%" }}>
       <div class=" container d-flex justify-content-center"></div>
-      {order ? (
+
+      {order?.length > 0 && (
         <table className="table">
           <thead>
             <tr>
@@ -45,7 +45,19 @@ const Orders = () => {
                 <tr>
                   {/* <td>{index + 1}</td> */}
                   <td>{ord._id}</td>
-                  <td>{ord.productName}</td>
+                  <td>
+                    <Link
+                      to={`../../singleProduct/${ord.productId}/${ord.shopOwnerId}`}
+                      style={{ color: "#0C8AA0" }}
+                    >
+                      <img
+                        src={`http://localhost:4000/${ord.productImg}`}
+                        style={{ height: "3em", marginTop: "-5px" }}
+                      />
+                      {ord.productName}{" "}
+                    </Link>
+                  </td>
+
                   <td>{ord.status}</td>
                   <td>{ord.bill}</td>
                   <td>{moment(ord.date_added).format("MMM Do YY")}</td>
@@ -56,19 +68,21 @@ const Orders = () => {
             {/* ))} */}
           </tbody>
         </table>
-      ) : (
+      )}
+      {order?.length === 0 && (
         <div>
           <div class="container bootstrap snippets bootdey mb-5 mt-5">
             <div class="row">
               <div class="col-md-12">
                 <div class="pull-right" style={{ marginTop: "10px" }}>
-                  <div class="d-flex align-items-center justify-content-around text-center">
+                  <div class="row d-flex align-items-center justify-content-around text-center">
                     <img
                       // class="img-thumbnail "
                       style={{ width: "40%" }}
                       src="/images/No.png"
+                      className="col-md-6"
                     />
-                    <div>
+                    <div className="col-md-6">
                       <h2>No Order Yet</h2>
                       {/* <p>Requested page not found!</p> */}
                       {/* <div class="error-actions">

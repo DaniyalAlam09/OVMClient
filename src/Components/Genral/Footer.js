@@ -79,6 +79,10 @@ function Footer() {
               Brands
             </Link>
             <br />
+            <Link to="/tourguides" className="footer-info">
+              Tour
+            </Link>
+            <br />
             <Link to="/sentimental-products" className="footer-info">
               Sentiment Products
             </Link>

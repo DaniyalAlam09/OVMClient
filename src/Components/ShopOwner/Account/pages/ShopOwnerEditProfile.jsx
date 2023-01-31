@@ -70,7 +70,7 @@ const ShopOwnerEditProfile = () => {
     const formData = new FormData();
     formData.append("product_name", state.name);
     formData.append("product_price", state.price);
-    formData.append("categorey", state.category);
+    formData.append("category", state.category);
     formData.append("product_description", state.description);
     formData.append("product_color", state.color);
     formData.append("product_brand", state.brand);

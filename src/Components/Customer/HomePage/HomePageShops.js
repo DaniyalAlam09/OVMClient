@@ -3,6 +3,7 @@
 import HeadPhone from "../Images/HeadPhone.png";
 import SearchIcon from "@material-ui/icons/Search";
 import React, { useEffect, useState } from "react";
+import Skeleton from "@mui/material/Skeleton";
 import axios from "axios";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -70,6 +71,7 @@ function Shops() {
   const [search, setSearch] = useState("");
   const initialPosts = slice(user, 0, index);
   const [selectValue, setSelectValue] = React.useState("");
+  const [loading, setLoading] = React.useState(true);
   const onChange = (event) => {
     const value = event.target.value;
     setSelectValue(value);
@@ -85,6 +87,7 @@ function Shops() {
       .then((actualData) => {
         // window.scrollTo(0, 0);
         setUser(actualData);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -140,53 +143,90 @@ function Shops() {
       </div>
       <div class=" container d-flex justify-content-center"></div>
 
-      <div className="container products ">
-        <div className="row text-center justify-content-start">
-          {Object.values(initialPosts)
-            .slice(0, 4)
-
-            .map((elem) => (
-              <div
-                key={user.indexOf(elem)}
-                className="block col-xl-3 col-sm-6 mb-5"
-              >
-                <Link to={`/singleshop/${elem._id}/${elem.shopName}`}>
-                  <img
-                    className=" rounded product-image"
-                    style={{
-                      width: "10rem",
-                      height: "10rem",
-                      objectFit: "contain",
-                    }}
-                    src={`http://localhost:4000${elem.shopImage}`}
-                  />
-                  {elem?.verified === true && (
-                    <Tooltip
-                      title="Verified"
-                      style={{
-                        color: "#1C99E6",
-                        fontSize: "25px",
-                        position: "absolute",
-                        top: "25px",
-                        left: "190px",
-                      }}
-                    >
-                      {/* <IconButton> */}
-                      <VerifiedIcon />
-                      {/* </IconButton> */}
-                    </Tooltip>
-                  )}
-                  <p className="brand-name" style={{ marginTop: "-4px" }}>
-                    Shop no {`${elem.shopNo}`}
-                  </p>
-
-                  <p className="product-name">{`${elem.shopName}`} </p>
-                  <></>
-                </Link>
-              </div>
-            ))}
+      {loading ? (
+        <div className="row d-flex justify-content-around mt-4">
+          <div className="col-md-3 mt-1">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded "
+            />
+          </div>
+          <div className="col-md-3 mt-1">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+          <div className="col-md-3 mt-1">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
+          <div className="col-md-3 mt-1">
+            <Skeleton
+              variant="rectangular"
+              width={210}
+              height={150}
+              className="rounded"
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="container products ">
+          <div className="row text-center justify-content-start">
+            {Object.values(initialPosts)
+              .slice(0, 4)
+
+              .map((elem) => (
+                <div
+                  key={user.indexOf(elem)}
+                  className="block col-xl-3 col-sm-6 mb-5"
+                >
+                  <Link to={`/singleshop/${elem._id}/${elem.shopName}`}>
+                    <img
+                      className=" rounded product-image"
+                      style={{
+                        width: "10rem",
+                        height: "10rem",
+                        objectFit: "contain",
+                      }}
+                      src={`http://localhost:4000${elem.shopImage}`}
+                    />
+                    {elem?.verified === true && (
+                      <Tooltip
+                        title="Verified"
+                        style={{
+                          color: "#1C99E6",
+                          fontSize: "25px",
+                          position: "absolute",
+                          top: "25px",
+                          left: "190px",
+                        }}
+                      >
+                        {/* <IconButton> */}
+                        <VerifiedIcon />
+                        {/* </IconButton> */}
+                      </Tooltip>
+                    )}
+                    <p className="brand-name" style={{ marginTop: "-4px" }}>
+                      Shop no {`${elem.shopNo}`}
+                    </p>
+
+                    <p className="product-name">{`${elem.shopName}`} </p>
+                    <></>
+                  </Link>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
     </Stack>
   );
 }

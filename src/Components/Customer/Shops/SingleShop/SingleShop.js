@@ -77,6 +77,7 @@ function SingleShop() {
   const [shop, setShop] = React.useState({});
   const [user, setUser] = useState({});
   const [search, setSearch] = useState("");
+  const [isCompleted, setIsCompleted] = useState(false);
   const [loading, setLoading] = React.useState(true);
   const [index, setIndex] = useState(8);
   const initialPosts = slice(user, 0, index);
@@ -94,9 +95,6 @@ function SingleShop() {
         .get("http://localhost:4000/shopowners/" + shopId)
         .then((res) => {
           setShop(res.data);
-          console.log(shopId);
-          console.log(res.data);
-          console.log(shop);
         })
         .catch((err) => {
           console.log(err);
@@ -104,9 +102,7 @@ function SingleShop() {
       axios
         .get("http://localhost:4000/shopowners/shopproducts/" + shopId)
         .then((actualData) => {
-          console.log(actualData.data.products);
           setUser(actualData.data.products);
-          console.log(user);
           setLoading(false);
         })
         .catch((err) => {
@@ -117,7 +113,14 @@ function SingleShop() {
 
     [shopId]
   );
-  console.log(user._id);
+  const loadMore = () => {
+    setIndex(index + 8);
+    if (index >= user.length) {
+      setIsCompleted(true);
+    } else {
+      setIsCompleted(false);
+    }
+  };
 
   return (
     <div>
@@ -190,12 +193,12 @@ function SingleShop() {
           <div className="">
             <Box>
               <Toolbar>
-                <span class="mr-md-auto" style={{ width: "90px" }}>
+                <span class="mr-md-auto" style={{ width: "120px" }}>
                   <strong>
                     {" "}
                     <CountUp end={user.length} duration={1} />
                   </strong>{" "}
-                  Shops
+                  Products
                 </span>
                 <Search>
                   <SearchIconWrapper>
@@ -324,6 +327,33 @@ function SingleShop() {
               </div>
             ))}
         </div>
+        {user.length >= 8 && (
+          <div className="d-grid mt-3 mb-5">
+            {isCompleted ? (
+              <div class="text-center">
+                {" "}
+                <button
+                  onClick={loadMore}
+                  type="button"
+                  className="btn btn-danger disabled"
+                >
+                  No More Items
+                </button>
+              </div>
+            ) : (
+              <div class="text-center">
+                <button
+                  onClick={loadMore}
+                  type="button"
+                  class="btn btn-primary signin ml-2"
+                >
+                  Load More
+                  {/* <KeyboardDoubleArrowDownSharpIcon /> */}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

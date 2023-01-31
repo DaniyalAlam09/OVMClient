@@ -27,10 +27,6 @@ function HotCollection() {
       .post("http://localhost:4000/shops/sentiment")
       .then((res) => {
         setProduct(res.data.pro);
-        // setProduct(prevState => [res.data])
-        console.log(res.data.pro);
-        // console.log(product.reviews.rating);
-        console.log(product);
         setLoading(false);
       })
       .catch((err) => {
@@ -51,29 +47,29 @@ function HotCollection() {
         <div>
           {loading ? (
             <>
-              <div className="d-flex justify-content-around mt-4 mb-4">
-                <div>
+              <div className="row d-flex justify-content-around mt-4 mb-4 ">
+                <div className="col-md-3 mt-1">
                   <Skeleton variant="rectangular" width={210} height={200} />
                   <Box sx={{ pt: 0.5 }}>
                     <Skeleton width={210} />
                     <Skeleton width={210} />
                   </Box>
                 </div>
-                <div>
+                <div className="col-md-3 mt-1">
                   <Skeleton variant="rectangular" width={210} height={200} />
                   <Box sx={{ pt: 0.5 }}>
                     <Skeleton width={210} />
                     <Skeleton width={210} />
                   </Box>
                 </div>
-                <div>
+                <div className="col-md-3 mt-1">
                   <Skeleton variant="rectangular" width={210} height={200} />
                   <Box sx={{ pt: 0.5 }}>
                     <Skeleton width={210} />
                     <Skeleton width={210} />
                   </Box>
                 </div>
-                <div>
+                <div className="col-md-3 mt-1">
                   <Skeleton variant="rectangular" width={210} height={200} />
                   <Box sx={{ pt: 0.5 }}>
                     <Skeleton width={210} />

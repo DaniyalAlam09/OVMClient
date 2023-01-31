@@ -67,8 +67,6 @@ function ShopOwnerEdit() {
         setState((pre) => ({ ...pre, shopName: res.data.shopName }));
         setState((pre) => ({ ...pre, floor: res.data.floor }));
         setState((pre) => ({ ...pre, phone: res.data.phone }));
-        console.log(res.data.user);
-        console.log(user);
       })
       .catch((err) => {
         console.log(err);
@@ -101,10 +99,7 @@ function ShopOwnerEdit() {
         config
       )
       .then((response) => {
-        console.log(itemId);
-        console.log(response.data);
         if (response.status === 200) {
-          console.log("SUCCESSS");
           setOpen(true);
           navigate("../shoponwer-dashboard");
           // return response.json();
@@ -128,7 +123,6 @@ function ShopOwnerEdit() {
     axios
       .get("http://localhost:4000/shopowners/shopowner", config)
       .then((res) => {
-        console.log(res.data.user);
         // setState(res.data.user);
         setState((pre) => ({ ...pre, firstName: res.data.user.firstName }));
         setState((pre) => ({ ...pre, lastName: res.data.user.lastName }));

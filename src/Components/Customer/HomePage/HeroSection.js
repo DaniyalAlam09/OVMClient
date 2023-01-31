@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Homepage.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import hero from "./assets/img/hero-carousel/hero-carousel-3.svg";
+import hero from "./assets/img/hero-carousel/VR2.png";
 
 function HeroSection({ Name1, Name2, ImageSource }) {
   const [user, setUser] = React.useState([]);
@@ -59,6 +59,7 @@ function HeroSection({ Name1, Name2, ImageSource }) {
               </Link>
             )}
             {user?.firstName && <h6>Welcome Back</h6>}
+            {shopowner?.firstName && <h6>Sale Your Products</h6>}
           </div>
         </div>
         <img src={hero} class="img-fluid animated col-xl-6 col-sm-12 mb-12 " />

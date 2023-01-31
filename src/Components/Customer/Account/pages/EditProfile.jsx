@@ -48,14 +48,12 @@ const EditProfile = () => {
       .get(`http://localhost:4000/users/user`, config)
       .then((res) => {
         setUser(res.data.user);
-        console.log(res.data);
         setState((pre) => ({ ...pre, fname: res.data.user.firstName }));
         setState((pre) => ({ ...pre, lname: res.data.user.lastName }));
         setState((pre) => ({ ...pre, email: res.data.user.email }));
         setState((pre) => ({ ...pre, phoneNo: res.data.user.phoneNo }));
         setState((pre) => ({ ...pre, address: res.data.user.address }));
         setState((pre) => ({ ...pre, city: res.data.user.city }));
-        console.log(user);
       })
       .catch((err) => {
         console.log(err);
@@ -85,8 +83,6 @@ const EditProfile = () => {
         config
       )
       .then((response) => {
-        console.log(itemId);
-        console.log(response.data);
         if (response.status === 200) {
           console.log("SUCCESSS");
           setOpen(true);

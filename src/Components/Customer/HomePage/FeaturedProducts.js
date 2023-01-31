@@ -57,29 +57,29 @@ function FeaturedProducts() {
         <h2>{!loading && product.length === 0 && <h1>No Products</h1>}</h2>
         <div>
           {loading ? (
-            <div className="d-flex justify-content-around mt-4 mb-4">
-              <div>
+            <div className="row d-flex justify-content-around mt-4 mb-4">
+              <div className="col-md-3 mt-1">
                 <Skeleton variant="rectangular" width={210} height={200} />
                 <Box sx={{ pt: 0.5 }}>
                   <Skeleton width={210} />
                   <Skeleton width={210} />
                 </Box>
               </div>
-              <div>
+              <div className="col-md-3 mt-1">
                 <Skeleton variant="rectangular" width={210} height={200} />
                 <Box sx={{ pt: 0.5 }}>
                   <Skeleton width={210} />
                   <Skeleton width={210} />
                 </Box>
               </div>
-              <div>
+              <div className="col-md-3 mt-1">
                 <Skeleton variant="rectangular" width={210} height={200} />
                 <Box sx={{ pt: 0.5 }}>
                   <Skeleton width={210} />
                   <Skeleton width={210} />
                 </Box>
               </div>
-              <div>
+              <div className="col-md-3 mt-1">
                 <Skeleton variant="rectangular" width={210} height={200} />
                 <Box sx={{ pt: 0.5 }}>
                   <Skeleton width={210} />

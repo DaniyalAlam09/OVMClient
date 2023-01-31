@@ -269,7 +269,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <div className="row mr-4">
+          <div className="row mr-4 justify-content-end">
             <div className="icon">
               <Link to="/cart">
                 <UilShoppingBag className="icons mt-2" />

@@ -3,6 +3,7 @@ import axios from "axios";
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const ManageOrders = () => {
   const [order, setOrder] = React.useState([]);
@@ -65,7 +66,6 @@ const ManageOrders = () => {
       .put("http://localhost:4000/shopowners/update/" + id, formData, config)
 
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           toast("Status Updated");
           // return response.json();
@@ -106,7 +106,14 @@ const ManageOrders = () => {
                   {/* <td>{index + 1}</td> */}
                   <td>{ord._id}</td>
                   <td>{moment(ord.date_added).format("MMM Do YY")}</td>
-                  <td>{ord.productName}</td>
+                  <td>
+                    <Link
+                      to={`../../singleProduct/${ord.productId}/${ord.shopOwnerId}`}
+                      style={{ color: "#0C8AA0" }}
+                    >
+                      {ord.productName}
+                    </Link>{" "}
+                  </td>
                   <td>
                     <img
                       src={`http://localhost:4000/${ord.productImg}`}

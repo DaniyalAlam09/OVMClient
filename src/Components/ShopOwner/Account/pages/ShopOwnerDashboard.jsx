@@ -17,8 +17,6 @@ const ShopOwnerDashboard = () => {
       .get("http://localhost:4000/shopowners/shopowner", config)
       .then((res) => {
         setUser(res.data.user);
-        console.log(res.data.user);
-        console.log(user);
       })
       .catch((err) => {
         console.log(err);
