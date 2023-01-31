@@ -8,6 +8,7 @@ import {
   UilInstagram,
 } from "@iconscout/react-unicons";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 function About() {
   return (
@@ -19,12 +20,13 @@ function About() {
             <div class="col-lg-6">
               <h2 class="display-6">About us</h2>
               <p class="lead text-muted mb-0">
-                'The trouble is, you think you have time'. Jack Kornfield
+                Discover the Endless Possibilities of Technology with Our Range
+                of Cutting-Edge Devices and Solutions
               </p>
               <p class="lead text-muted">
-                <a href="https://bootstrapious.com/snippets" class="">
+                <Link to="/contact" class="">
                   <u>Contact Us</u>
-                </a>
+                </Link>
               </p>
             </div>
             <div class="col-lg-6 d-none d-lg-block">
@@ -39,14 +41,16 @@ function About() {
           <div class="row align-items-center mb-5">
             <div class="col-lg-6 order-2 order-lg-1">
               <i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
-              <h3 class="font-weight-light">Lorem ipsum </h3>
+              <h3 class="font-weight-light">Tech Enthusiasts</h3>
               <p class="font-italic text-muted mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                OVM is your one-stop shop for all things technology. We're a
+                team of tech enthusiasts who are passionate about bringing the
+                latest and greatest in technology to your fingertips. From smart
+                homes to cutting-edge gadgets, we've got you covered. Our
+                mission is to make the power of technology accessible to
+                everyone and we're dedicated to providing innovative solutions
+                for all your tech needs.
               </p>
-              <a href="#" class="button btn btn-light px-5 ">
-                Learn More
-              </a>
             </div>
             <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2">
               <img src={About2} alt="" class="img-fluid mb-4 mb-lg-0" />
@@ -58,14 +62,17 @@ function About() {
             </div>
             <div class="col-lg-6">
               <i class="fa fa-leaf fa-2x mb-3 text-primary"></i>
-              <h3 class="font-weight-light">Lorem ipsum</h3>
+              <h3 class="font-weight-light">Power Of Technology</h3>
               <p class="font-italic text-muted mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                At OVM, we believe in the power of technology to enhance our
+                lives and we're here to share that with you. Whether you're
+                looking for the latest smartphone, a connected home solution, or
+                just a fun new gadget, we've got what you need. Our team is
+                committed to staying ahead of the technology curve and providing
+                exceptional customer service. Join us on a journey of discovery
+                and innovation as we embrace the future with the latest and
+                greatest in technology.
               </p>
-              <button class="button btn btn-light px-5 rounded-pill shadow-sm">
-                Learn More
-              </button>
             </div>
           </div>
         </div>
@@ -74,10 +81,11 @@ function About() {
       <div class="bg-light py-5">
         <div class="container py-5">
           <div class="row mb-4">
-            <div class="col-lg-5">
+            <div class="">
               <h3 class="display-6 ">Our team</h3>
               <p class="font-italic text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Our team is made up of individuals from diverse backgrounds,
+                bringing unique perspectives to everything we do
               </p>
             </div>
           </div>

@@ -284,7 +284,7 @@ const AddProduct = () => {
         </div>
         <div className="col-md-2 mt-3 form-group required">
           <label for="inputZip" class="control-label">
-            Stoke
+            Stock
           </label>
           <input
             name="stoke"

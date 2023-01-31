@@ -17,20 +17,22 @@ function SafPayment() {
               <i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
 
               <p class="font-italic text-muted mb-4">
-                Where you open your business and the types of items you sell
-                could play an important role in deciding which payments systems
-                to offer customers. If you expect to make a large portion of
-                your sales online, accepting electronic payments will be a must.
-                Similarly, if your products or services are expensive, customers
-                might not feel comfortable carrying that much cash to your store
-                to make a purchase — checks, cards or mobile payment could be
-                better options. On the other hand, if you sell inexpensive items
-                from a physical store, your customers may prefer to pay with
-                cash. Customers may also expect you to accept cash if you open a
-                shop in an area where many people don’t have bank accounts or
-                where card processing networks, the companies that send and
-                verify information when someone makes a purchase with a card,
-                frequently go offline.
+                At OVM, we understand that security and privacy are major
+                concerns for our customers when it comes to making online
+                payments. That's why we take extra measures to ensure the safety
+                and security of all financial transactions on our site. We use
+                industry-standard SSL encryption technology to protect sensitive
+                information during transmission and employ advanced fraud
+                detection systems to prevent unauthorized access to payment
+                information.
+              </p>
+              <p class="font-italic text-muted mb-4">
+                Our payment methods are thoroughly vetted and comply with PCI
+                DSS standards to ensure the highest level of security. We also
+                never store complete credit card information on our servers.
+                Rest assured, your payment information is in safe hands with
+                OVM. If you have any questions or concerns about our payment
+                security, please feel free to contact us.
               </p>
               <a href="#" class="button btn btn-light px-5 ">
                 Learn More

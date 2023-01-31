@@ -232,7 +232,7 @@ function Products() {
 
                                     <div class="d-flex justify-content-between">
                                       <p class="rating text-muted">
-                                        Stoke: {`${product.product_stoke}`}
+                                        Stock: {`${product.product_stoke}`}
                                       </p>
                                       <div class="rating">
                                         {/* { */}

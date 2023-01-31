@@ -222,7 +222,7 @@ function Products() {
                     class=""
                   >
                     {/* <ExpandMoreIcon size="small" /> */}
-                    <h6 class="title">Top Reviewd Products</h6>
+                    <h6 class="title">Top Reviewed</h6>
                   </a>
                 </header>
                 <div
@@ -550,7 +550,7 @@ function Products() {
 
                                     <div class="d-flex justify-content-between">
                                       <p class="rating text-muted">
-                                        Stoke: {`${product.product_stoke}`}
+                                        Stock: {`${product.product_stoke}`}
                                       </p>
                                       <div class="rating">
                                         {/* { */}

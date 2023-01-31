@@ -22,23 +22,16 @@ function Privacy() {
         sx={{ padding: { xs: 2, md: 4 }, textAlign: "justify" }}
         style={{ whiteSpace: "pre-line" }}
       >
-        We build a range of services that help millions of people daily to
-        explore and interact with the world in new ways. Our services include:
-        Google apps, sites, and devices, like Search, YouTube, and Google Home
-        Platforms like the Chrome browser and Android operating system Products
-        that are integrated into third-party apps and sites, like ads,
-        analytics, and embedded Google Maps You can use our services in a
-        variety of ways to manage your privacy. For example, you can sign up for
-        a Google Account if you want to create and manage content like emails
-        and photos, or see more relevant search results. And you can use many
-        Google services when you’re signed out or without creating an account at
-        all, like searching on Google or watching YouTube videos. You can also
-        choose to browse the web in a private mode, like Chrome Incognito mode.
-        And across our services, you can adjust your privacy settings to control
-        what we collect and how your information is used. To help explain things
-        as clearly as possible, we’ve added examples, explanatory videos, and
-        definitions for key terms. And if you have any questions about this
-        Privacy Policy, you can contact us
+        At OVM, we are committed to protecting the privacy and security of our
+        customers' personal information. We collect only the information
+        necessary to provide our services, such as name, contact information,
+        and payment details. This information is used to process transactions,
+        fulfill orders, and improve our customer experience. We implement strict
+        security measures to protect this information and do not share it with
+        third parties except as required by law. We also give our customers the
+        option to opt-out of receiving communications from us. If you have any
+        questions or concerns about our privacy policy, please do not hesitate
+        to contact us.
       </Typography>
     </div>
   );

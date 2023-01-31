@@ -62,11 +62,16 @@ function Contact() {
             We are here to help you
           </h2>
           <p className="lead mb-5">
-            Are you curious about something? Do you have some kind of problem
-            with our products? As am hastily invited settled at limited civilly
-            fortune me. Really spring in extent an by. Judge but built gay party
-            world. Of so am he remember although required. Bachelor unpacked be
-            advanced at. Confined in declared marianne is vicinity.
+            We would love to hear from you! Whether you have a question about a
+            product, need help with an order, or just want to share your
+            thoughts, we're here to listen. You can reach us via email at{" "}
+            <a href="mailto:">onlinnvirtualmall09@gmail.com</a>, or by filling
+            out the contact form on our website. Our dedicated customer support
+            team will get back to you as soon as possible. If you prefer to
+            speak with someone over the phone, give us a call at{" "}
+            <strong>+92 307 001 9351</strong>. We're available 24 hours. At OVM
+            , your satisfaction is our top priority, and we're always here to
+            help. So don't hesitate to reach out to us, we're here for you.
           </p>
           <p className="text-sm mb-5">
             Please feel free to contact us, our customer service center is
@@ -111,7 +116,7 @@ function Contact() {
               <ul className="list-unstyled text-sm mb-0">
                 <li>
                   <strong>
-                    <a href="mailto:">onlinnvirtualmall09.com</a>
+                    <a href="mailto:">onlinnvirtualmall09@gmail.com</a>
                   </strong>
                 </li>
               </ul>

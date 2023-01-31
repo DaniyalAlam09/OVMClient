@@ -35,9 +35,8 @@ function WorkDetails() {
                     <p>
                       {" "}
                       <small class="text-muted">
-                        {" "}
-                        I expected anything less than perfect for the team of
-                        experts. They are the best team ever!{" "}
+                        No matter where you're located, we offer shipping to all
+                        corners of Pakistan
                       </small>{" "}
                     </p>
                     <Link to="/shipping" class="link-secondary learn-more ">
@@ -68,8 +67,8 @@ function WorkDetails() {
                       {" "}
                       <small class="text-muted">
                         {" "}
-                        I expected anything less than perfect for the team of
-                        experts. They are the best team ever!{" "}
+                        We use industry-standard SSL encryption and to ensure
+                        the safety of all transactions
                       </small>{" "}
                     </p>
                     <Link to="/safepayment" class="link-secondary learn-more">
@@ -100,8 +99,8 @@ function WorkDetails() {
                       {" "}
                       <small class="text-muted">
                         {" "}
-                        I expected anything less than perfect for the team of
-                        experts. They are the best team ever!{" "}
+                        Experience convenience Shopping from the comfort of your
+                        home with our virtual tour.
                       </small>{" "}
                     </p>
                     <Link to="/tour" class="link-secondary learn-more">

@@ -49,8 +49,8 @@ function HeroSection({ Name1, Name2, ImageSource }) {
             Welcome to <strong style={{ color: "#0ea2bd" }}>OVM</strong>
           </h2>
           <p>
-            It has become appallingly obvious that our technology has exceeded
-            our humanity.
+            Discover the Possibilities with Our Range of Tech Products And
+            Experience the Power of Technology with Us
           </p>
           <div class="d-flex justify-content-center">
             {!user?.firstName && !shopowner?.firstName && (

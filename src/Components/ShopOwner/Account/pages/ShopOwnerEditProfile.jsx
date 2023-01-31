@@ -314,7 +314,7 @@ const ShopOwnerEditProfile = () => {
         </div>
         <div className="col-md-2 mt-3">
           <label for="inputZip" className="form-label">
-            Stoke
+            Stock
           </label>
           <input
             name="stoke"

@@ -41,8 +41,8 @@ function Footer() {
           <div className="col-xl-3 col-sm-12 mb-3">
             <h5>Accessoriespace</h5>
             <p className="footer-info">
-              This is the usefull template from Sebo. You can buy this on our
-              website, UI8 and also our Creativemarket.
+              Empower Your Daily Life with Our Smart Devices and Latest Tech
+              Solutions
             </p>
             <a target="blank" href="https://www.facebook.com/">
               <UilFacebook className="icons" />
