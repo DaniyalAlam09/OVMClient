@@ -11,7 +11,20 @@ function Team() {
         <div class="header">
           <div class="title-text">Our Expert Team</div>
           <p>
-            <small class="text-muted">Lorem Ipsum dolor samet</small>
+            <small class="text-muted">
+              At OVM, we have assembled a team of experts who are dedicated to
+              providing our customers with the best possible shopping
+              experience. Our team consists of seasoned professionals with a
+              passion for technology and customer service. With their in-depth
+              knowledge and experience, they are able to offer personalized
+              advice and support to help you find the products that best meet
+              your needs. Whether you need assistance with selecting the right
+              product, navigating our virtual tour, or making a secure payment,
+              our expert team is here to help. They are dedicated to delivering
+              excellent customer service and ensuring that you have a positive
+              experience with OVM. With their expertise, you can be confident
+              that you are in good hands when you shop with us.
+            </small>
           </p>
         </div>
         <div class="row d-flex justify-content-around pb-5">

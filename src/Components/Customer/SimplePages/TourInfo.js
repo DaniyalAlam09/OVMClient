@@ -13,7 +13,7 @@ function TourInfo() {
               <i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
               <h3 class="font-weight-light">Virtual Shopping</h3>
               <p class="font-italic text-muted mb-4">
-                At Tech Mart, we understand that shopping in-person may not be
+                At OVM, we understand that shopping in-person may not be
                 possible or convenient for everyone. That's why we are proud to
                 offer virtual tours of our mall, allowing you to browse our
                 products and services from the comfort of your own home. Our

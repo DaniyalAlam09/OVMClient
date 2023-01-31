@@ -65,7 +65,7 @@ function Contact() {
             We would love to hear from you! Whether you have a question about a
             product, need help with an order, or just want to share your
             thoughts, we're here to listen. You can reach us via email at{" "}
-            <a href="mailto:">onlinnvirtualmall09@gmail.com</a>, or by filling
+            <a href="mailto:">onlinevirtualmall09@gmail.com</a>, or by filling
             out the contact form on our website. Our dedicated customer support
             team will get back to you as soon as possible. If you prefer to
             speak with someone over the phone, give us a call at{" "}
@@ -86,7 +86,7 @@ function Contact() {
               <p className="text-gray-600 text-sm">
                 Hafeez Centre
                 <br />
-                Block E1 Block E 1
+                Block E1
                 <br />
                 Gulberg III, <strong>Lahore, Punjab</strong>
               </p>
@@ -97,8 +97,7 @@ function Contact() {
               </div>
               <h4 className="text-uppercase mb-3">Call center</h4>
               <p className="text-gray-600 text-sm">
-                This number is toll free if calling from Great Britain otherwise
-                we advise you to use the electronic form of communication.
+                Our Satff is available to assist with any questions or concerns
               </p>
               <p className="text-gray-600 text-sm">
                 <strong>+92 307 001 9351</strong>
@@ -116,7 +115,7 @@ function Contact() {
               <ul className="list-unstyled text-sm mb-0">
                 <li>
                   <strong>
-                    <a href="mailto:">onlinnvirtualmall09@gmail.com</a>
+                    <a href="mailto:">onlinevirtualmall09@gmail.com</a>
                   </strong>
                 </li>
               </ul>
