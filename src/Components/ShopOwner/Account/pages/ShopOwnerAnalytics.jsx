@@ -6,10 +6,12 @@ import "./style.css";
 
 const ShopOwnerAnalytics = () => {
   const [order, setOrder] = React.useState([]);
+  const [pendingOrder, setPendingOrder] = React.useState("");
   const [products, setProducts] = useState([]);
   React.useEffect(function () {
     fetchOrders();
     fetchProducts();
+    pending();
   }, []);
   const fetchOrders = () => {
     const config = {
@@ -44,6 +46,13 @@ const ShopOwnerAnalytics = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+  const pending = () => {
+    order.map((p) => {
+      let a = p?.status === "pending";
+      // let b = a?.length;
+      console.log(a);
+    });
   };
   return (
     <>

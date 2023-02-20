@@ -149,7 +149,7 @@ function CartPage() {
       console.log("!stripe || !elements");
       return;
     }
-    await axios
+    axios
       .post(
         `http://localhost:4000/order/payment/create`,
         { amaount: bill },

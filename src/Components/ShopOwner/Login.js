@@ -95,7 +95,7 @@ export default function ShopOwnerLogin() {
     // });
   };
   return (
-    <div className="content heading">
+    <div className="content heading mb-4">
       <div className="container">
         <div className="row">
           <div className="col-md-6 text-center">
@@ -201,7 +201,7 @@ export default function ShopOwnerLogin() {
                   </button>
                 </Link>
 
-                <span className="d-block text-right mt-2 text-muted">
+                {/* <span className="d-block text-right mt-2 text-muted">
                   or sign in with
                 </span>
 
@@ -215,7 +215,7 @@ export default function ShopOwnerLogin() {
                   <a href="#" className="google small-link ">
                     <UilGoogle className=" ml-3" />
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import About1 from "./Images/About1.svg";
-import About2 from "./Images/About2.svg";
+import About2 from "./Images/About1.svg";
+import About1 from "./Images/About2.svg";
 import About3 from "./Images/About3.svg";
 import {
   UilFacebook,
@@ -93,29 +93,35 @@ function About() {
           <div class="row text-center justify-content-around">
             <div class="col-xl-3 col-sm-6 mb-5">
               <div class="bg-white rounded shadow-sm py-5 px-4">
-                <img
-                  src=""
-                  alt=""
-                  width="100"
-                  class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
-                />
                 <h5 class="mb-0">Daniyal Alam</h5>
                 <span class="small text-uppercase text-muted">
                   Web Developer
                 </span>
                 <ul class="social mb-0 list-inline mt-4">
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilFacebook className="icons" />
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilInstagram className="icons" />
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilTwitter className="icons" />
                     </a>
                   </li>
@@ -125,27 +131,33 @@ function About() {
 
             <div class="col-xl-3 col-sm-6 mb-5">
               <div class="bg-white rounded shadow-sm py-5 px-4">
-                <img
-                  src=""
-                  alt=""
-                  width="100"
-                  class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
-                />
                 <h5 class="mb-0">Rooma Saher</h5>
                 <span class="small text-uppercase text-muted">CEO</span>
                 <ul class="social mb-0 list-inline mt-4">
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilFacebook className="icons" />
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilInstagram className="icons" />
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilTwitter className="icons" />
                     </a>
                   </li>
@@ -155,29 +167,35 @@ function About() {
 
             <div class="col-xl-3 col-sm-6 mb-5">
               <div class="bg-white rounded shadow-sm py-5 px-4">
-                <img
-                  src=""
-                  alt=""
-                  width="100"
-                  class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
-                />
                 <h5 class="mb-0">Habib Ahmed Khan</h5>
                 <span class="small text-uppercase text-muted">
                   Tour Arrange
                 </span>
                 <ul class="social mb-0 list-inline mt-4">
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilFacebook className="icons" />
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilInstagram className="icons" />
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="social-link">
+                    <a
+                      target="_blank"
+                      href="HTTPS://WWW.FACEBOOK.COM/"
+                      class="social-link"
+                    >
                       <UilTwitter className="icons" />
                     </a>
                   </li>

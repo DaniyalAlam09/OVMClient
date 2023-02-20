@@ -30,8 +30,8 @@ const ManageOrders = () => {
       .get("http://localhost:4000/shopowners/getshoporder", config)
       .then((res) => {
         setOrder(res.data);
-        console.log(res.data);
-        setUserId(res.data.userId);
+        console.log(res);
+        // setUserId(res.data.userId);
         userDetails();
       })
       .catch((err) => {
@@ -39,15 +39,17 @@ const ManageOrders = () => {
       });
   }, []);
   const userDetails = () => {
-    axios
-      .get(`http://localhost:4000/users/${userId}`)
-      .then((res) => {
-        setUser(res.data);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    order.map((use) => {
+      axios
+        .get(`http://localhost:4000/users/${use.userId}`)
+        .then((res) => {
+          setUser(res.data);
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    });
   };
   const updateOrder = (id) => {
     const formData = new FormData();
@@ -92,7 +94,8 @@ const ManageOrders = () => {
               <th>Bill</th>
               {/* <th>Order Status</th> */}
 
-              {/* <th>User</th> */}
+              <th>User Name</th>
+              <th>Address</th>
               <th>Status</th>
               {/* <th>Tracking ID</th> */}
               <th>Submit</th>
@@ -122,9 +125,10 @@ const ManageOrders = () => {
                   </td>
                   {/* <td>{order.status}</td> */}
                   <td>{ord.bill}</td>
-                  {/* <td>
+                  <td>
                     {user.firstName} {user.lastName}
-                  </td> */}
+                  </td>
+                  <td>{user.address}</td>
                   <td>
                     <select
                       onChange={handleChange}
