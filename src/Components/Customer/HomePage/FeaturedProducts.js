@@ -35,7 +35,7 @@ function FeaturedProducts() {
 
   React.useEffect(function () {
     axios
-      .get("http://localhost:4000/shopowners/viewProducts")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/viewProducts")
       .then((res) => {
         setProduct(res.data);
         setLoading(false);
@@ -108,7 +108,7 @@ function FeaturedProducts() {
                         >
                           <div className="text -center">
                             <img
-                              src={`http://localhost:4000/${product.product_image}`}
+                              src={`https://red-gorgeous-bandicoot.cyclic.app/${product.product_image}`}
                               style={{
                                 height: "200px",
                                 width: "200px",

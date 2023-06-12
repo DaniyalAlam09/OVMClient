@@ -16,7 +16,7 @@ const Dashboard = () => {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/users/user", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/users/user", config)
       .then((res) => {
         setUser(res.data.user);
       })

@@ -36,7 +36,7 @@ export default class SignUp extends Component {
       showPassword,
     } = this.state;
     console.log(firstName, lastName, email, password, address, phoneNo);
-    fetch("http://localhost:4000/users/registration", {
+    fetch("https://red-gorgeous-bandicoot.cyclic.app/users/registration", {
       method: "POST",
       crossDomain: true,
       headers: {

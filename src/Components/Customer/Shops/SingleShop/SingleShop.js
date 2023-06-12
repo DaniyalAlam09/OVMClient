@@ -92,7 +92,7 @@ function SingleShop() {
         withCredentials: true,
       };
       axios
-        .get("http://localhost:4000/shopowners/" + shopId)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/" + shopId)
         .then((res) => {
           setShop(res.data);
         })
@@ -100,7 +100,7 @@ function SingleShop() {
           console.log(err);
         });
       axios
-        .get("http://localhost:4000/shopowners/shopproducts/" + shopId)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopproducts/" + shopId)
         .then((actualData) => {
           setUser(actualData.data.products);
           setLoading(false);
@@ -254,7 +254,7 @@ function SingleShop() {
                     <div className="text -center">
                       <div></div>
                       <img
-                        src={`http://localhost:4000/${product.product_image}`}
+                        src={`https://red-gorgeous-bandicoot.cyclic.app/${product.product_image}`}
                         style={{
                           height: "200px",
                           width: "200px",

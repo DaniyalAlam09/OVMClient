@@ -47,7 +47,7 @@ const ShopOwnerProductList = () => {
       withCredentials: true,
     };
     axios
-      .get(`http://localhost:4000/shopowners/deleteproduct/${id}`, config)
+      .get(`https://red-gorgeous-bandicoot.cyclic.app/shopowners/deleteproduct/${id}`, config)
       .then((user) => {
         setOpen(false);
         fetchProducts();
@@ -66,7 +66,7 @@ const ShopOwnerProductList = () => {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/shopowners/myproducts", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/myproducts", config)
       .then((response) => {
         setUser(response.data.products);
       })
@@ -116,7 +116,7 @@ const ShopOwnerProductList = () => {
                   <td>
                     {
                       <img
-                        src={`http://localhost:4000/${item.product_image}`}
+                        src={`https://red-gorgeous-bandicoot.cyclic.app/${item.product_image}`}
                         style={{ height: "3em", marginTop: "-5px" }}
                       />
                     }

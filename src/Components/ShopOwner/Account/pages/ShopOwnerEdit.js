@@ -56,7 +56,7 @@ function ShopOwnerEdit() {
       withCredentials: true,
     };
     axios
-      .get(`http://localhost:4000/shopowners/shopowner/${user._id}`, config)
+      .get(`https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopowner/${user._id}`, config)
       .then((res) => {
         setUser(res.data);
         setState(res.data);
@@ -94,7 +94,7 @@ function ShopOwnerEdit() {
 
     axios
       .put(
-        `http://localhost:4000/shopowners/updateprofile/${user._id}`,
+        `https://red-gorgeous-bandicoot.cyclic.app/shopowners/updateprofile/${user._id}`,
         formData,
         config
       )
@@ -121,7 +121,7 @@ function ShopOwnerEdit() {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/shopowners/shopowner", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopowner", config)
       .then((res) => {
         // setState(res.data.user);
         setState((pre) => ({ ...pre, firstName: res.data.user.firstName }));

@@ -55,7 +55,7 @@ export default class ShopOwnerSignUp extends Component {
       delivery
     );
 
-    fetch("http://localhost:4000/shopowners/registration", {
+    fetch("https://red-gorgeous-bandicoot.cyclic.app/shopowners/registration", {
       method: "POST",
       crossDomain: true,
       headers: {

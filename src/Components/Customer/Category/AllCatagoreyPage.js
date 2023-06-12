@@ -12,7 +12,7 @@ function AllCatagoreyPage() {
   const [loading, setLoading] = React.useState(true);
   const getCategory = () => {
     axios
-      .get("http://localhost:4000/category")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/category")
       .then((res) => {
         setCatagories(res.data.categories);
         setLoading(false);
@@ -89,17 +89,17 @@ function AllCatagoreyPage() {
                           <div class="inner" style={{ height: "2px" }}>
                             <div class="main-img">
                               <img
-                                src={`http://localhost:4000/${categorey.imageUrl}`}
+                                src={`https://red-gorgeous-bandicoot.cyclic.app/${categorey.imageUrl}`}
                                 alt="Category"
                               />
                             </div>
                             <div class="thumblist">
                               <img
-                                src={`http://localhost:4000/${categorey.imageUrl}`}
+                                src={`https://red-gorgeous-bandicoot.cyclic.app/${categorey.imageUrl}`}
                                 alt="Category"
                               />
                               <img
-                                src={`http://localhost:4000/${categorey.imageUrl}`}
+                                src={`https://red-gorgeous-bandicoot.cyclic.app/${categorey.imageUrl}`}
                                 alt="Category"
                               />
                             </div>

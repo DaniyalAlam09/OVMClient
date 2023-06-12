@@ -20,7 +20,7 @@ function Topbrands() {
   const [loading, setLoading] = React.useState(true);
   const getBrand = () => {
     axios
-      .get("http://localhost:4000/brand")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/brand")
       .then((res) => {
         setBrands(res.data.brand);
         setLoading(false);
@@ -94,7 +94,7 @@ function Topbrands() {
                     >
                       <div class="swiper-slide justify-content-between  align-items-center ">
                         <img
-                          src={`http://localhost:4000/${brand.imageUrl}`}
+                          src={`https://red-gorgeous-bandicoot.cyclic.app/${brand.imageUrl}`}
                           style={{
                             height: "100px",
                             width: "100px",

@@ -43,7 +43,7 @@ export default function ShopOwnerLogin() {
 
     axios
       .post(
-        `http://localhost:4000/shopowners/login`,
+        `https://red-gorgeous-bandicoot.cyclic.app/shopowners/login`,
         { email: state.email, password: state.password },
         config
       )

@@ -89,7 +89,7 @@ const Navbar = () => {
     };
     setUser([]);
     axios
-      .get("http://localhost:4000/users/logout", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/users/logout", config)
       .then((response) => {
         navigate("../../account");
         navigate(0);
@@ -100,7 +100,7 @@ const Navbar = () => {
   };
   const getCategory = () => {
     axios
-      .get("http://localhost:4000/category")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/category")
       .then((res) => {
         setCatagories(res.data.categories);
       })
@@ -117,7 +117,7 @@ const Navbar = () => {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/users/user", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/users/user", config)
       .then((res) => {
         setUser(res.data.user);
       })
@@ -126,7 +126,7 @@ const Navbar = () => {
         setUser([]);
       });
     axios
-      .get("http://localhost:4000/shopowners/shopowner", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopowner", config)
       .then((res) => {
         setShopowner(res.data.user);
       })
@@ -135,7 +135,7 @@ const Navbar = () => {
         setShopowner([]);
       });
     axios
-      .get("http://localhost:4000/product/cart", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/product/cart", config)
       .then((res) => {
         setProducts(res.data.items);
 

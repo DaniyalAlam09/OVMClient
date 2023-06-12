@@ -22,7 +22,7 @@ const ShopOwnerAnalytics = () => {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/shopowners/getshoporder", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/getshoporder", config)
       .then((res) => {
         setOrder(res.data);
       })
@@ -39,7 +39,7 @@ const ShopOwnerAnalytics = () => {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/shopowners/myproducts", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/myproducts", config)
       .then((response) => {
         setProducts(response.data.products);
       })

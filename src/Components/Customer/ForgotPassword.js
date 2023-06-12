@@ -16,7 +16,7 @@ export default class ForgotPassword extends Component {
     e.preventDefault();
     const { email } = this.state;
     console.log(email);
-    fetch("http://localhost:4000/users/forgot-password", {
+    fetch("https://red-gorgeous-bandicoot.cyclic.app/users/forgot-password", {
       method: "POST",
       crossDomain: true,
       headers: {

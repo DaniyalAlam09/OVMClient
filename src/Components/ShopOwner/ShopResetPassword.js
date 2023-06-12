@@ -16,7 +16,7 @@ export default class ShopResetPassword extends Component {
     e.preventDefault();
     const { email } = this.state;
     console.log(email);
-    fetch("http://localhost:4000/shopowners/forgot-password", {
+    fetch("https://red-gorgeous-bandicoot.cyclic.app/shopowners/forgot-password", {
       method: "POST",
       crossDomain: true,
       headers: {

@@ -16,7 +16,7 @@ function Subscribe() {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:4000/users/subscription`, { email: state.email })
+      .post(`https://red-gorgeous-bandicoot.cyclic.app/users/subscription`, { email: state.email })
       .then((user) => {
         if (user) {
           console.log(user);

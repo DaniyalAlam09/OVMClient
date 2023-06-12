@@ -12,7 +12,7 @@ const EmailVerify = () => {
   useEffect(() => {
     const verifyEmailUrl = async () => {
       try {
-        const url = `http://localhost:4000/shopowners/${param.id}/verify/${param.tokenverify}`;
+        const url = `https://red-gorgeous-bandicoot.cyclic.app/shopowners/${param.id}/verify/${param.tokenverify}`;
         const { data } = await axios.get(url);
         console.log(data);
         setValidUrl(true);

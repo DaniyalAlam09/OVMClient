@@ -11,7 +11,7 @@ function FeaturedCatagories() {
   const [loading, setLoading] = React.useState(true);
   const getCategory = () => {
     axios
-      .get("http://localhost:4000/category")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/category")
       .then((res) => {
         setCatagories(res.data.categories);
         setLoading(false);
@@ -69,7 +69,7 @@ function FeaturedCatagories() {
                 <div class=" border rounded p-3 block">
                   <Link to={`/category/${categorey.name}`}>
                     <img
-                      src={`http://localhost:4000/${categorey.imageUrl}`}
+                      src={`https://red-gorgeous-bandicoot.cyclic.app/${categorey.imageUrl}`}
                       alt=""
                       class="product-image"
                     />

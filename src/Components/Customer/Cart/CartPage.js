@@ -77,7 +77,7 @@ function CartPage() {
         withCredentials: true,
       };
       axios
-        .get(`http://localhost:4000/users/user`, config)
+        .get(`https://red-gorgeous-bandicoot.cyclic.app/users/user`, config)
         .then((res) => {
           setUser(res.data?.user);
           setState((pre) => ({ ...pre, fname: res?.data?.user?.firstName }));
@@ -112,7 +112,7 @@ function CartPage() {
     };
 
     axios
-      .get("http://localhost:4000/product/cart", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/product/cart", config)
       .then((res) => {
         setProducts(res.data.items);
         setBill(res.data.bill);
@@ -151,7 +151,7 @@ function CartPage() {
     }
     axios
       .post(
-        `http://localhost:4000/order/payment/create`,
+        `https://red-gorgeous-bandicoot.cyclic.app/order/payment/create`,
         { amaount: bill },
         config
       )
@@ -245,7 +245,7 @@ function CartPage() {
     };
     // console.log(userID);
     axios
-      .delete(`http://localhost:4000/product/cart/${id}`, config)
+      .delete(`https://red-gorgeous-bandicoot.cyclic.app/product/cart/${id}`, config)
       .then((user) => {
         setDelete(true);
         // navigate(0);
@@ -266,7 +266,7 @@ function CartPage() {
     // console.log(userID);
     axios
       .post(
-        `http://localhost:4000/order`,
+        `https://red-gorgeous-bandicoot.cyclic.app/order`,
         {
           id,
         },
@@ -308,7 +308,7 @@ function CartPage() {
     };
     // console.log(userID);
     axios
-      .delete(`http://localhost:4000/product/cart/delete`, config)
+      .delete(`https://red-gorgeous-bandicoot.cyclic.app/product/cart/delete`, config)
       .then((user) => {})
       .catch((error) => {
         console.log(error.message);
@@ -436,7 +436,7 @@ function CartPage() {
                                   <div class="row">
                                     <div class="col-sm-2 hidden-xs">
                                       <img
-                                        src={`http://localhost:4000/${product.image}`}
+                                        src={`https://red-gorgeous-bandicoot.cyclic.app/${product.image}`}
                                         alt={product?.name}
                                         class="img-responsive"
                                       />

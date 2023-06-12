@@ -14,7 +14,7 @@ const Orders = () => {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/order/order", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/order/order", config)
       .then((res) => {
         setOrder(res.data);
       })
@@ -51,7 +51,7 @@ const Orders = () => {
                       style={{ color: "#0C8AA0" }}
                     >
                       <img
-                        src={`http://localhost:4000/${ord.productImg}`}
+                        src={`https://red-gorgeous-bandicoot.cyclic.app/${ord.productImg}`}
                         style={{ height: "3em", marginTop: "-5px" }}
                       />
                       {ord.productName}{" "}

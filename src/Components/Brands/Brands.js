@@ -109,7 +109,7 @@ function Catgories() {
   };
   const getCategory = () => {
     axios
-      .get("http://localhost:4000/brand")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/brand")
       .then((res) => {
         setBrands(res.data.categories);
         console.log(res.data.categories);
@@ -121,7 +121,7 @@ function Catgories() {
   React.useEffect(
     function () {
       axios
-        .get("http://localhost:4000/shops?brand=" + brandName)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/shops?brand=" + brandName)
         .then((res) => {
           window.scrollTo(0, 0);
           setProduct(res.data.products);
@@ -202,7 +202,7 @@ function Catgories() {
                             <div className="text -center">
                               <div></div>
                               <img
-                                src={`http://localhost:4000/${product.product_image}`}
+                                src={`https://red-gorgeous-bandicoot.cyclic.app/${product.product_image}`}
                                 style={{
                                   height: "200px",
                                   width: "200px",

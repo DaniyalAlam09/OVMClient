@@ -14,7 +14,7 @@ const ShopOwnerDashboard = () => {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/shopowners/shopowner", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopowner", config)
       .then((res) => {
         setUser(res.data.user);
       })

@@ -24,7 +24,7 @@ function Contact() {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:4000/users/contactus`, {
+      .post(`https://red-gorgeous-bandicoot.cyclic.app/users/contactus`, {
         email: state.email,
         firstName: state.firstName,
         message: state.message,

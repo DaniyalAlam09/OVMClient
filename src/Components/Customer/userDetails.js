@@ -8,7 +8,7 @@ export default class CustomerAccount extends Component {
     };
   }
   componentDidMount() {
-    fetch("http://localhost:4000/user/user", {
+    fetch("https://red-gorgeous-bandicoot.cyclic.app/user/user", {
       method: "POST",
       crossDomain: true,
       headers: {

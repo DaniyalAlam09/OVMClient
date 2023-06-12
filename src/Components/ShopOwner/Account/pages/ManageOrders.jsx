@@ -27,7 +27,7 @@ const ManageOrders = () => {
       withCredentials: true,
     };
     axios
-      .get("http://localhost:4000/shopowners/getshoporder", config)
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/getshoporder", config)
       .then((res) => {
         setOrder(res.data);
         console.log(res);
@@ -41,7 +41,7 @@ const ManageOrders = () => {
   const userDetails = () => {
     order.map((use) => {
       axios
-        .get(`http://localhost:4000/users/${use.userId}`)
+        .get(`https://red-gorgeous-bandicoot.cyclic.app/users/${use.userId}`)
         .then((res) => {
           setUser(res.data);
           console.log(res);
@@ -65,7 +65,7 @@ const ManageOrders = () => {
     };
 
     axios
-      .put("http://localhost:4000/shopowners/update/" + id, formData, config)
+      .put("https://red-gorgeous-bandicoot.cyclic.app/shopowners/update/" + id, formData, config)
 
       .then((res) => {
         if (res.status === 200) {
@@ -119,7 +119,7 @@ const ManageOrders = () => {
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:4000/${ord.productImg}`}
+                      src={`https://red-gorgeous-bandicoot.cyclic.app/${ord.productImg}`}
                       style={{ height: "5em", marginTop: "-5px" }}
                     />
                   </td>

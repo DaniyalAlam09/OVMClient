@@ -96,7 +96,7 @@ function Products() {
   };
   const getCategory = () => {
     axios
-      .get("http://localhost:4000/category")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/category")
       .then((res) => {
         setCatagories(res.data.categories);
       })
@@ -107,7 +107,7 @@ function Products() {
 
   const getBrands = () => {
     axios
-      .get("http://localhost:4000/brand")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/brand")
       .then((res) => {
         setBrands(res.data.brand);
       })
@@ -117,7 +117,7 @@ function Products() {
   };
   const bestReviewd = () => {
     axios
-      .post("http://localhost:4000/shops/sentiment")
+      .post("https://red-gorgeous-bandicoot.cyclic.app/shops/sentiment")
       .then((res) => {
         setProduct(res.data.pro);
       })
@@ -128,7 +128,7 @@ function Products() {
   const catagoryFilter = () => {
     axios
       .get(
-        `http://localhost:4000/shops?category=${searchCatagories}&brand=${searchBrand}`
+        `https://red-gorgeous-bandicoot.cyclic.app/shops?category=${searchCatagories}&brand=${searchBrand}`
       )
       .then((res) => {
         setProduct(res.data.products);
@@ -141,7 +141,7 @@ function Products() {
   const apply = () => {
     axios
       .get(
-        `http://localhost:4000/shops?category=${searchCatagories}&brand=${searchBrand}&price[gte]=${state.min}&price[lt]=${state.max}`
+        `https://red-gorgeous-bandicoot.cyclic.app/shops?category=${searchCatagories}&brand=${searchBrand}&price[gte]=${state.min}&price[lt]=${state.max}`
       )
       .then((res) => {
         setProduct(res.data.products);
@@ -153,7 +153,7 @@ function Products() {
   };
   const allProduct = () => {
     axios
-      .get("http://localhost:4000/shopowners/viewProducts")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/viewProducts")
       .then((res) => {
         setProduct(res.data);
         console.log(res.data);
@@ -167,7 +167,7 @@ function Products() {
   React.useEffect(
     function () {
       axios
-        .get("http://localhost:4000/shopowners/viewProducts")
+        .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/viewProducts")
         .then((res) => {
           setProduct(res.data);
           setReviews(res.data.reviews);
@@ -501,7 +501,7 @@ function Products() {
                                   <div className="text -center">
                                     <div></div>
                                     <img
-                                      src={`http://localhost:4000/${product.product_image}`}
+                                      src={`https://red-gorgeous-bandicoot.cyclic.app/${product.product_image}`}
                                       style={{
                                         height: "200px",
                                         width: "200px",

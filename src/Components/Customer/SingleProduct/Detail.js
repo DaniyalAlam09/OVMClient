@@ -37,7 +37,7 @@ function Detail() {
 
     axios
       .post(
-        `http://localhost:4000/product/cart`,
+        `https://red-gorgeous-bandicoot.cyclic.app/product/cart`,
         {
           productId: product._id,
           quantity: counter,
@@ -87,7 +87,7 @@ function Detail() {
         withCredentials: true,
       };
       axios
-        .get("http://localhost:4000/shops/" + productId)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/shops/" + productId)
         .then((res) => {
           setProduct(res.data);
           // window.scrollTo(0, 0);
@@ -96,7 +96,7 @@ function Detail() {
           console.log(err);
         });
       axios
-        .get("http://localhost:4000/shopowners/" + shopId)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/" + shopId)
         .then((res) => {
           setShop(res.data);
         })
@@ -104,7 +104,7 @@ function Detail() {
           console.log(err.response.data);
         });
       axios
-        .get("http://localhost:4000/shopowners/shopproducts/" + shopId)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopproducts/" + shopId)
         .then((actualData) => {
           setUser(actualData.data.products);
         })
@@ -112,7 +112,7 @@ function Detail() {
           console.log(err);
         });
       axios
-        .get("http://localhost:4000/order/order", config)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/order/order", config)
         .then((res) => {
           setOrder(res.data);
         })
@@ -149,7 +149,7 @@ function Detail() {
     };
 
     axios
-      .post(`http://localhost:4000/shops/review/${productId}`, formData, config)
+      .post(`https://red-gorgeous-bandicoot.cyclic.app/shops/review/${productId}`, formData, config)
       .then((response) => {
         if (response.data.message === "Review added") {
           navigate(0);
@@ -237,7 +237,7 @@ function Detail() {
                     <div className="tab-pane active" id="pic-1">
                       <img
                         className="block"
-                        src={`http://localhost:4000/${product.product_image}`}
+                        src={`https://red-gorgeous-bandicoot.cyclic.app/${product.product_image}`}
                         style={{ height: "20em" }}
                       />
                     </div>
@@ -479,7 +479,7 @@ function Detail() {
                     <div className="text -center">
                       <div></div>
                       <img
-                        src={`http://localhost:4000/${product.product_image}`}
+                        src={`https://red-gorgeous-bandicoot.cyclic.app/${product.product_image}`}
                         style={{
                           height: "200px",
                           width: "200px",

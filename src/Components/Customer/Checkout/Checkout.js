@@ -44,7 +44,7 @@ export default function Checkout() {
         withCredentials: true,
       };
       axios
-        .get("http://localhost:4000/product/cart", config)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/product/cart", config)
         .then((res) => {
           setProducts(res.data.items);
           console.log(res.data.items);
@@ -59,7 +59,7 @@ export default function Checkout() {
           setError(true);
         });
       // axios
-      //   .post(`http://localhost:4000/order/payment/create`, { bill }, config)
+      //   .post(`https://red-gorgeous-bandicoot.cyclic.app/order/payment/create`, { bill }, config)
       //   .then((user) => {
       //     setClientSecret(user.data.clientSecret);
       //     console.log(user.data.clientSecret);

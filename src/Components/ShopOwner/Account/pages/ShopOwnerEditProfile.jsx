@@ -50,7 +50,7 @@ const ShopOwnerEditProfile = () => {
 
   const getCategory = () => {
     axios
-      .get("http://localhost:4000/category")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/category")
       .then((res) => {
         setCatagories(res.data.categories);
         console.log(res.data.categories);
@@ -87,7 +87,7 @@ const ShopOwnerEditProfile = () => {
 
     axios
       .put(
-        `http://localhost:4000/shops/updateProduct/` + itemId,
+        `https://red-gorgeous-bandicoot.cyclic.app/shops/updateProduct/` + itemId,
         formData,
         config
       )
@@ -134,7 +134,7 @@ const ShopOwnerEditProfile = () => {
   };
   const getBrands = () => {
     axios
-      .get("http://localhost:4000/brand")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/brand")
       .then((res) => {
         setBrands(res.data.brand);
         console.log(res.data.brand);
@@ -146,7 +146,7 @@ const ShopOwnerEditProfile = () => {
   React.useEffect(
     function () {
       axios
-        .get("http://localhost:4000/shops/" + itemId)
+        .get("https://red-gorgeous-bandicoot.cyclic.app/shops/" + itemId)
         .then((res) => {
           console.log(res.data);
           setState(res.data);

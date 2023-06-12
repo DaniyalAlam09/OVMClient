@@ -90,7 +90,7 @@ function Products() {
   };
   const allProduct = () => {
     axios
-      .post("http://localhost:4000/shops/sentiment")
+      .post("https://red-gorgeous-bandicoot.cyclic.app/shops/sentiment")
       .then((res) => {
         setProduct(res.data.pro);
         setLoading(false);
@@ -184,7 +184,7 @@ function Products() {
                                   <div className="text -center">
                                     <div></div>
                                     <img
-                                      src={`http://localhost:4000/${product.product_image}`}
+                                      src={`https://red-gorgeous-bandicoot.cyclic.app/${product.product_image}`}
                                       style={{
                                         height: "200px",
                                         width: "200px",

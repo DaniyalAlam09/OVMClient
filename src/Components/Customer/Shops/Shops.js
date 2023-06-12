@@ -88,7 +88,7 @@ function Shops() {
     fetchShops();
   }, []);
   const fetchShops = () => {
-    fetch("http://localhost:4000/admins/viewshopowners")
+    fetch("https://red-gorgeous-bandicoot.cyclic.app/admins/viewshopowners")
       .then((response) => response.json())
       .then((actualData) => {
         // window.scrollTo(0, 0);
@@ -298,7 +298,7 @@ function Shops() {
                         height: "10rem",
                         objectFit: "contain",
                       }}
-                      src={`http://localhost:4000${elem.shopImage}`}
+                      src={`https://red-gorgeous-bandicoot.cyclic.app${elem.shopImage}`}
                     />
                     {elem?.verified === true && (
                       <Tooltip

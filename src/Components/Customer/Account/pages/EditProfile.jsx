@@ -45,7 +45,7 @@ const EditProfile = () => {
       withCredentials: true,
     };
     axios
-      .get(`http://localhost:4000/users/user`, config)
+      .get(`https://red-gorgeous-bandicoot.cyclic.app/users/user`, config)
       .then((res) => {
         setUser(res.data.user);
         setState((pre) => ({ ...pre, fname: res.data.user.firstName }));
@@ -78,7 +78,7 @@ const EditProfile = () => {
 
     axios
       .put(
-        `http://localhost:4000/users/updateprofile/${user._id}`,
+        `https://red-gorgeous-bandicoot.cyclic.app/users/updateprofile/${user._id}`,
         formData,
         config
       )

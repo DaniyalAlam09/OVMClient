@@ -45,7 +45,7 @@ const AddProduct = () => {
   };
   const getCategory = () => {
     axios
-      .get("http://localhost:4000/category")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/category")
       .then((res) => {
         setCatagories(res.data.categories);
       })
@@ -55,7 +55,7 @@ const AddProduct = () => {
   };
   const getBrands = () => {
     axios
-      .get("http://localhost:4000/brand")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/brand")
       .then((res) => {
         setBrands(res.data.brand);
       })
@@ -84,7 +84,7 @@ const AddProduct = () => {
     };
     setSending(false);
     axios
-      .post(`http://localhost:4000/shops/add-product`, getFormData(), config)
+      .post(`https://red-gorgeous-bandicoot.cyclic.app/shops/add-product`, getFormData(), config)
       .then((response) => {
         // navigate("../product-list");
         toast.success("Product Sucessfully Added", {

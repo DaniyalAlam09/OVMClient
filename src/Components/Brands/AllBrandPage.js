@@ -69,7 +69,7 @@ function AllBrandPage() {
   const initialPosts = slice(brands, 0, index);
   const getBrand = () => {
     axios
-      .get("http://localhost:4000/brand")
+      .get("https://red-gorgeous-bandicoot.cyclic.app/brand")
       .then((res) => {
         setBrands(res.data.brand);
         setLoading(false);
@@ -245,7 +245,7 @@ function AllBrandPage() {
                             <div class="inner" style={{ height: "1px" }}>
                               <div class="main-img ">
                                 <img
-                                  src={`http://localhost:4000/${brand.imageUrl}`}
+                                  src={`https://red-gorgeous-bandicoot.cyclic.app/${brand.imageUrl}`}
                                   style={{
                                     height: "70px",
                                     width: "70px",
