@@ -116,24 +116,10 @@ const Navbar = () => {
       },
       withCredentials: true,
     };
-    axios
-      .get("https://red-gorgeous-bandicoot.cyclic.app/users/user", config)
-      .then((res) => {
-        setUser(res.data.user);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        setUser([]);
-      });
-    axios
-      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopowner", config)
-      .then((res) => {
-        setShopowner(res.data.user);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        setShopowner([]);
-      });
+    const shopowner = JSON.parse(localStorage.getItem('shopowner'));
+    setShopowner({ ...shopowner })
+    const user = JSON.parse(localStorage.getItem('user'));
+    setUser({ ...user })
     axios
       .get("https://red-gorgeous-bandicoot.cyclic.app/product/cart", config)
       .then((res) => {
@@ -275,7 +261,7 @@ const Navbar = () => {
                 <UilShoppingBag className="icons mt-2" />
               </Link>
             </div>
-            {user?.firstName && (
+            {user?.token && (
               <div class="nav-item dropdown nav-user">
                 <a
                   class="nav-link nav-user-img"
@@ -330,12 +316,12 @@ const Navbar = () => {
                 </div>
               </div>
             )}
-            {!user?.firstName && !shopowner?.firstName && (
+            {!user?.token && !shopowner?.token && (
               <Link to="/account" type="submit">
                 <button class="btn btn-primary signin ml-2">Sign IN</button>
               </Link>
             )}
-            {shopowner?.firstName && (
+            {shopowner?.token && (
               <div class="nav-item dropdown nav-user">
                 <a
                   class="nav-link nav-user-img"

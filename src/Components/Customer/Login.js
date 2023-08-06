@@ -67,20 +67,20 @@ export default function Login() {
         if (user) {
           console.log(user);
           toast("Successfull Logged in");
-          window.location.href = "user/customer-dashboard";
+          // window.location.href = "user/customer-dashboard";
         }
       })
       .catch((error) => {
-        console.log(error.response.data.message);
-        toast.error(error.response.data.message, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        console.log("error.response", error.response);
+        // toast.error(error.response.data.message, {
+        //   position: "top-right",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        // });
       });
   };
 

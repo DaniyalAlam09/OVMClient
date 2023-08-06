@@ -43,16 +43,35 @@ export default function ShopOwnerLogin() {
 
     axios
       .post(
-        `https://red-gorgeous-bandicoot.cyclic.app/shopowners/login`,
+        `http://localhost:4000/shopowners/login`,
         { email: state.email, password: state.password },
         config
       )
-      .then((response) => {
-        window.location.href = "shopowner/shoponwer-dashboard";
-      })
-      .catch((error) => {
-        console.log(error.response.data.message);
-        toast.error(error.response.data.message, {
+      // .then((response) => {
+      //   // window.location.href = "shopowner/shoponwer-dashboard";
+      // })
+      // .catch((error) => {
+      //   console.log(error.response.data.message);
+      //   toast.error(error.response.data.message, {
+      //     position: "top-right",
+      //     autoClose: 5000,
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //   });
+      // });
+    .then((user) => {
+      console.log(user);
+      if (user.data.message == "success") {
+        toast("Successfull Logged in");
+        localStorage.setItem('shopowner', JSON.stringify({token:user.data.token}));
+        // navigate("../shopowner/shoponwer-dashboard", { replace: true });
+        // console.log("token", user.data);
+        // window.location.href = "shopowner/shoponwer-dashboard";
+      } else if (user.message == "Incorrect Password") {
+        toast.error("Invalid Password", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -61,38 +80,19 @@ export default function ShopOwnerLogin() {
           draggable: true,
           progress: undefined,
         });
-      });
-    // .then((user) => {
-    //   console.log(user);
-    //   if (user.message == "success") {
-    //     toast("Successfull Logged in");
-    //     // window.localStorage.setItem(user.data);
-    //     // navigate("../shopowner/shoponwer-dashboard", { replace: true });
-    //     // console.log("token", user.data);
-    //     window.location.href = "shopowner/shoponwer-dashboard";
-    //   } else if (user.message == "Incorrect Password") {
-    //     toast.error("Invalid Password", {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //     });
-    //   } else {
-    //     // console.log("ok");
-    //     toast.error("User Doesnt exist", {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //     });
-    //   }
-    // });
+      } else {
+        // console.log("ok");
+        toast.error("User Doesnt exist", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    });
   };
   return (
     <div className="content heading mb-4">
