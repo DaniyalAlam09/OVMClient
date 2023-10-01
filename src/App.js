@@ -68,6 +68,7 @@ function App() {
 
   React.useEffect(function () {
     const shopowner = JSON.parse(localStorage.getItem('shopowner'));
+    console.log("shopowner", shopowner)
     setShopowner({...shopowner})
   }, []);
 

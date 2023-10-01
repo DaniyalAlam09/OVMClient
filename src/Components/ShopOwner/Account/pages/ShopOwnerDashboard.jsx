@@ -6,16 +6,17 @@ const ShopOwnerDashboard = () => {
   const [user, setUser] = React.useState({});
   const navigate = useNavigate();
   React.useEffect(function () {
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    };
+    const shopowner = JSON.parse(localStorage.getItem('shopowner'));
+    // const config = {
+    //   headers: {
+    //     token: shopowner.token 
+    //   },
+    //   withCredentials: true,
+    // };
     axios
-      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopowner", config)
+      .get(`https://red-gorgeous-bandicoot.cyclic.app/shopowners/${shopowner.shopowner.id}`)
       .then((res) => {
+        console.log("object");
         setUser(res.data.user);
       })
       .catch((err) => {

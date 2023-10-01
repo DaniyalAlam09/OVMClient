@@ -74,7 +74,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { isEmpty, totalItems } = useCart();
   const [user, setUser] = React.useState([]);
-  const [shopowner, setShopowner] = React.useState([]);
+  const [shopowner, setShopowner] = React.useState({});
   const [search, setSearch] = useState("");
   const [catagories, setCatagories] = React.useState([]);
   const [products, setProducts] = React.useState([]);
@@ -342,7 +342,7 @@ const Navbar = () => {
                 >
                   <div class="nav-user-info">
                     <h5 class="mb-0 text-white nav-user-name">
-                      Hi, {shopowner.firstName}
+                      Hi, {shopowner.shopowner.firstName}
                     </h5>
                   </div>
                   <Link to="shopowner/shoponwer-dashboard" type="submit">

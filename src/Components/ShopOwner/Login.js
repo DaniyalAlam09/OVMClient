@@ -66,7 +66,7 @@ export default function ShopOwnerLogin() {
       console.log(user);
       if (user.data.message == "success") {
         toast("Successfull Logged in");
-        localStorage.setItem('shopowner', JSON.stringify({token:user.data.token}));
+        localStorage.setItem('shopowner', JSON.stringify(user.data));
         // navigate("../shopowner/shoponwer-dashboard", { replace: true });
         // console.log("token", user.data);
         // window.location.href = "shopowner/shoponwer-dashboard";
