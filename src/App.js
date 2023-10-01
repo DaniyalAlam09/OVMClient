@@ -60,35 +60,16 @@ const promise = loadStripe(
 );
 
 function App() {
-  const [user, setUser] = React.useState([]);
-  const [shopowner, setShopowner] = React.useState([]);
+  const [user, setUser] = React.useState({});
+  const [shopowner, setShopowner] = React.useState({});
+
+
+  console.log("dannyalalam08@gmail.com", shopowner)
 
   React.useEffect(function () {
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    };
-    axios
-      .get("https://red-gorgeous-bandicoot.cyclic.app/users/user", config)
-      .then((res) => {
-        setUser(res.data.user);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        setUser([]);
-      });
-    axios
-      .get("https://red-gorgeous-bandicoot.cyclic.app/shopowners/shopowner", config)
-      .then((res) => {
-        setShopowner(res.data.user);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        setShopowner([]);
-      });
+    const shopowner = JSON.parse(localStorage.getItem('shopowner'));
+    console.log("shopowner", shopowner)
+    setShopowner({...shopowner})
   }, []);
 
   return (
@@ -107,10 +88,10 @@ function App() {
               path="/users/:id/verify/:tokenverify"
               element={<EmailVerify />}
             />
-            {!user?.firstName && !shopowner?.firstName && (
+            {!user?.token && !shopowner?.token && (
               <Route path="/account" element={<Login />} />
             )}
-            {!user?.firstName && !shopowner?.firstName && (
+            {!user?.token && !shopowner?.token && (
               <Route path="/create-account" element={<Signup />} />
             )}
             <Route path="/about" element={<About />} />
@@ -160,7 +141,7 @@ function App() {
             <Route path="/shopowner-account" element={<ShopOwnerSignUp />} />
             <Route path="/shopowner-login" element={<ShopOwnerLogin />} />
 
-            {user?.firstName && (
+            {user?.token && (
               <Route path="user" element={<Homex />}>
                 <Route path="edit-profile" element={<EditProfile />} />
                 <Route path="customer-orders" element={<Orders />} />
@@ -170,7 +151,7 @@ function App() {
               </Route>
             )}
 
-            {shopowner?.firstName && (
+            {shopowner?.token && (
               <Route path="shopowner" element={<Homey />}>
                 <Route path="addproduct" element={<AddProduct />} />
                 <Route
